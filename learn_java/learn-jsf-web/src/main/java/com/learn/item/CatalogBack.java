@@ -4,11 +4,11 @@ import com.learn.shared.jsf.AbstractBackingBean;
 import com.learn.shared.jsf.Bean;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
- * 
+ *
  */
 @Named(value = "catalog")
 @ViewScoped
@@ -18,6 +18,8 @@ public class CatalogBack extends AbstractBackingBean<Catalog> {
     // --------------- Attributes ----------------------------------------------
     @EJB
     private CatalogEjb ejb;
+
+    private Article article;
 
     // --------------- Getter / Setter -----------------------------------------
     @Override
@@ -40,6 +42,18 @@ public class CatalogBack extends AbstractBackingBean<Catalog> {
         return super.getList(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-}
+    // --------------- Article -------------------------------------------------
+    public Article getArticle() {
+        return article;
+    }
 
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
+    public void addArticleToCatalog(){
+        if(this.article != null){
+            getCurrent().addArticle(this.article);
+        }
+    }
+}

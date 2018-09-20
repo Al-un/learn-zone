@@ -41,9 +41,23 @@ public abstract class AbstractBackingBean<E extends AbstractEntity> implements S
     @PostConstruct
     public void init() {
         this.entities = findAll();
+        assignNewCurrent();
     }
 
     // --------------- CRUD ----------------------------------------------------
+    /**
+     * Convenient method to either create or update depending on current entity
+     * primary key
+     */
+    public void save() {
+        if (this.current.getId() == null) {
+            create();
+        }
+        else {
+            update();
+        }
+    }
+
     /**
      * Persist new entity
      */

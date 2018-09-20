@@ -4,7 +4,7 @@ import com.learn.shared.jsf.AbstractBackingBean;
 import com.learn.shared.jsf.Bean;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -18,7 +18,7 @@ public class ArticleBack extends AbstractBackingBean<Article> {
     // --------------- Attributes ----------------------------------------------
     @EJB
     private ArticleEjb ejb;
-
+    
     // --------------- Getter / Setter -----------------------------------------
     @Override
     protected ArticleEjb getEjb() {
@@ -40,5 +40,4 @@ public class ArticleBack extends AbstractBackingBean<Article> {
         return super.getList(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
 }

@@ -4,7 +4,7 @@ import com.learn.shared.jsf.AbstractBackingBean;
 import com.learn.shared.jsf.Bean;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**

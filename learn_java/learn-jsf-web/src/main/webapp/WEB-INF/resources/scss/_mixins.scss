@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+// -------------------- Common values except theme-related ---------------------
+$breakpoint-width: (
+medium: 640px,
+large: 1024px
+);
+
+$transition-time: (
+slow: 0.5s,
+medium: 0.3s,
+fast: 0.2s
+);
+
+// -----------------------------------------------------------------------------
+
+// https://www.w3schools.com/cssref/css3_pr_box-shadow.asp
+@mixin box-shadow($h-shadow, $v-shadow, $blur, $spread, $color){
+    box-shadow: $h-shadow $v-shadow $blur $spread $color;
+    -webkit-box-shadow: $h-shadow $v-shadow $blur $spread $color;
+    -moz-box-shadow: $h-shadow $v-shadow $blur $spread $color;
+}
+
+// http://front-back.com/sass-et-less-mixin-pour-multiple-shadow
+@mixin box-shadow-multiple($complex-value){
+    box-shadow: #{$complex-value};
+    -webkit-box-shadow: #{$complex-value};
+    -moz-box-shadow: #{$complex-value};
+}
+
+// http://sass-lang.com/guide#topic-6
+@mixin border-radius($radius){
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin border-top-left-radius($radius){
+    -moz-border-radius-topleft: $radius;
+    -webkit-border-top-left-radius: $radius;
+    border-top-left-radius: $radius;
+}
+
+@mixin border-top-right-radius($radius){
+    -moz-border-radius-topright: $radius;
+    -webkit-border-top-right-radius: $radius;
+    border-top-right-radius: $radius;
+}
+
+@mixin border-bottom-left-radius($radius){
+    -moz-border-radius-bottomleft: $radius;
+    -webkit-border-bottom-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+}
+
+@mixin border-bottom-right-radius($radius){
+    -moz-border-radius-bottomright: $radius;
+    -webkit-border-bottom-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+}
+
+@mixin transition($transition){
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    -webkit-transition: $transition;
+    transition: $transition;
+}
+@mixin transition_border_color{
+    @include transition(border-color map-get($transition-time, medium));
+}
+@mixin transition_background_color{
+    @include transition(background-color map-get($transition-time, medium));
+}
+
+@mixin transform($transform){
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -o-transform: $transform;
+    -ms-transform: $transform;
+    transform: $transform;
+}
+
+@mixin animation-duration($duration){
+    -webkit-animation-duration: $duration;
+    -moz-animation-duration: $duration;
+    animation-duration: $duration;
+}
+
+// https://github.com/mastastealth/sass-flex-mixin/blob/master/_flex.scss
+@mixin flexbox {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+// percentage sign: meant to be extended only and not rendered as css classes
+%flexbox {
+    @include flexbox; 
+}
+
+@mixin flex-direction($value: row) {
+    @if $value == row-reverse {
+        -webkit-box-direction: reverse;
+        -webkit-box-orient: horizontal;
+    } @else if $value == column {
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
+    } @else if $value == column-reverse {
+        -webkit-box-direction: reverse;
+        -webkit-box-orient: vertical;
+    } @else {
+        -webkit-box-direction: normal;
+        -webkit-box-orient: horizontal;
+    }
+    -webkit-flex-direction: $value;
+    -moz-flex-direction: $value;
+    -ms-flex-direction: $value;
+    flex-direction: $value;
+}
+
+@mixin flex-flow($values: (row nowrap)) {
+    // No Webkit Box fallback.
+    -webkit-flex-flow: $values;
+    -moz-flex-flow: $values;
+    -ms-flex-flow: $values;
+    flex-flow: $values;
+}
+
+
+// ---------- Breakpoints ------------------------------------------------------
+@mixin bp-large{
+    @media only screen and (min-width: map-get($breakpoint-width, large)) {
+        @content;
+    }
+}
+@mixin bp-medium {
+    @media only screen and (min-width:  map-get($breakpoint-width, medium) + 1px) {
+        @content;
+    }
+}
+@mixin bp-small {
+    @media only screen and (max-width:  map-get($breakpoint-width, medium)) {
+        @content;
+    }
+}

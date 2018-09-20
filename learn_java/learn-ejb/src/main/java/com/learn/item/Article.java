@@ -40,7 +40,7 @@ public class Article extends AbstractTimedEntity {
      */
     @Column(name = "description")
     private String description;
-    
+
     /**
      * Catalogues this article belongs to
      */
@@ -50,7 +50,7 @@ public class Article extends AbstractTimedEntity {
     // --------------- Constructor ---------------------------------------------
     public Article() {
         super();
-        this.catalogs=new ArrayList<>();
+        this.catalogs = new ArrayList<>();
     }
 
     // --------------- Getter / Setter -----------------------------------------
@@ -78,6 +78,14 @@ public class Article extends AbstractTimedEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Catalog> getCatalogs() {
+        return catalogs;
+    }
+
+    public void setCatalogs(List<Catalog> catalogs) {
+        this.catalogs = catalogs;
     }
 
 }

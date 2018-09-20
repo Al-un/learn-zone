@@ -28,6 +28,7 @@ public abstract class AbstractTimedEntity extends AbstractEntity {
     public AbstractTimedEntity() {
         super();
         this.created = LocalDateTime.now(ZoneOffset.UTC);
+        this.updated = LocalDateTime.now(ZoneOffset.UTC);
     }
 
     // --------------- Getter / Setter -----------------------------------------
