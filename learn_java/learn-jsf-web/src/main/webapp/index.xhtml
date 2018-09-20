@@ -1,0 +1,32 @@
+<ui:composition template="/WEB-INF/template/base.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+
+        <p:repeat value="#{catalog.list}" var="c">
+
+            <div class="catalog">
+                <div>
+                    <p>#{c.name}</p>
+                    <p>#{c.description}</p>
+                </div>
+
+                <p:repeat value="#{c.articles}" var="a">
+                    <p>#{a.name} - #{a.description}</p>
+                </p:repeat>
+                
+                <div>
+                    <p:commandButton value="Delete" 
+                                     action="#{catalog.delete(c)}" />
+                </div>
+            </div>
+
+        </p:repeat>
+
+    </ui:define>
+
+</ui:composition>
