@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_05_152007) do
+ActiveRecord::Schema.define(version: 2018_10_05_204906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "article_publications", force: :cascade do |t|
+    t.bigint "article_id"
+    t.bigint "catalog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_article_publications_on_article_id"
+    t.index ["catalog_id"], name: "index_article_publications_on_catalog_id"
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string "name"
@@ -22,4 +31,14 @@ ActiveRecord::Schema.define(version: 2018_10_05_152007) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "catalogs", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "article_publications", "articles"
+  add_foreign_key "article_publications", "catalogs"
 end
