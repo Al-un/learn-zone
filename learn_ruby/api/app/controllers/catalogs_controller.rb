@@ -34,7 +34,8 @@ class CatalogsController < ApplicationController
   private # --------------------------------------------------------------------
 
   def catalog_params
-    params.permit(:code, :name, :description)
+    # http://patshaughnessy.net/2014/6/16/a-rule-of-thumb-for-strong-parameters
+    params.permit(:code, :name, :description, :article_ids => [])
   end
 
   def load_catalog
