@@ -9,286 +9,310 @@
 			"name": "Rails-API",
 			"item": [
 				{
-					"name": "Article - GetAll",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{base_url}}/articles",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"articles"
-							]
+					"name": "Article",
+					"item": [
+						{
+							"name": "Article - Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/articles/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"articles",
+										"1"
+									]
+								}
+							},
+							"response": []
 						},
-						"description": "Gets all articles"
-					},
-					"response": []
-				},
-				{
-					"name": "Article - GetById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{base_url}}/articles/10",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"articles",
-								"10"
-							]
+						{
+							"name": "Article - GetAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/articles",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"articles"
+									]
+								},
+								"description": "Gets all articles"
+							},
+							"response": []
+						},
+						{
+							"name": "Article - GetById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/articles/10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"articles",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Article - Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"article name\",\n\t\"description\": \"article description\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/articles",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"articles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Article - Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"article new name\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/articles/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"articles",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Article - Update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"article old name\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/articles/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"articles",
+										"2"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Article - Create",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"article name\",\n\t\"description\": \"article description\"\n}"
+					"name": "Catalog",
+					"item": [
+						{
+							"name": "Catalog - GetAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/catalogs",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"catalogs"
+									]
+								},
+								"description": "Gets all articles"
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{base_url}}/articles",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"articles"
-							]
+						{
+							"name": "Catalog - GetById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/catalogs/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"catalogs",
+										"2"
+									]
+								},
+								"description": "Gets all articles"
+							},
+							"response": []
+						},
+						{
+							"name": "Catalog - Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"code\": \"123abc\",\n\t\"name\": \"article name\",\n\t\"articles\": {\n\t\t\"name\": \"a new article\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/catalogs",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"catalogs"
+									]
+								},
+								"description": "Gets all articles"
+							},
+							"response": []
+						},
+						{
+							"name": "Catalog - Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/catalogs/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"catalogs",
+										"1"
+									]
+								},
+								"description": "Gets all articles"
+							},
+							"response": []
+						},
+						{
+							"name": "Catalog - Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"code\": \"pouet\",\n\t\"name\": \"article new name\",\n\t\"article_ids\": [2]\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/catalogs/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"catalogs",
+										"2"
+									]
+								},
+								"description": "Gets all articles"
+							},
+							"response": []
+						},
+						{
+							"name": "Catalog - Update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"article new name\",\n\t\"article_ids\": [2]\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/{{version}}/catalogs/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{version}}",
+										"catalogs",
+										"2"
+									]
+								},
+								"description": "Gets all articles"
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "Article - Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{base_url}}/articles/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"articles",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Article - Update",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"article new name\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/articles/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"articles",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Article - Update",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"article old name\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/articles/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"articles",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Catalog - GetAll",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{base_url}}/catalogs",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"catalogs"
-							]
-						},
-						"description": "Gets all articles"
-					},
-					"response": []
-				},
-				{
-					"name": "Catalog - GetById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{base_url}}/catalogs/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"catalogs",
-								"1"
-							]
-						},
-						"description": "Gets all articles"
-					},
-					"response": []
-				},
-				{
-					"name": "Catalog - Create",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"code\": \"123abc\",\n\t\"name\": \"article name\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/catalogs",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"catalogs"
-							]
-						},
-						"description": "Gets all articles"
-					},
-					"response": []
-				},
-				{
-					"name": "Catalog - Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{base_url}}/catalogs/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"catalogs",
-								"1"
-							]
-						},
-						"description": "Gets all articles"
-					},
-					"response": []
-				},
-				{
-					"name": "Catalog - Update",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"article new name\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/catalogs/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"catalogs",
-								"1"
-							]
-						},
-						"description": "Gets all articles"
-					},
-					"response": []
-				},
-				{
-					"name": "Catalog - Update",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"article new name\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/catalogs/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"catalogs",
-								"1"
-							]
-						},
-						"description": "Gets all articles"
-					},
-					"response": []
+					],
+					"_postman_isSubFolder": true
 				}
 			],
 			"description": "Rails API endpoints"
