@@ -25,7 +25,23 @@ To deploy a sub folder on Heroku:
 ```
 git subtree push --prefix rails/api heroku-rails-api master
 ```
-woth `heroku-rails-api`, the remote connected to the heroku app git repository.
+with `heroku-rails-api`, the remote connected to the heroku app git repository. In case of fast-forward merge issues, force push with:
+```
+git push heroku-rails-api `git subtree split --prefix rails/api/ master`:master --force
+```
+The error is 
+
+```
+git push using:  heroku-rails-api master
+To https://git.heroku.com/learn-rails-api.git
+ ! [rejected]        42ec0434bb179af1e134ab73ba852922e92294b9 -> master (non-fast-forward)
+error: failed to push some refs to '{git address}
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
 
 Source:
  - https://coderwall.com/p/ssxp5q/heroku-deployment-without-the-app-being-at-the-repo-root-in-a-subfolder
+ - https://stackoverflow.com/questions/13756055/git-subtree-subtree-up-to-date-but-cant-push
