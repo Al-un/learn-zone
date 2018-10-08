@@ -11,6 +11,8 @@ An article can belong to zero (not visible), one or several catalogs.
 
 ## Heroku
 
+### Applications
+
 when possible, apps are deployed on Heroku:
 
 Role        | Language      |  Heroku apps                              | Repository
@@ -19,6 +21,8 @@ Database    | PostgreSQL    | https://learn-pgsql.herokuapp.com/        | (none)
 Full-Stack  | Java / JSF    | not on Heroku                             | [/java](https://github.com/Al-un/learn-zone/tree/master/java)
 Back-end    | Rails         | https://learn-rails-api.herokuapp.com/    | [/rails/api](https://github.com/Al-un/learn-zone/tree/master/rails/api)
 Front-end   | Rails         | TODO                                      |
+
+### Git deploy
 
 To deploy a sub folder on Heroku:
 
@@ -45,3 +49,14 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 Source:
  - https://coderwall.com/p/ssxp5q/heroku-deployment-without-the-app-being-at-the-repo-root-in-a-subfolder
  - https://stackoverflow.com/questions/13756055/git-subtree-subtree-up-to-date-but-cant-push
+ 
+### Misc
+
+To attach the database to another app
+
+```
+heroku addons:attach postgresql-learnzone -a {app name}
+```
+
+Source:
+ - https://devcenter.heroku.com/articles/managing-add-ons
