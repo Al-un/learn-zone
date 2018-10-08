@@ -1,5 +1,6 @@
 # Handling articles exposition with articles within catalogs (index & show only)
 class ArticlesController < ApplicationController
+  include FullySecured
 
   # https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-one
   before_action :load_article, only: [:update, :destroy]

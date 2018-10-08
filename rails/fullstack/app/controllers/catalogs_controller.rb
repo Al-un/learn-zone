@@ -1,6 +1,8 @@
 # Managing catalogs
 class CatalogsController < ApplicationController
+  include Secured
   before_action :load_catalog, only: [:show, :update, :destroy]
+  before_action :logged_in?, except: [:index]
 
   # GET /catalogs
   def index
