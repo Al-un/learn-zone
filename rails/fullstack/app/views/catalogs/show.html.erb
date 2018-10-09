@@ -1,0 +1,12 @@
+<%= form_with model: @catalog do |f| %>
+
+  <%= f.text_field :name, placeholder: :Name %>
+  <%= f.text_field :description, placeholder: :Description %>
+
+  <%= collection_select(:catalog, :article_ids, @articles, :id, :name, {}, {:multiple => true}) %>
+
+  <%= f.submit %>
+
+<% end %>
+
+<%= button_to 'Delete', catalog_path(@catalog), method: :delete, data: { confirm: 'Are you sure to delete this?' } %>a

@@ -1,0 +1,10 @@
+<%= link_to catalog_path(catalog) do %>
+  <div class="">
+    <div class="catalog-name">
+      <%= catalog.id %> - <%= catalog.code %> - <%= catalog.name %>
+    </div>
+    <div class="catalog-description">
+      <%= catalog.description %>
+    </div>
+  </div>
+<% end %>

@@ -9,31 +9,39 @@ class CatalogsController < ApplicationController
     @catalogs = Catalog.all
   end
 
+  # GET /catalogs/new
+  def new
+    @catalog = Catalog.new
+  end
+
   # POST /catalogs
   def create
     @catalog = Catalog.create!(catalog_params)
+    redirect_to catalogs_path
   end
 
   # GET /catalog/:id
   def show
-    @catalog
+    @articles = Article.all
   end
 
   # PATCH /catalog/:id
   def update
     @catalog.update(catalog_params)
+    redirect_to catalogs_path
   end
 
   # DELETE /catalog/:id
   def destroy
     @catalog.destroy
+    redirect_to catalogs_path
   end
 
   private # --------------------------------------------------------------------
 
   def catalog_params
     # http://patshaughnessy.net/2014/6/16/a-rule-of-thumb-for-strong-parameters
-    params.permit(:code, :name, :description, :article_ids => [])
+    params.require(:catalog).permit(:code, :name, :description, :article_ids => [])
   end
 
   def load_catalog

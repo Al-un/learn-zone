@@ -15,9 +15,15 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # GET /articles/new
+  def new
+    @article = Article.new
+  end
+
   # POST /articles
   def create
     @article = Article.create!(article_params)
+    redirect_to articles_path
   end
 
   # GET /article/:id
@@ -34,17 +40,19 @@ class ArticlesController < ApplicationController
   # !! This is not PUT !!
   def update
     @article.update(article_params)
+    redirect_to articles_path
   end
 
   # DELETE /article/:id
   def destroy
     @article.destroy
+    redirect_to articles_path
   end
 
   private # --------------------------------------------------------------------
 
   def article_params
-    params.permit(:name, :description)
+    params.require(:article).permit(:name, :description)
   end
 
   def load_article

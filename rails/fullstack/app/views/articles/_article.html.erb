@@ -1,0 +1,10 @@
+<%= link_to article_path(article) do %>
+  <div class="">
+    <div class="article-name">
+      <%= article.id %> - <%= article.name %>
+    </div>
+    <div class="article-description">
+      <%= article.description %>
+    </div>
+  </div>
+<% end %>
