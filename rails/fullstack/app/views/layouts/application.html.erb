@@ -14,5 +14,6 @@
     <a href="/auth/auth0">Login</a>
     <a href="/auth/logout">Logout</a>
     <%= session[:userinfo].inspect %>
+    <%= debug ENV.to_h.to_yaml %>
   </body>
 </html>
