@@ -20,7 +20,7 @@ Role        | Language      |  Heroku apps                              | Reposi
 Database    | PostgreSQL    | https://learn-pgsql.herokuapp.com/        | (none)
 Full-Stack  | Java / JSF    | not on Heroku                             | [/java](https://github.com/Al-un/learn-zone/tree/master/java)
 Back-end    | Rails         | https://learn-rails-api.herokuapp.com/    | [/rails/api](https://github.com/Al-un/learn-zone/tree/master/rails/api)
-Front-end   | Rails         | TODO                                      |
+Full-Stack  | Rails         | https://learn-rails-fullstack.herokuapp.com/ | [/rails/fullstack](https://github.com/Al-un/learn-zone/tree/master/rails/fullstack)
 
 ### Git deploy
 
