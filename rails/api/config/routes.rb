@@ -2,7 +2,8 @@
 Rails.application.routes.draw do
   
   # Versioning the whole API, starts with V1
-  scope 'v1' do
+  # 21-Oct-20118 removing scope to be compatible with Rails/FullStack
+  #scope 'v1' do
 
     # Articles
     resources :articles
@@ -11,6 +12,6 @@ Rails.application.routes.draw do
       resources :articles, only: [:index, :show]
     end
 
-  end
+  #end
 
 end
