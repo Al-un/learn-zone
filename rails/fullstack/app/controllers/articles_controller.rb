@@ -1,9 +1,11 @@
 # Handling articles exposition with articles within catalogs (index & show only)
 class ArticlesController < ApplicationController
-  include FullySecured
+  include Secured
 
   # https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-one
-  before_action :load_article, only: [:update, :destroy]
+  before_action :load_article, only: [:show, :edit, :update, :destroy]
+  # display only is opened to public
+  before_action :logged_in?, except: [:index, :show] 
 
   # GET /articles
   # Need to check if getting articles from a catalog or not
@@ -26,14 +28,18 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
 
-  # GET /article/:id
+  # GET /article/:id/edit
   # Need to check if getting articles from a catalog or not
+  def edit
+    @article = Article.find(params[:id])
+    # if (params.has_key?(:catalog_id))
+    #   @article = Catalog.find(params[:catalog_id]).articles.find(params[:id])
+    # else
+    #   @article = Article.find(params[:id])
+    # end
+  end
+
   def show
-    if (params.has_key?(:catalog_id))
-      @article = Catalog.find(params[:catalog_id]).articles.find(params[:id])
-    else
-      @article = Article.find(params[:id])
-    end
   end
 
   # PATCH /article/:id 

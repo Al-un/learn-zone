@@ -1,7 +1,2 @@
-<%= form_with model: @article do |f| %>
-
-  <%= f.text_field :name, placeholder: :Name %>
-  <%= f.text_field :description, placeholder: :Description %>
-  <%= f.submit %>
-
-<% end %>
+<%= render partial: 'form', locals:
+    {submit_text: t('form.create'), article: @article} %>

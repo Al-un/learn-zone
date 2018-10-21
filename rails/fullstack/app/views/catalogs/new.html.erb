@@ -1,8 +1,2 @@
-<%= form_with model: @catalog do |f| %>
-
-  <%= f.text_field :code, placeholder: :Code, required: true %>
-  <%= f.text_field :name, placeholder: :Name, required: true %>
-  <%= f.text_field :description, placeholder: :Description %>
-  <%= f.submit %>
-
-<% end %>
+<%= render partial: 'form', locals: 
+    {submit_text: t('form.create'), catalog: @catalog, articles: @articles} %>

@@ -7,13 +7,29 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%# FontAwesome icon pack %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous">
   </head>
 
   <body>
-    <%= yield %>
-    <a href="/auth/auth0">Login</a>
-    <a href="/auth/logout">Logout</a>
-    <%= session[:userinfo].inspect %>
-    <%= debug ENV.to_h.to_yaml %>
+    <header id="nav-toolbar">
+      <div class='nav-home-menu'>
+        <%= link_to root_path do %>
+          <i class="fas fa-home"></i>
+          <%= t('navigation.home') %>
+        <% end %>
+      </div>
+      <div class='flex-pusher'></div>
+      <div class='nav-auth-menu'>
+        <%= render nav_auth_menu_path %>
+      </div>
+    </header>
+
+    <div id="nav-container">
+      <%= yield %>
+    </div>
   </body>
 </html>

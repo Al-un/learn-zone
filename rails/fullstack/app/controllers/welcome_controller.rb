@@ -3,9 +3,6 @@ require 'net/http'
 
 class WelcomeController < ApplicationController
 
-  def index
-  end
-
   def register
     email = params[:email]
     password = params[:password]

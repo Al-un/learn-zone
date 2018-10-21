@@ -30,4 +30,42 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  # pure UI stuff
+  navigation:
+    home: 'Home'
+    sign_in: 'Sign in'
+    logout: 'Logout'
+  # Form
+  form:
+    create: 'Create'
+    edit: 'Edit'
+    update: 'Update'
+    delete: 'Delete'
+    delete_confirm: 'Are you sure you want to delete this?'
+  # Articles
+  articles:
+    no_desc: 'No description'
+    count:
+      zero: 'No article'
+      one: '1 article'
+      other: "%{count} articles"
+    field:
+      name: Name
+      desc: Description
+    crud:
+      create: Create an article
+      sign_in_to_create: Please sign in before creating an article
+      list: 'List all articles'
+      add: 'Add article'
+      remove: 'Remove article'
+  # Catalogs
+  catalogs:
+    no_desc: 'No description'
+    field:
+      code: Code
+      name: Name
+      desc: Description
+    crud:
+      create: Create a catalog
+      sign_in_to_create: Please sign in before creating a catalog
+    

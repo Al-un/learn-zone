@@ -1,10 +1,16 @@
-<%= link_to catalog_path(catalog) do %>
-  <div class="">
-    <div class="catalog-name">
-      <%= catalog.id %> - <%= catalog.code %> - <%= catalog.name %>
+<div class="card catalog">
+  <%= link_to catalog_path(catalog) do %>
+    <div class="card-content">
+      <div class="card-header">
+        <%= catalog.code %> - <%= catalog.name %>
+      </div>
+      <div class="card-body">
+        <%= display_text(catalog.description, no_text: t('catalogs.no_desc'), truncate: 80) %>
+      </div>
+      <div class="card-footer">
+        <%# https://stackoverflow.com/a/52362539/4906586 %>
+        <%= t('articles.count', count: catalog.article_publications.size) %>
+      </div>
     </div>
-    <div class="catalog-description">
-      <%= catalog.description %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

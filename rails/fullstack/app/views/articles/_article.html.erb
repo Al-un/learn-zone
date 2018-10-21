@@ -1,10 +1,24 @@
-<%= link_to article_path(article) do %>
-  <div class="">
-    <div class="article-name">
-      <%= article.id %> - <%= article.name %>
-    </div>
-    <div class="article-description">
-      <%= article.description %>
-    </div>
+<div class="card article_publication">
+  <div class="card-content">
+      <div class="card-header">
+        <%= article.name %>
+      </div>
+      <div class="card-body">
+        <%= display_text(article.description, no_text: t('articles.no_desc'), truncate: 80) %>
+      </div>
+      <% if session.key?(:userinfo) %>
+        <div class="card-footer button-row">
+          <%= button_to edit_article_path(article), 
+              method: :get do %>
+              <span><i class="fas fa-edit"></i><%= t('form.edit') %></span>
+          <% end %>
+          <%= button_to article_path(article), 
+              class: 'delete-button',
+              method: :delete, 
+              ata: { confirm: t('form.delete_confirm') } do %>
+              <span><i class="fas fa-trash"></i><%= t('form.delete') %></span>
+          <% end %>
+        </div>
+      <% end %>
   </div>
-<% end %>
+</div>

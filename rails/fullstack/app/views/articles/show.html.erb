@@ -1,9 +1,5 @@
-<%= form_with model: @article do |f| %>
+<h2><%= @article.name %></h2>
 
-  <%= f.text_field :name, placeholder: :Name %>
-  <%= f.text_field :description, placeholder: :Description %>
-  <%= f.submit %>
-
-<% end %>
-
-<%= button_to 'Delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure to delete this?' } %>
+<div>
+  <%= @article.description %>
+</div>
