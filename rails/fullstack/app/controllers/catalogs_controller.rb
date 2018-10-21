@@ -3,50 +3,92 @@ class CatalogsController < ApplicationController
   include Secured
 
   # ----------------------------------------------------------------------------
-
-  # load catalog per id 
-  before_action :load_catalog, only: [:show, :edit, :update, :destroy]
   # display only is opened to public
   before_action :logged_in?, except: [:index, :show] 
 
   # ----------------------------------------------------------------------------
   # GET /catalogs
   def index
-    @catalogs = Catalog.all
-      .includes(:article_publications)
+    @catalogs = Catalog.all.includes(:article_publications)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @catalogs }
+    end
   end
 
   # GET /catalogs/new
   def new
     @catalog = Catalog.new
     @articles = Article.all
+
+    respond_to do |format|
+      format.html
+      format.json { head :no_content }
+    end
   end
 
   # POST /catalogs
   def create
     @catalog = Catalog.create!(catalog_params)
-    redirect_to catalog_path(@catalog)
+    
+    respond_to do |format|
+      format.html { redirect_to catalog_path(@catalog) }
+      format.json { render json: @catalog }
+    end
   end
 
   # GET /catalog/:id
   def show
+    @catalog = Catalog.includes(article_publications: [:article]).find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @catalog }
+    end
   end
 
   # GET /catalog/:id/edit
   def edit
+    @catalog = Catalog.includes(article_publications: [:article]).find(params[:id])
     @articles = Article.all
+
+    respond_to do |format|
+      format.html 
+      format.json { render json: @catalog }
+    end
   end
 
-  # PATCH /catalog/:id
+  # PUT/PATCH /catalog/:id
   def update
+    @catalog = Catalog.find(params[:id])
     @catalog.update(catalog_params)
-    redirect_to catalog_path(@catalog)
+    
+    respond_to do |format|
+      format.html { redirect_to catalog_path(@catalog) }
+      format.json { head :no_content }
+    end
   end
 
   # DELETE /catalog/:id
   def destroy
-    @catalog.destroy
-    redirect_to catalogs_path
+    # Proceed
+    catalog = Catalog.find(params[:id])
+    catalog.destroy
+    respond_to do |format|
+      format.html { redirect_to catalogs_path }
+      format.json { head :no_content }
+    end
+    # Exception management
+  rescue ActiveRecord::RecordNotFound
+    respond_to do |format|
+      format.html { redirect_to catalogs_path }
+      format.json { head :no_content, status: :not_found }
+    end
+  rescue ActiveRecord::RecordNotDestroyed
+    respond_to do |format|
+      format.html { redirect_to catalogs_path }
+      format.json { head :no_content, status: :internal_server_error }
+    end
   end
 
   private # --------------------------------------------------------------------
@@ -63,10 +105,6 @@ class CatalogsController < ApplicationController
     #     :id, :_destroy, # https://github.com/nathanvda/cocoon#strong-parameters-gotcha
     #     article_attribute: [:name, :description]],
     #   :article_ids => [])
-  end
-
-  def load_catalog
-    @catalog = Catalog.find(params[:id])
   end
 
 end

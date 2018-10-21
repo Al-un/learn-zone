@@ -22,11 +22,13 @@
           <%= t('navigation.home') %>
         <% end %>
       </div>
-      <div class='flex-pusher'></div>
+      <div class='flex-pusher'>
+      </div>
       <div class='nav-auth-menu'>
         <%= render nav_auth_menu_path %>
       </div>
     </header>
+    <%= link_to '/misc-info', misc_info_path %>
 
     <div id="nav-container">
       <%= yield %>

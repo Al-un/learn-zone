@@ -219,6 +219,7 @@ DEPENDENCIES
   duktape
   jbuilder (~> 2.5)
   jquery-rails
+  jwt
   omniauth (~> 1.6.1)
   omniauth-auth0 (~> 2.0.0)
   pg (>= 0.18, < 2.0)

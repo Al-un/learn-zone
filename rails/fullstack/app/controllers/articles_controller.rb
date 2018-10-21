@@ -15,6 +15,11 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.all
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @articles }
+    end
   end
 
   # GET /articles/new
@@ -25,7 +30,11 @@ class ArticlesController < ApplicationController
   # POST /articles
   def create
     @article = Article.create!(article_params)
-    redirect_to articles_path
+    
+    respond_to do |format|
+      format.html { redirect_to article_path(@article) }
+      format.json { render json: @article }
+    end
   end
 
   # GET /article/:id/edit
@@ -40,19 +49,29 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @article }
+    end
   end
 
   # PATCH /article/:id 
   # !! This is not PUT !!
   def update
     @article.update(article_params)
-    redirect_to articles_path
+    respond_to do |format|
+      format.html { redirect_to articles_path }
+      format.json { head :no_content }
+    end
   end
 
   # DELETE /article/:id
   def destroy
     @article.destroy
-    redirect_to articles_path
+    respond_to do |format|
+      format.html { redirect_to articles_path }
+      format.json { head :no_content }
+    end
   end
 
   private # --------------------------------------------------------------------

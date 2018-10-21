@@ -1,7 +1,7 @@
 <div class="card article_publication">
   <div class="card-content">
       <div class="card-header">
-        <%= article.name %>
+        [<%= article.id %>] <%= article.name %>
       </div>
       <div class="card-body">
         <%= display_text(article.description, no_text: t('articles.no_desc'), truncate: 80) %>

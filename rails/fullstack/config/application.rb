@@ -28,5 +28,9 @@ module LearnZone
       end
     end
 
+    # BAD?
+    # http://brettu.com/rails-ruby-tips-203-load-lib-files-in-rails-4/
+    config.autoload_paths += %W(#{config.root}/lib)
+
   end
 end
