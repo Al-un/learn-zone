@@ -30,7 +30,9 @@ module LearnZone
 
     # BAD?
     # http://brettu.com/rails-ruby-tips-203-load-lib-files-in-rails-4/
-    config.autoload_paths += %W(#{config.root}/lib)
+    # config.autoload_paths += %W(#{config.root}/lib)
+    # https://blog.bigbinary.com/2016/08/29/rails-5-disables-autoloading-after-booting-the-app-in-production.html
+    config.eager_load_paths << Rails.root.join('lib')
 
   end
 end
