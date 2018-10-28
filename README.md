@@ -1,4 +1,4 @@
-## Learning zone
+# Learning zone
 
 Development to learn basics in some web application or testing specific features. It basically implements a simple e-commerce structure. Basic objects are:
 
@@ -6,14 +6,25 @@ Development to learn basics in some web application or testing specific features
 - Catalog
 - Ordering
 - OrderItem
+- User (Identity is managed by [Auth0](https://auth0.com))
 
 An article can belong to zero (not visible), one or several catalogs.
+Relationships are as follow:
 
-## Heroku
+Entity          | Relationships     | Entity
+---             |---                |--- 
+Article         | [0..n] --- [0..n] | Catalog
+Article         | [0..n] --- [1..1] | User
+Catalog         | [0..n] --- [1..1] | User
+Ordering        | [0..n] --- [1..1] | User
+Ordering        | [1..1] --- [1..n] | OrderItem
+Article         | [1..1] --- [0..n] | OrderItem
 
-### Applications
+# Landscape
 
-when possible, apps are deployed on Heroku:
+### Deployments
+
+whenever possible, apps are deployed on Heroku:
 
 Role        | Language      |  Heroku apps                              | Repository
 ---         |---            |---                                        |---
@@ -22,7 +33,17 @@ Full-Stack  | Java / JSF    | not on Heroku                             | [/java
 Back-end    | Rails         | https://learn-rails-api.herokuapp.com/    | [/rails/api](https://github.com/Al-un/learn-zone/tree/master/rails/api)
 Full-Stack  | Rails         | https://learn-rails-fullstack.herokuapp.com/ | [/rails/fullstack](https://github.com/Al-un/learn-zone/tree/master/rails/fullstack)
 
-### Git deploy
+### Components
+
+ - Rails :
+    - ORM: [ActiveRecord](https://guides.rubyonrails.org/active_record_querying.html)
+    - Testing: TBC
+    - Logging: TBC
+    - Serialization: TBC
+
+# Notes
+
+### Heroku Git deploy
 
 To deploy a sub folder on Heroku:
 
@@ -50,13 +71,14 @@ Source:
  - https://coderwall.com/p/ssxp5q/heroku-deployment-without-the-app-being-at-the-repo-root-in-a-subfolder
  - https://stackoverflow.com/questions/13756055/git-subtree-subtree-up-to-date-but-cant-push
  
-### Misc
+### Heroku Misc
 
 To attach the database to another app
 
-```
+```shell
 heroku addons:attach postgresql-learnzone -a {app name}
 ```
 
 Source:
  - https://devcenter.heroku.com/articles/managing-add-ons
+
