@@ -30,7 +30,9 @@ class CatalogsController < ApplicationController
 
   # POST /catalogs
   def create
-    @catalog = Catalog.create!(catalog_params)
+    @catalog = Catalog.create!(catalog_params) do |c|
+      c.user = @user
+    end
     
     respond_to do |format|
       format.html { redirect_to catalog_path(@catalog) }

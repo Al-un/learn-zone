@@ -29,7 +29,9 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @article = Article.create!(article_params)
+    @article = Article.create!(article_params) do |a|
+      a.user = @user
+    end
     
     respond_to do |format|
       format.html { redirect_to article_path(@article) }
