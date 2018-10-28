@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get 'auth/oauth2/callback' => 'auth0#callback'
   get 'auth/failure' => 'auth0#failure'
   get 'auth/logout' => 'logout#logout'
-  post '/register' => 'welcome#register'
 
   # Articles
   resources :articles
