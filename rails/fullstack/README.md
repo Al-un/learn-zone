@@ -1,24 +1,10 @@
-# README
+## Fullstack version using Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Just Rails
 
-Things you may want to cover:
+## Temporary code
 
-* Ruby version
+Temporary code are implemented but not meant to be persistent and must be 
+removed when appropriate.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ - [TMP-001] products with no user are updated with the currently logged user

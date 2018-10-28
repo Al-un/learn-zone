@@ -6,6 +6,9 @@
       <div class="card-body">
         <%= display_text(article.description, no_text: t('articles.no_desc'), truncate: 80) %>
       </div>
+        <%# [TMP-001] %>
+        <p>[<%= article.user %>]</p>
+
       <% if session.key?(:userinfo) %>
         <div class="card-footer button-row">
           <%= button_to edit_article_path(article), 

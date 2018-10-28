@@ -59,6 +59,12 @@ class ArticlesController < ApplicationController
   # !! This is not PUT !!
   def update
     @article.update(article_params)
+
+    # [TMP-001]
+    if @article.user == nil then
+      @article.update(user: @user)
+    end
+
     respond_to do |format|
       format.html { redirect_to articles_path }
       format.json { head :no_content }

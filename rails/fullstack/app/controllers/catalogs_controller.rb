@@ -49,7 +49,7 @@ class CatalogsController < ApplicationController
 
   # GET /catalog/:id/edit
   def edit
-    @catalog = Catalog.includes(article_publications: [:article]).find(params[:id])
+    @catalog = Catalog.includes(:user, article_publications: [:article]).find(params[:id])
     @articles = Article.all
 
     respond_to do |format|
@@ -61,7 +61,13 @@ class CatalogsController < ApplicationController
   # PUT/PATCH /catalog/:id
   def update
     @catalog = Catalog.find(params[:id])
+
     @catalog.update(catalog_params)
+
+    # [TMP-001]
+    if @catalog.user == nil then
+      @catalog.update(user: @user)
+    end
     
     respond_to do |format|
       format.html { redirect_to catalog_path(@catalog) }
