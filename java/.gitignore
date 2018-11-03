@@ -1,9 +1,0 @@
-# Ignoring target folder
-learn-ejb/target/
-learn-jsf-ear/target/
-learn-jsf-web/target/
-
-# Ignore Netbeans configuration
-learn-ejb/nb-configuration.xml
-learn-jsf-ear/nb-configuration.xml
-learn-jsf-web/nb-configuration.xml
