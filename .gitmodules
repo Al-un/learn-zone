@@ -1,0 +1,3 @@
+[submodule "rails-api"]
+	path = rails-api
+	url = https://github.com/Al-un/learn-zone-rails-api
