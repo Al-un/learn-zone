@@ -42,6 +42,22 @@ gem 'cocoon'
 # jQuery
 gem 'jquery-rails' 
 
+# Logging - Testing : Log4r
+# gem 'log4r'
+# Logging - Testing : Logging
+# gem 'logging'
+# gem 'logging-rails', :require => 'logging/rails'
+# Logging - Testing : Lograge
+gem 'lograge'
+gem 'lograge-sql', git: 'https://github.com/Al-un/lograge-sql'
+# gem 'lograge-sql', path: '../../../ruby_lograge-sql'
+# Logging - Testing : Ougai with Awesome-print: 
+# https://github.com/tilfin/ougai#use-human-readable-formatter-for-console
+gem 'ougai', path: '../../../../ruby_ougai'
+gem 'awesome_print'
+# Logging - Testing : Loggly
+gem 'logglier'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

@@ -43,6 +43,22 @@ class CatalogsController < ApplicationController
   # GET /catalog/:id
   def show
     @catalog = Catalog.includes(article_publications: [:article]).find(params[:id])
+
+    logger.debug({ custom: "Debugging: showing catalogs #{@catalog.id}" })
+    logger.info "Info: showing catalogs #{@catalog.id}"
+    logger.warn "Warn: showing catalogs #{@catalog.id}"
+
+    begin
+      error = wrong_method
+    rescue => ex
+      logger.warn(ex)
+    end
+
+    # Ougai only
+    # logger.info('a message', {object: 'an object', another_object: 'another_object'})
+    # Logging
+    logger.info({msg: 'a message in specific field for Logging', object: 'an object', another_object: 'another_object'})
+
     respond_to do |format|
       format.html
       format.json { render json: @catalog }
@@ -113,6 +129,12 @@ class CatalogsController < ApplicationController
     #     :id, :_destroy, # https://github.com/nathanvda/cocoon#strong-parameters-gotcha
     #     article_attribute: [:name, :description]],
     #   :article_ids => [])
+  end
+
+  def wrong_method
+    a = 1
+    b = 0
+    a/b
   end
 
 end

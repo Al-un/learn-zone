@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # https://github.com/auth0/omniauth-auth0
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider(
@@ -13,4 +14,10 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       # prompt: 'none'
     }
   )
+end
+
+Rails.application.configure do
+  puts ' ---------- Application configuration: Auth0 ----------'
+  # Redirect OmniAuth logs to Rails logger
+  OmniAuth.config.logger = Rails.logger
 end

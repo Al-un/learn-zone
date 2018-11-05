@@ -49,10 +49,6 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
-  # Use the lowest log level to ensure availability of diagnostic information
-  # when problems arise.
-  config.log_level = :debug
-
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
@@ -76,19 +72,69 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
-  # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
-
-  # Use a different logger for distributed setups.
-  # require 'syslog/logger'
-  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
-
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
-    logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
-  end
-
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Logging --------------------------------------------------------------------
+  # Use the lowest log level to ensure availability of diagnostic information
+  # when problems arise.
+  config.log_level = :debug
+  # # === Standard Ruby Logger
+  # # Use default logging formatter so that PID and timestamp are not suppressed.
+  # config.log_formatter = ::Logger::Formatter.new
+
+  # # Use a different logger for distributed setups.
+  # # require 'syslog/logger'
+  # # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
+
+  # if ENV["RAILS_LOG_TO_STDOUT"].present?
+  #   logger           = ActiveSupport::Logger.new(STDOUT)
+  #   logger.formatter = config.log_formatter
+  #   config.logger    = ActiveSupport::TaggedLogging.new(logger)
+  # end
+
+  # # === Logging
+  # # Set the logging destination(s)
+  # config.log_to = %w[file]
+  # # Show the logging configuration on STDOUT
+  # config.show_log_configuration = false
+
+  # === Lograge
+  # see config/initializers/lograge.rb
+
+  # === Ougai
+  # Console output
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
+    console_color = Ougai::Colors::Configuration.new(
+      severity: {
+        trace:  Ougai::Colors::WHITE,
+        debug:  Ougai::Colors::WHITE,
+        info:   Ougai::Colors::CYAN,
+        warn:   Ougai::Colors::YELLOW,
+        error:  Ougai::Colors::RED,
+        fatal:  Ougai::Colors::MAGENTA
+      },
+      msg: :inherited,
+      datetime: :inherited
+    )
+    console_formatter = Ougai::Formatters::Colored.new(
+      color_config: console_color,
+      msg_formatter: Log::Ougai::MsgFormatter.new,
+      data_formatter: Log::Ougai::DataFormatter.new
+    )
+    file_formatter            = Ougai::Formatters::Bunyan.new
+    file_logger               = Log::Ougai::Logger.new(Rails.root.join('log/ougai_prod.log'))
+    file_logger.formatter     = file_formatter
+    console_logger            = Log::Ougai::Logger.new(STDOUT)
+    console_logger.formatter  = console_formatter
+    console_logger.extend(Ougai::Logger.broadcast(file_logger))
+    config.logger = console_logger
+  # File only
+  else
+    config.logger = Log::Ougai::Logger.new(Rails.root.join('log/production.log'))
+  end
+
+  # Loggly
+  # see config/initializers/loggly.rb
+
 end
