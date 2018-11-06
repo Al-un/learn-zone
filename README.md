@@ -29,16 +29,20 @@ whenever possible, apps are deployed on Heroku:
 Role        | Language      |  Heroku apps                              | Repository
 ---         |---            |---                                        |---
 Database    | PostgreSQL    | https://learn-pgsql.herokuapp.com/        | (none)
-Full-Stack  | Java / JSF    | not on Heroku                             | [/java](https://github.com/Al-un/learn-zone/tree/master/java)
-Back-end    | Rails         | https://learn-rails-api.herokuapp.com/    | [/rails/api](https://github.com/Al-un/learn-zone/tree/master/rails/api)
-Full-Stack  | Rails         | https://learn-rails-fullstack.herokuapp.com/ | [/rails/fullstack](https://github.com/Al-un/learn-zone/tree/master/rails/fullstack)
+Fullstack   | Java / JSF    | not deployed                              | [learn-zone-javaee](https://github.com/Al-un/learn-zone-javaee)
+Back-end    | Rails         | https://learn-rails-api.herokuapp.com/    | [learn-zone-rails-api](https://github.com/Al-un/learn-zone-rails-api)
+Fullstack   | Rails         | https://learn-rails-fullstack.herokuapp.com/ | [learn-zone-rails](https://github.com/Al-un/learn-zone-rails)
 
 ### Components
 
- - Rails :
+ - Rails (Fullstack):
     - ORM: [ActiveRecord](https://guides.rubyonrails.org/active_record_querying.html)
     - Testing: TBC
-    - Logging: TBC
+    - Logging:
+        - [Lograge](https://github.com/roidrage/lograge)
+        - [Lograge-sql](https://github.com/iMacTia/lograge-sql)
+        - [Ougai](https://github.com/tilfin/ougai)
+        - [Loggly](https://www.loggly.com/) via [Logglier](https://github.com/freeformz/logglier)
     - Serialization: TBC
 
 # Notes
