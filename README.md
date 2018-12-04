@@ -31,6 +31,10 @@ It basically implements a simple e-commerce structure.
 - **T05**: Testing
 - **T06**: Code quality monitoring
 
+### Design
+
+- [**S01** SASS](https://github.com/Al-un/learnzone/issues/6)
+
 # Landscape
 
 ### Deployments
