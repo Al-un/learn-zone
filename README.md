@@ -37,13 +37,15 @@ It basically implements a simple e-commerce structure.
 
 whenever possible, apps are deployed on Heroku:
 
-| Role      | Stack      | Deployment                                  | Repository                                                            |
-| --------- | ---------- | ------------------------------------------- | --------------------------------------------------------------------- |
-| Database  | PostgreSQL | https://learnzone-postgresql.herokuapp.com/ | (none)                                                                |
-| Fullstack | Java / JSF | not deployed                                | [learn-zone-javaee](https://github.com/Al-un/learn-zone-javaee)       |
-| API       | Rails      | https://learnzone-rails-api.herokuapp.com/  | [learn-zone-rails-api](https://github.com/Al-un/learnzone-rails-api) |
-| Fullstack | Rails      | https://learnzone-rails.herokuapp.com/      | [learn-zone-rails](https://github.com/Al-un/learnzone-rails)         |
-| Fullstack | NodeJs     | https://learnzone-node.herokuapp.com        | [learn-zone-node](https://github.com/Al-un/learnzone-nodejs)         |
+| Role      | Stack       | Deployment                                  | Repository                                                            |
+| --------- | ----------  | ------------------------------------------- | --------------------------------------------------------------------- |
+| Database  | PostgreSQL  | https://learnzone-postgresql.herokuapp.com/ | (none)                                                                |
+| Fullstack | Java / JSF  | not deployed                                | [learn-zone-javaee](https://github.com/Al-un/learn-zone-javaee)       |
+| API       | Rails       | https://learnzone-rails-api.herokuapp.com/  | [learnzone-rails-api](https://github.com/Al-un/learnzone-rails-api)   |
+| Fullstack | Rails       | https://learnzone-rails.herokuapp.com/      | [learnzone-rails](https://github.com/Al-un/learnzone-rails)           |
+| Fullstack | NodeJs      | https://learnzone-node.herokuapp.com        | [learnzone-node](https://github.com/Al-un/learnzone-nodejs)           |
+| Front-end | React       | TBD                                         | [learnzone-react](https://github.com/Al-un/learnzone-react)           |
+|           |             |                                             |                                                                       |
 
 ### Shared third party components
 
@@ -53,11 +55,9 @@ projects:
 - [Auth0](https://auth0.com) (IDaaS)
 - [CodeClimate](https://codeclimate.com/) (code quality)
 
-### Specifications
+### Technical stack
 
 #### Rails (API)
-
-**Technical**
 
 - T01:
   - T01.1: [Puma](http://puma.io/)
@@ -65,8 +65,6 @@ projects:
   - T01.3: Web framework: [Rails](https://rubyonrails.org/) [API only version](https://guides.rubyonrails.org/api_app.html)
 
 #### Rails (Fullstack)
-
-**Technical**
 
 - T01:
   - T01.1: [Puma](http://puma.io/)
@@ -106,8 +104,6 @@ projects:
   - Using [SimpleCov](https://github.com/colszowka/simplecov) ([guide](https://medium.com/the-code-review/display-your-ruby-test-coverage-using-simplecov-gem-and-codeclimate-6db6336fe409))
 
 #### Node.js
-
-**Technical**
 
 - T01:
   - T01.1: `?`
