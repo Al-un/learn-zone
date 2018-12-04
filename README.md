@@ -34,6 +34,9 @@ It basically implements a simple e-commerce structure.
 ### Design
 
 - [**S01** SASS](https://github.com/Al-un/learnzone/issues/6)
+- [**S02** SASS update](https://github.com/Al-un/learnzone/issues/7)
+- [**S03** Sidemenu](https://github.com/Al-un/learnzone/issues/8)
+- [**S04** Bootstrap](https://github.com/Al-un/learnzone/issues/9)
 
 # Landscape
 
