@@ -13,23 +13,19 @@ It basically implements a simple e-commerce structure.
 - [**F03**: Secure data edition](https://github.com/Al-un/learnzone/issues/3)
 - [**F04**: Adding tenancy](https://github.com/Al-un/learnzone/issues/4)
 - [**F05**: Priced article publication](https://github.com/Al-un/learnzone/issues/5)
+- [**F06**: Products photo](https://github.com/Al-un/learnzone/issues/17)
+- [**F07**: notify products crud](https://github.com/Al-un/learnzone/issues/18)
 
 ### Technical
 
-- **T01**: Minimal configuration
-  - _T01.1_: Web server
-  - _T01.2_: ORM or SQL driver
-  - _T01.3_: Web-framework
-  - _T01.4_: Documentation
-  - _T01.5_: Router
-  - _T01.6_: REST / JSON
-- **T02**: Identity management
-- **T03**: Continuous Integration
-- **T04**: Logging
-  - _T04.1_: Standard logger or logging library
-  - _T04.2_: Log aggregation
-- **T05**: Testing
-- **T06**: Code quality monitoring
+- [**T01**: Minimal configuration](https://github.com/Al-un/learnzone/issues/10)
+- [**T02**: Identity management](https://github.com/Al-un/learnzone/issues/11)
+- [**T03**: CI/CD](https://github.com/Al-un/learnzone/issues/12)
+- [**T04**: Logging](https://github.com/Al-un/learnzone/issues/13)
+- [**T05**: Testing](https://github.com/Al-un/learnzone/issues/14)
+- [**T06**: Code quality](https://github.com/Al-un/learnzone/issues/15)
+- [**T07**: Documentation](https://github.com/Al-un/learnzone/issues/16)
+- [**T08**: Websocket](https://github.com/Al-un/learnzone/issues/19)
 
 ### Design
 
