@@ -1,0 +1,6 @@
+- name: CircleCI
+  collection: circleci
+- name: Rails
+  collection: rails
+- name: ReactJS
+  collection: react

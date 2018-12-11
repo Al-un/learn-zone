@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ page.title }}</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="{{ 'assets/styles/styles.css' | relative_url }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ 'assets/styles/syntax-monokai.css' | relative_url }}"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="nav-menu">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/kx' | relative_url }}">KX</a>
+        <a href="{{ '/blog' | relative_url }}">blog</a>
+      </div>
+    </header>
+
+    <div id="container">
+      <div id="content">{{ content }}</div>
+    </div>
+
+    <footer>Some footer</footer>
+  </body>
+</html>

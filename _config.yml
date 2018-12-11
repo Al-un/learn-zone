@@ -1,0 +1,55 @@
+markdown: kramdown
+
+# Folder structure:
+# https://halfelf.org/2015/jekyll-collections/
+source: src
+layouts_dir: _jekyll/_layouts
+includes_dir: _jekyll/_includes
+data_dir: _jekyll/_data
+
+# Collections
+collections_dir: collections
+collections:
+  circleci:
+    output: true
+    permalink: /kx/:collection/:name
+  rails:
+    output: true
+    permalink: /kx/:collection/:name
+  react:
+    output: true
+    permalink: /kx/:collection/:name
+
+# blog pagination
+paginate: 5
+paginate_path: "/blog/page:num"
+
+# Default front matters
+defaults:
+  # Posts
+  - scope:
+      path: "" # an empty string here means all files in the project
+      type: "posts" # previously `post` in Jekyll 2.2.
+    values:
+      layout: "post"
+  # KX articles
+  - scope:
+      path: ""
+      type: "circleci"
+    values:
+      layout: "kx_article"
+  - scope:
+      path: ""
+      type: "rails"
+    values:
+      layout: "kx_article"
+  - scope:
+      path: ""
+      type: "react"
+    values:
+      layout: "kx_article"
+
+# SASS
+sass:
+  sass_dir: _jekyll/_sass
+  style: compressed
