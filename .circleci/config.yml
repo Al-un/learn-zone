@@ -1,0 +1,75 @@
+# CircleCI 2.0
+version: 2
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+
+jobs:
+  # Building the website
+  build:
+    working_directory: ~/repo/
+    docker:
+      - image: circleci/ruby:2.5
+    environment:
+      BUNDLE_PATH: ~/repo/vendor/bundle
+    steps:
+      - checkout
+      # Dependencies
+      - restore_cache:
+          keys:
+            - learnzone-website-dependencies-v1-{{ checksum "Gemfile.lock" }}
+            - learnzone-website-dependencies-v1-
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      - save_cache:
+          key: learnzone-website-dependencies-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/repo/vendor/bundle
+      # Building
+      - run:
+          name: Jekyll build
+          command: bundle exec jekyll build --baseurl learnzone/
+      # Save script for deployment
+      - run:
+          name: Saving deployment scripts
+          command: |
+            mkdir circleci_scripts
+            cp ~/repo/.circleci/deploy-ghpages.sh circleci_scripts/deploy-ghpages.sh
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory.
+          # This is a directory on the container which is  taken to be the root
+          # directory of the workspace.
+          root: ./
+          paths:
+            - _site
+            - circleci_scripts
+
+  deploy:
+    working_directory: ~/
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: ~/repo/
+      # Ensure content is property copied
+      - run: ls ~/repo/_site
+      - run: ls ~/repo/circleci_scripts
+      # Deploy
+      # https://github.com/Villanuevand/deployment-circleci-gh-pages
+      - run:
+          name: Deploying Github page
+          command: |
+            chmod +x ~/repo/circleci_scripts/deploy-ghpages.sh
+            ~/repo/circleci_scripts/deploy-ghpages.sh  ~/repo/_site
