@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Serialization</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="nav-menu">
+        <a href="/learnzone/">Home</a>
+        <a href="/learnzone/kx">KX</a>
+        <a href="/learnzone/blog">blog</a>
+      </div>
+    </header>
+
+    <div id="container">
+      <div id="content"><h1 id="active-model-serializer">Active model serializer</h1>
+
+<h2 id="cli">CLI</h2>
+<p>CLI command is available:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails generate serializer article
+</code></pre></div></div>
+<p>generate <code class="highlighter-rouge">app/serializers/article_serializer.rb</code></p>
+
+<h2 id="attributes">Attributes</h2>
+
+<h3 id="definitions">Definitions</h3>
+
+<p>Attributes can either be declared in a bulky way via <code class="highlighter-rouge">attributes :field1, :field2...</code> or
+one by one:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">attribute</span> <span class="ss">:field1</span>
+<span class="n">attribute</span> <span class="ss">:field2</span>
+</code></pre></div></div>
+
+<h3 id="conditional-attributes">Conditional attributes</h3>
+<p>It requires the single attribute declaration:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">attribute</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">unless: </span><span class="o">-&gt;</span> <span class="p">{</span> <span class="n">object</span><span class="p">.</span><span class="nf">description</span><span class="p">.</span><span class="nf">nil?</span> <span class="p">}</span>
+<span class="n">attribute</span> <span class="ss">:some_field</span><span class="p">,</span> <span class="k">if</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">some_condition</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="computed-attribute">Computed attribute</h3>
+<p>Use a method to return the value.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">attribute</span> <span class="ss">:article_count</span>
+
+<span class="k">def</span> <span class="nf">article_count</span>
+  <span class="n">object</span><span class="p">.</span><span class="nf">articles</span><span class="p">.</span><span class="nf">size</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Beware of N+1 queries</p>
+</blockquote>
+
+<h3 id="restrictions">Restrictions</h3>
+<p>Use the <code class="highlighter-rouge">field</code> options when using <code class="highlighter-rouge">json</code> adapter:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Exclude :description field</span>
+<span class="n">render</span> <span class="ss">json: </span><span class="vi">@list</span><span class="p">,</span> <span class="ss">each_serializer: </span><span class="no">CatalogSerializer</span><span class="p">,</span> <span class="ss">fields: </span><span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:code</span><span class="p">,</span> <span class="ss">:name</span><span class="p">]</span>
+</code></pre></div></div>
+<p>This restriction also apply to computed attributes</p>
+
+<h2 id="associations">Associations</h2>
+
+<h3 id="definitions-1">Definitions</h3>
+<p>Associations are declared in a similar way of ActiveRecords:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">belongs_to</span> <span class="ss">:user</span>
+<span class="n">has_many</span> <span class="ss">:article_publications</span>
+</code></pre></div></div>
+<p>If not specified, default serializers will be used for serializing relationship</p>
+
+<h3 id="restrictions-1">Restrictions</h3>
+<p>Use the <code class="highlighter-rouge">include</code> options when using the <code class="highlighter-rouge">json</code> adapter:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># With the above definition, :article_publicaitons is excluded</span>
+<span class="n">render</span> <span class="ss">json: </span><span class="vi">@list</span><span class="p">,</span> <span class="ss">each_serializer: </span><span class="no">CatalogSerializer</span><span class="p">,</span> <span class="ss">include: </span><span class="p">[</span><span class="ss">:user</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="misc">Misc</h2>
+
+<h3 id="serializer-class">Serializer class</h3>
+
+<p>Initialize function:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">{})</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<ul>
+  <li><a href="https://stackoverflow.com/a/37956952/4906586"><code class="highlighter-rouge">options</code> are copied into <code class="highlighter-rouge">@instance_options</code></a></li>
+</ul>
+</div>
+    </div>
+
+    <footer>Some footer</footer>
+  </body>
+</html>

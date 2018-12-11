@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redux</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="nav-menu">
+        <a href="/learnzone/">Home</a>
+        <a href="/learnzone/kx">KX</a>
+        <a href="/learnzone/blog">blog</a>
+      </div>
+    </header>
+
+    <div id="container">
+      <div id="content"><h1 id="redux">Redux</h1>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add redux
+yarn add react-redux
+</code></pre></div></div>
+
+<p>Event flow looks like:</p>
+
+<ul>
+  <li>A UI action is triggered by the user</li>
+  <li>This UI action generates and dispatches an <em>action</em></li>
+  <li>This <em>action</em> is caught by Redux</li>
+  <li>The <em>action</em> is processed by the reducer</li>
+  <li>Redux state is updated</li>
+  <li>Impacted components are updated if their <code class="highlighter-rouge">props</code> depends on Redux state</li>
+</ul>
+
+<h2 id="redux-higher-order-component-connect">Redux Higher order component: <code class="highlighter-rouge">connect</code></h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">connect</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'react-redux'</span><span class="p">;</span>
+
+<span class="c1">// Articles list props depending on Redux state</span>
+<span class="kd">const</span> <span class="nx">mapStateToProps</span> <span class="o">=</span> <span class="nx">state</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">entities</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">list</span> <span class="p">});</span>
+
+<span class="c1">// Article list can trigger following events:</span>
+<span class="c1">// - on component mounting, it "loads" articles which will update `state.articles.list`</span>
+<span class="c1">// - on delete button click, it "deletes" the appropriate article</span>
+<span class="kd">const</span> <span class="nx">mapDispatchToProps</span> <span class="o">=</span> <span class="nx">dispatch</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">load</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span><span class="p">(</span><span class="nx">loadArticles</span><span class="p">()),</span>
+    <span class="na">delete</span><span class="p">:</span> <span class="nx">id</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span><span class="p">(</span><span class="nx">deleteArticle</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// Order matter. If only `mapDispatchToProps` is defined, `connect` requires a </span>
+<span class="c1">// `null` first argument</span>
+<span class="kd">const</span> <span class="nx">ArticlesContainer</span> <span class="o">=</span> <span class="nx">connect</span><span class="p">(</span>
+  <span class="nx">mapStateToProps</span><span class="p">,</span>
+  <span class="nx">mapDispatchToProps</span>
+<span class="p">)(</span><span class="nx">ArticleList</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="reducers">Reducers</h2>
+
+<p>The key used in <code class="highlighter-rouge">combinedReducers</code> is used to define keys in store. Given</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">combineReducers</span><span class="p">({</span>
+  <span class="na">article</span><span class="p">:</span> <span class="nx">articleReducer</span><span class="p">,</span>
+  <span class="na">catalog</span><span class="p">:</span> <span class="nx">catalogReducer</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>and for example, in catalog reducers, state is updated as:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">reducer</span><span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{},</span> <span class="nx">action</span> <span class="o">=</span> <span class="p">{})</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="p">...</span><span class="nx">state</span><span class="p">,</span> <span class="na">list</span><span class="p">:</span> <span class="nx">catalogsList</span> <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Catalogs list is not access via <code class="highlighter-rouge">store.catalogs</code> but <code class="highlighter-rouge">store.catalogs.list</code>. Articles
+list behave similarly</p>
+
+<h2 id="ducks">Ducks</h2>
+
+<p>Instead of splitting actions, action creators and reducers in three different files,
+they are merged in a single file:</p>
+
+<ul>
+  <li><a href="https://github.com/erikras/ducks-modular-redux">Ducks proposition</a></li>
+  <li>Actions follow <a href="https://github.com/redux-utilities/flux-standard-action">FSA convention</a></li>
+</ul>
+
+<p>Consequently, we can have the following folder structure:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">src/redux/products/article.js</code>: Article ducks</li>
+  <li><code class="highlighter-rouge">src/redux/products/catalog.js</code>: Catalog ducks</li>
+</ul>
+
+<h2 id="middleware">Middleware</h2>
+
+<ul>
+  <li>logging: https://redux.js.org/advanced/middleware#the-final-approach</li>
+  <li>API stuff: React-thunk or Saga</li>
+</ul>
+</div>
+    </div>
+
+    <footer>Some footer</footer>
+  </body>
+</html>

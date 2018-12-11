@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Workflow and deployment</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="nav-menu">
+        <a href="/learnzone/">Home</a>
+        <a href="/learnzone/kx">KX</a>
+        <a href="/learnzone/blog">blog</a>
+      </div>
+    </header>
+
+    <div id="container">
+      <div id="content"><h1 id="deploying">Deploying</h1>
+
+<h2 id="workflow">Workflow</h2>
+
+<p><em>Build</em> and <em>Deploy</em> steps work the best when coupled within a workflow. A basic
+workflow is:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">workflows</span><span class="pi">:</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="na">jobs</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">build</span>
+    <span class="pi">-</span> <span class="s">deploy</span>
+</code></pre></div></div>
+
+<h3 id="filtering">Filtering</h3>
+
+<p>Jobs can be filtered and conditionally be executed or ignored:</p>
+<ul>
+  <li>Branch name (regex supported)</li>
+  <li>Tags
+Filtering can be inclusive (<code class="highlighter-rouge">only:</code>) or exclusive (<code class="highlighter-rouge">ignore:</code>). Refer to CircleCI
+workflow documentation</li>
+</ul>
+
+<h2 id="persisting-artifacts">Persisting artifacts</h2>
+
+<p>Folder may be persisted from a job to another one to avoid recompiling. Use 
+<code class="highlighter-rouge">persist_to_workspace</code> to save and <code class="highlighter-rouge">attach_to_workspace</code> to load:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="na">working_directory</span><span class="pi">:</span> <span class="s">~/repo</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">persist_to_workspace</span><span class="pi">:</span>
+          <span class="c1"># Must be an absolute path, or relative path from working_directory.</span>
+          <span class="c1"># This is a directory on the container which is  taken to be the root </span>
+          <span class="c1"># directory of the workspace.</span>
+          <span class="na">root</span><span class="pi">:</span> <span class="s">./</span>
+          <span class="c1"># paths are relative to root and MUST be defined</span>
+          <span class="na">paths</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">folder/path1/</span>
+            <span class="pi">-</span> <span class="s">folder/path2/</span>
+  <span class="na">deploy</span><span class="pi">:</span>
+    <span class="c1"># Warning! not the same as "build"</span>
+    <span class="na">working_directory</span><span class="pi">:</span> <span class="s">~/</span>
+    <span class="na">steps</span><span class="pi">:</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">attach_workspace</span><span class="pi">:</span>
+          <span class="c1"># Must be absolute path or relative path from working_directory</span>
+          <span class="c1"># =&gt; load `root` of persisted to workspace</span>
+          <span class="na">at</span><span class="pi">:</span> <span class="s">~/repo</span>
+</code></pre></div></div>
+
+<p>To make the workspace available through jobs, it has to be shared via a workflow
+where the jobs dependencies defines who can access what:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">workflows</span><span class="pi">:</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="na">jobs</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">build</span>
+    <span class="pi">-</span> <span class="na">deploy</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">requires</span><span class="pi">:</span>
+            <span class="c1"># as "build" must run before "deploy", the workspace after "build"</span>
+            <span class="c1"># is available for attaching</span>
+            <span class="pi">-</span> <span class="s">build</span> 
+</code></pre></div></div>
+
+<blockquote>
+  <blockquote>
+    <p>Warning: <code class="highlighter-rouge">.circleci</code> folder cannot be copied!</p>
+  </blockquote>
+</blockquote>
+</div>
+    </div>
+
+    <footer>Some footer</footer>
+  </body>
+</html>
