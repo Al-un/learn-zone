@@ -1,0 +1,41 @@
+
+# CI
+ci.travis: "[![Build Status](https://travis-ci.com/Al-un/learnzone-node.svg?branch=master)](https://travis-ci.com/Al-un/learnzone-node)"
+ci.circleci: "[![CircleCI](https://circleci.com/gh/Al-un/learnzone-node.svg?style=svg)](https://circleci.com/gh/Al-un/learnzone-node)"
+
+# Code quality
+cq.codeclimate: >-
+  [![Maintainability](https://api.codeclimate.com/v1/badges/8ec5eb36093811e5c539/maintainability)](https://codeclimate.com/github/Al-un/learnzone-node/maintainability)[![Test Coverage](https://api.codeclimate.com/v1/badges/8ec5eb36093811e5c539/test_coverage)](https://codeclimate.com/github/Al-un/learnzone-node/test_coverage)
+cq.codebeat: >-
+  [![codebeat badge](https://codebeat.co/badges/67eaa1bb-4708-4f6f-a88c-81506fff1539)](https://codebeat.co/projects/github-com-al-un-learnzone-node-master)
+cq.codacy: >-
+  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a614ba1c7e0e46e9aebbec85719fdca3)](https://www.codacy.com/app/alun/learnzone-node?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Al-un/learnzone-node&amp;utm_campaign=Badge_Grade)
+
+# Web
+web.server: "- production: ?\n
+- [Nodemon](https://nodemon.io/) (local hot deploy. `npm run dev`\n
+  instead of `npm start` from [this guide](https://dev.to/whoisryosuke/nextjs-tip-hot-reloading-for-dynamic-servers-43ed))"
+web.stack: "- [Method-override](https://github.com/expressjs/method-override) to handle `PUT` and `DELETE` forms\n
+- [Express](https://expressjs.com/)\n
+- [Body-parser](https://www.npmjs.com/package/body-parser)\n
+- [Handlebars](https://handlebarsjs.com/)\n
+- [Express-handlebars](https://github.com/ericf/express-handlebars)\n"
+web.db: "[ActiveRecord](https://guides.rubyonrails.org/active_record_querying.html)"
+web.sass: "[node-sass](https://github.com/sass/node-sass)"
+web.router: "([routed by Express](https://expressjs.com/en/guide/routing.html))"
+
+# Documentation
+# doc: 
+
+# Authentication
+auth.auth: "- [Passport](http://www.passportjs.org/)\n
+- [Passport-Auth0](https://github.com/auth0/passport-auth0)\n
+- [Express-session](https://www.npmjs.com/package/express-session)"
+auth.verify: "- [Express-jwt]()\n
+- [Jwks-rsa]()\n
+- [Express-jwt-authz]()"
+
+# Logging
+
+# Testing
+test: "[Istanbul](https://istanbul.js.org/)"

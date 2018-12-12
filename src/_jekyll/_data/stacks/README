@@ -1,0 +1,4 @@
+list.yml        : list all stacks
+components.yml  : list all components to fetch for each stack
+                  > first level can be a string or an array
+                  > second level can only be a string

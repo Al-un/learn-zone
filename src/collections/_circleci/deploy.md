@@ -78,4 +78,4 @@ workflows:
             - build 
 ```
 
->> Warning: `.circleci` folder cannot be copied!
+> Warning: `.circleci` folder cannot be copied!

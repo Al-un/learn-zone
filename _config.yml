@@ -37,6 +37,11 @@ defaults:
       path: ""  # an empty string here means all files in the project
     values:
       layout: "page"
+  # Learnzone files
+  - scope:
+      path: "learnzone"
+    values:
+      layout: "learnzone"
   # Posts
   - scope:
       path: ""

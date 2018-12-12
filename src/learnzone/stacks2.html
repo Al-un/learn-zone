@@ -1,0 +1,48 @@
+---
+title: Learnzone technical stacks
+---
+
+<h1>Technical stacks</h1>
+
+<p>Here is an exhaustive list of used components. Objectives are:</p>
+<ul>
+  <li>To highlight what is used and thus required for such a project</li>
+  <li>Compare components complexity between stacks</li>
+</ul>
+
+<div id="technical-stacks">
+  <!-- Stack names -->
+  <div class="stack-header">
+    <div class="stack-title"></div>
+    {% for stack in site.data.stacks.list %}
+    <div class="stack-element">{{ stack.name | markdownify }}</div>
+    {% endfor %}
+  </div>
+
+  <!-- components -->
+  {% for component in site.data.stacks.components %}
+
+  <div class="stack-component">
+    <div class="stack-title">{{ component.name | markdownify }}</div>
+
+    {% for stack in site.data.stacks.list %}
+    <div class="stack-element {{ stack.css }}">
+      {% assign stack_component = site.data.stacks[stack.data] %}
+      {{ stack_component[component.key] | markdownify }}
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- children components -->
+  {% for child_component in component.children %}
+  <div class="stack-child-component">
+    <div class="stack-title">{{ child_component.name | markdownify }}</div>
+    {% for stack in site.data.stacks.list %}
+    <div class="stack-element {{ stack.css }}">
+      {% assign stack_component = site.data.stacks[stack.data] %}
+      {{ stack_component[child_component.key] | markdownify }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %} {% endfor %}
+</div>

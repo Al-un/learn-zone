@@ -1,0 +1,9 @@
+- name: Rails
+  data: rails
+  css: stack-rails
+- name: Node.js
+  data: node
+  css: stack-node
+- name: React
+  data: react
+  css: stack-react

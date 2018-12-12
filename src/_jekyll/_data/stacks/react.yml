@@ -1,0 +1,31 @@
+
+# CI
+ci.circleci: "[![CircleCI](https://circleci.com/gh/Al-un/learnzone-react.svg?style=svg)](https://circleci.com/gh/Al-un/learnzone-react)"
+
+# Code quality
+cq.codeclimate: >-
+  [![Maintainability](https://api.codeclimate.com/v1/badges/5e1b2e8d5253145ee15f/maintainability)](https://codeclimate.com/github/Al-un/learnzone-react/maintainability)[![Test Coverage](https://api.codeclimate.com/v1/badges/5e1b2e8d5253145ee15f/test_coverage)](https://codeclimate.com/github/Al-un/learnzone-react/test_coverage)
+cq.codebeat: >-
+  [![codebeat badge](https://codebeat.co/badges/0073eaf6-195a-42a7-ab63-a48b1e98ff70)](https://codebeat.co/projects/github-com-al-un-learnzone-react-master)
+cq.codacy: >-
+  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b46e78dca26b48acaef7bf53d39b3a33)](https://www.codacy.com/app/alun/learnzone-react?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Al-un/learnzone-react&amp;utm_campaign=Badge_Grade)
+
+# Web
+web.server: "?"
+web.stack: "[ReactJS](https://reactjs.org/)"
+web.db: _n/a_
+web.sass: "[node-sass](https://github.com/sass/node-sass)"
+web.router: "[react-router](https://github.com/ReactTraining/react-router)"
+
+# Documentation
+# doc: 
+
+# Authentication
+auth.auth: "[Auth0-js](https://github.com/auth0/auth0.js/)"
+auth.verify: _n/a_
+
+# Logging
+log: '`console.log`...'
+
+# Testing
+test: "TBD"

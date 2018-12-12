@@ -1,4 +1,5 @@
 @import "shared/theme";
+@import "shared/mixins";
 /**
  * Global stuff
  */
@@ -15,7 +16,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    font-size: 20px;
+    font-size: 16px;
     font-family: "NotoSans", sans-serif;
 }
 
@@ -63,4 +64,95 @@ div#main-container {
     width: 98%;
     max-width: $contentWidth;
     margin: auto;
+}
+
+/**
+ * Some layout requires a navigation menu:
+ *  - menu is on the left (stricky) except on mobile where it is toggled
+ *  - content is as expected
+ */
+
+// -------------------- Container
+#page-container {
+    display: flex;
+    flex-direction: column;
+    /* Desktop only */
+    @include desktop {
+        flex-direction: row;
+    }
+    /* Mobile only: menu is toggled */
+    &.show-menu {
+        #page-menu {
+            display: block;
+        }
+        #page-content {
+            display: none;
+        }
+    }
+}
+
+// -------------------- Navigation
+#page-menu-toggler {
+    background-color: $colorSecondary;
+    height: 40px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+#page-menu {
+    display: none;
+    /* Mobile first */
+    @include desktop {
+        display: block;
+        width: $subMenuWidth;
+        position: sticky;
+        box-sizing: border-box;
+        align-self: flex-start;
+        max-height: calc(100vh - $headerHeight);
+        top: $headerHeight;
+    }
+    /* A group of link with a title (h4) and links */
+    .page-nav-group {
+        /* To look better on mobile */
+        padding: 0 10px;
+        &:first-child {
+            @include desktop {
+                margin-top: 40px;
+            }
+        }
+        /* group title */
+        h4 {
+            margin: 8px auto;
+        }
+        /* links container */
+        .page-nav-links {
+            padding: 0 10px;
+        }
+        /* a single link */
+        .page-nav-link {
+            padding: 4px 0px;
+            color: $colorFontLight;
+            &:hover {
+                color: $colorPrimary;
+            }
+            &.active {
+                color: $colorPrimary;
+                font-weight: bold;
+                &::before {
+                    content: "> ";
+                }
+            }
+            display: block;
+        }
+    }
+}
+
+#page-content {
+    flex: 1;
+    @include desktop {
+        max-width: calc(#{$contentWidth} - #{$subMenuWidth});
+    }
+    box-sizing: border-box;
+    padding-bottom: 200px;
 }

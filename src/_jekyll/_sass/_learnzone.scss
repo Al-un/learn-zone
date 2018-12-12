@@ -1,0 +1,78 @@
+@import "shared/theme";
+@import "shared/mixins";
+#technical-stacks {
+    width: 100%;
+    /* Common flex behaviour */
+    .stack-header,
+    .stack-component,
+    .stack-child-component {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+    /* Common tiles behaviours */
+    .stack-title,
+    .stack-element,
+    .stack-name {
+        padding: 8px;
+        box-sizing: border-box;
+    }
+    .stack-title {
+        min-width: 200px;
+        max-width: 200px;
+        border-left: 1px solid $colorPrimary;
+    }
+    .stack-element {
+        min-width: 300px;
+        max-width: 300px;
+        border-left: 1px solid $colorPrimary;
+        &:last-child {
+            border-right: 1px solid $colorPrimary;
+        }
+    }
+    /* override */
+    p {
+        margin: auto;
+    }
+    ul{
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+        li{
+            margin: auto;
+        }
+    }
+    /* Header specific */
+    .stack-header {
+        background-color: $colorPrimary;
+        color: white;
+        .stack-title,
+        .stack-element {
+            border: 1px solid white;
+        }
+    }
+    /* Component specific */
+    .stack-component {
+        border-top: 1px solid $colorPrimary;
+        .stack-title {
+            font-weight: bold;
+        }
+    }
+    /* Children Components specific */
+    .stack-child-component {
+        .stack-title {
+            padding-left: 25px;
+            color: $colorFontLight;
+            a {
+                color: $colorFontLight;
+                text-decoration: underline;
+                &:hover {
+                    color: initial;
+                }
+            }
+        }
+    }
+    /* Hacks: last child: */
+    &>div:last-child {
+        border-bottom: 1px solid $colorPrimary;
+    }
+}

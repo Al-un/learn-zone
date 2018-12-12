@@ -1,0 +1,47 @@
+
+# CI
+ci.travis: "[![Build Status](https://travis-ci.com/Al-un/learnzone-rails.svg?branch=master)](https://travis-ci.com/Al-un/learnzone-rails)"
+ci.circleci: "[![CircleCI](https://circleci.com/gh/Al-un/learnzone-rails.svg?style=svg)](https://circleci.com/gh/Al-un/learnzone-rails)"
+
+# Code quality
+cq.codeclimate: >
+  [![Maintainability](https://api.codeclimate.com/v1/badges/7bb038bdf3cf874ef3e9/maintainability)](https://codeclimate.com/github/Al-un/learnzone-rails/maintainability)[![Test Coverage](https://api.codeclimate.com/v1/badges/7bb038bdf3cf874ef3e9/test_coverage)](https://codeclimate.com/github/Al-un/learnzone-rails/test_coverage)
+cq.codebeat: >
+  [![codebeat badge](https://codebeat.co/badges/ad1591f7-9321-475e-af03-482b6c296e5f)](https://codebeat.co/projects/github-com-al-un-learnzone-rails-master)
+cq.codacy: >
+  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/09fa7d649b2c4b488755f37c12644207)](https://www.codacy.com/app/alun/learnzone-rails?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Al-un/learnzone-rails&amp;utm_campaign=Badge_Grade)
+  
+# Web
+web: >
+  - [rails-ujs](https://github.com/rails/rails/tree/master/actionview/app/assets/javascripts) (Ajax)
+web.server: "[Puma](http://puma.io/)"
+web.stack: "[Rails](https://rubyonrails.org/) [API only version](https://guides.rubyonrails.org/api_app.html)"
+web.db: "[ActiveRecord](https://guides.rubyonrails.org/active_record_querying.html)"
+web.sass: "[sass-rails](https://github.com/rails/sass-rails)"
+web.router: "[ActionDispatch](https://guides.rubyonrails.org/routing.html)"
+
+# Documentation
+doc: >
+  [Yard](https://yardoc.org/)
+
+# Authentication
+auth.auth: "- [OmniAuth](https://github.com/omniauth/omniauth)\n
+- [OmniAuth-Auth0](https://github.com/auth0/omniauth-auth0)"
+auth.verify: >
+  [ruby-jwt](https://github.com/jwt/ruby-jwt)
+
+# Logging
+log.lib: "- [Lograge](https://github.com/roidrage/lograge)\n
+- [Lograge-sql](https://github.com/iMacTia/lograge-sql)\n
+- [Ougai](https://github.com/tilfin/ougai)\n
+- _Tested but not used: Rails default logger, [Log4r](https://github.com/colbygk/log4r), [Logging](https://github.com/TwP/logging)_"
+log.aggregation: "- [Loggly](https://www.loggly.com/)\n
+  - [Logglier](https://github.com/freeformz/logglier)"
+
+# Testing:
+test.lib: "- [RSpec](http://rspec.info/)\n- [Database Cleaner](https://github.com/DatabaseCleaner/database_cleaner)"
+test.mock: >
+  [FactoryBot](https://github.com/thoughtbot/factory_bot)
+test.coverage: >
+  [SimpleCov](https://github.com/colszowka/simplecov)
+  ([guide](https://medium.com/the-code-review/display-your-ruby-test-coverage-using-simplecov-gem-and-codeclimate-6db6336fe409))

@@ -1,0 +1,67 @@
+# CI
+- name: CI
+  key: ci
+  children:
+    - name: "[Travis](https://travis-ci.com/)"
+      key: ci.travis
+    - name: "[CircleCI](https://circleci.com/)"
+      key: ci.circleci
+
+# Code quality
+- name: Code Quality
+  key: cq
+  children:
+    - name: "[Code Climate](https://codeclimate.com/)"
+      key: cq.codeclimate
+    - name: "[CodeBeat](https://codebeat.co/)"
+      key: cq.codebeat
+    - name: "[Codacy](https://www.codacy.com/)"
+      key: cq.codacy
+
+# Web
+- name: Web
+  key: web
+  children:
+    - name: Server
+      key: web.server
+    - name: Web stack
+      key: web.stack
+    - name: ORM / DB driver
+      key: web.db
+    - name: SASS
+      key: web.sass
+    - name: Router
+      key: web.router
+
+# Authentication
+- name: "[Auth0](https://auth0.com)"
+  key: auth
+  children:
+    - name: Authenticate
+      key: auth.auth
+    - name: Verify (Back-end only)
+      key: auth.verify
+
+# Documentation
+- name: Documentation
+  key: doc
+
+# Logging
+- name: Logging
+  key: log
+  children:
+    - name: Logging libraries
+      key: log.lib
+    - name: Log aggregation
+      key: log.aggregation
+
+# Testing
+- name: Testing
+  key: test
+  children:
+    - name: Testing libraries
+      key: test.lib
+    - name: Mock
+      key: test.mock
+    - name: Coverage
+      key: test.coverage

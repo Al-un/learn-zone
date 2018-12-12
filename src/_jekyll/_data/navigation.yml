@@ -1,0 +1,20 @@
+# All navigation links for the topbar menu
+- title: Home
+  url: /
+  description: >-
+    Learning zone home page...well this page.
+- title: LearnZone
+  url: /learnzone
+  description: >-
+    Documentation regarding learning zone related repositories
+- title: KX
+  url: /kx
+  description: >-
+    Articles to gather how I did or solved stuff. Articles are sorted by technologies
+    and topics. Whenever possible, I try to link articles and post to relevant
+    commits / PR / issues of learnzone repositories.
+- title: Blog
+  url: /blog
+  description: >-
+    Articles history. Apart from punctual pure blog post, it mainly tracks changes
+    of articles

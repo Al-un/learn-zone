@@ -7,7 +7,7 @@ mentioned:
 ## Use variable in formula:
 
 Interpolation FTW:
-```css
+```scss
 $topHeight: 50px;
 .plop{
     height: calc(100vh - #{$topHeight});

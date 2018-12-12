@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<div
+  id="page-menu-toggler"
+  class="mobile-only"
+  onclick="document.getElementById('page-container').classList.toggle('show-menu');"
+>
+  Navigation
+</div>
+
+<div id="page-container" class="content">
+  <div id="page-menu">
+    <nav class="page-nav-group">
+      <a href="{{ '/learnzone/' | relative_url }}" class="page-nav-link">
+        LearnZone
+      </a>
+      <a href="{{ '/learnzone/specs' | relative_url }}" class="page-nav-link">
+        Specifications
+      </a>
+      <a href="{{ '/learnzone/stacks' | relative_url }}" class="page-nav-link">
+        Stacks (Markdown)
+      </a>
+      <a href="{{ '/learnzone/stacks2' | relative_url }}" class="page-nav-link">
+        Stacks (HTML)
+      </a>
+    </nav>
+  </div>
+
+  <div id="page-content">{{ content }}</div>
+</div>
