@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Props</title>
+    <title>Tables</title>
 
     <!-- Styles -->
     <link
@@ -94,40 +94,50 @@
   </div>
 
   <div class="kx-content">
-    <h1>Props</h1>
+    <h1>Tables</h1>
 
-    <h1 id="react-props-enhancement">React props enhancement</h1>
+    <p>Manage tables style:</p>
 
-<h2 id="prop-types">Prop types</h2>
-
-<p>Import:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">PropTypes</span> <span class="k">from</span> <span class="s1">'prop-types'</span><span class="p">;</span>
-</code></pre></div></div>
-<p>and check:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Greeting</span><span class="p">.</span><span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<p>Define default props values:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Greeting</span><span class="p">.</span><span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Stranger'</span>
-<span class="p">};</span>
-</code></pre></div></div>
+<ul>
+  <li>To avoid having space between <code class="highlighter-rouge">td</code>
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">table</span> <span class="p">{</span>
+  <span class="nl">border-collapse</span><span class="p">:</span> <span class="nb">collapse</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <p>Link: <a href="https://www.w3schools.com/CSSref/pr_border-collapse.asp">w3c tutorial</a></p>
+  </li>
+  <li>To have alternate rows style:
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">tr</span><span class="nd">:nth-child</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#123456</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+    <p>Link: <a href="https://stackoverflow.com/a/3084318/4906586">StackOverflow</a></p>
+  </li>
+</ul>
 
 
     <hr />
 
      
-    <span class="article-tag">react</span> 
+    <span class="article-tag">css</span> 
      
-    <span class="article-tag">props</span> 
-     
-    <span class="article-tag">component</span> 
+    <span class="article-tag">tables</span> 
      
 
     <div />
 
+    
+      <p>Mentionned:</p>
+      <ul>
+         
+           
+          
+          <li>
+            <a href="/2018/12/11/styling-table.html" >11 Dec 2018 Styling table</a >
+          </li>
+           
+        
+      </ul>
     
   </div>
 </div>

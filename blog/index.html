@@ -12,50 +12,140 @@
       rel="stylesheet"
       href="/learnzone/assets/styles/syntax-monokai.css"
     />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
   </head>
 
   <body>
-    <header>
-      <div class="nav-menu">
-        <a href="/learnzone/">Home</a>
-        <a href="/learnzone/kx">KX</a>
-        <a href="/learnzone/blog">blog</a>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          <a href="/learnzone/">Home</a>
+          <a href="/learnzone/kx">KX</a>
+          <a href="/learnzone/blog">blog</a>
+        </div>
       </div>
     </header>
 
-    <div id="container">
-      <div id="content"><h1>KX blog</h1>
+    <div id="main-container">
+
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div class="content"><h1>KX blog</h1>
+
+<nav class="blog-pagination">
+  
+
+  <span class="blog-current-page">
+    1 / 2
+  </span>
+
+  
+  <a href="/learnzone/blog/page2" class="blog-next">
+    Next
+  </a>
+  
+</nav>
+
 
 <ul>
   
   <li>
     <h4>
-      <a href="/learnzone/2018/12/11/first-post.html">11 Dec 2018 | First Post</a>
+      <a href="/learnzone/2018/12/12/flex-and-sticky.html">
+        12 Dec 2018 | Stick panel in a flex container
+      </a>
     </h4>
-    <p>
-</p>
-  </li>
-  
-  <li>
-    <h4>
-      <a href="/learnzone/2018/12/11/circleci-persist-artifacts.html">11 Dec 2018 | Circleci Persist Artifacts</a>
-    </h4>
-    <p>
-</p>
-  </li>
-  
-  <li>
-    <h4>
-      <a href="/learnzone/2018/12/06/active-model-serializers.html">06 Dec 2018 | Serialization</a>
-    </h4>
-    <p><h1 id="serialization">Serialization</h1>
+    <p><p>Time to style a bit this website. I got inspiration from <a href="https://redux.js.org/introduction/getting-started">Redux</a>
+documentation website for the colours and the layout as.</p>
 
 </p>
   </li>
   
-</ul></div>
+  <li>
+    <h4>
+      <a href="/learnzone/2018/12/11/styling-table.html">
+        11 Dec 2018 | Styling table
+      </a>
+    </h4>
+    <p><p>Having used so much flexbox and stuff, I forgot how to style one of the most
+basic elements: <code class="highlighter-rouge">&lt;table&gt;</code>.</p>
+</p>
+  </li>
+  
+  <li>
+    <h4>
+      <a href="/learnzone/2018/12/11/first-post.html">
+        11 Dec 2018 | Helloworld!
+      </a>
+    </h4>
+    <p><p>Time to build my KX website. I aimed at storing here how I did and do stuff, 
+especially regarding the problem I encountered. I often have the “Oh yeah,
+I know I had a link to solve this problem but what was it again?”.</p>
+
+</p>
+  </li>
+  
+  <li>
+    <h4>
+      <a href="/learnzone/2018/12/11/circleci-persist-artifacts.html">
+        11 Dec 2018 | Persist artifacts in CircleCI
+      </a>
+    </h4>
+    <p><p>This website could have used <code class="highlighter-rouge">master branch/docs</code> folder as a website:</p>
+<ul>
+  <li>I build locally my Jekyll website</li>
+  <li>If the output folder is not already set to <code class="highlighter-rouge">/docs/</code>, copy content from <code class="highlighter-rouge">/_site</code>
+to <code class="highlighter-rouge">/docs/</code></li>
+  <li>commit and push master branch</li>
+</ul>
+
+</p>
+  </li>
+  
+  <li>
+    <h4>
+      <a href="/learnzone/2018/12/06/props.html">
+        06 Dec 2018 | Props check and default values
+      </a>
+    </h4>
+    <p><p><code class="highlighter-rouge">props</code> sane definition is essential to ensure that proper data input. Considering
+the addition of Redux, a lot of props come from <em>dispatch</em> or <em>Redux state</em>. But
+other are standard props. To enforce data integrity and comply with my OCD, I
+put some:</p>
+<ul>
+  <li>PropTypes type check</li>
+  <li>Props default values</li>
+</ul>
+</p>
+  </li>
+  
+</ul>
+
+<nav class="blog-pagination">
+  
+
+  <span class="blog-current-page">
+    1 / 2
+  </span>
+
+  
+  <a href="/learnzone/blog/page2" class="blog-next">
+    Next
+  </a>
+  
+</nav>
+
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content">Some footer</div></footer>
     </div>
-
-    <footer>Some footer</footer>
   </body>
 </html>

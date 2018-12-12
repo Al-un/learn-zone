@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>First Post</title>
+    <title>Helloworld!</title>
 
     <!-- Styles -->
     <link
@@ -12,22 +12,59 @@
       rel="stylesheet"
       href="/learnzone/assets/styles/syntax-monokai.css"
     />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
   </head>
 
   <body>
-    <header>
-      <div class="nav-menu">
-        <a href="/learnzone/">Home</a>
-        <a href="/learnzone/kx">KX</a>
-        <a href="/learnzone/blog">blog</a>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          <a href="/learnzone/">Home</a>
+          <a href="/learnzone/kx">KX</a>
+          <a href="/learnzone/blog">blog</a>
+        </div>
       </div>
     </header>
 
-    <div id="container">
-      <div id="content">
-</div>
-    </div>
+    <div id="main-container">
 
-    <footer>Some footer</footer>
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div class="content">
+  <h1>Helloworld!</h1>
+
+  <p>Time to build my KX website. I aimed at storing here how I did and do stuff, 
+especially regarding the problem I encountered. I often have the “Oh yeah,
+I know I had a link to solve this problem but what was it again?”.</p>
+
+<p>So far, the design is pretty simple:</p>
+<ul>
+  <li><strong>articles</strong> list the content</li>
+  <li><strong>posts</strong> work as a history tracker</li>
+</ul>
+
+<p>This KX website is built on the <em>learnzone</em> area because this is where I tried
+most of my stuff.</p>
+
+<blockquote>
+  <p>TODO: how to link articles/posts with relevant repostories and commit</p>
+</blockquote>
+
+
+  <hr />
+
+  
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content">Some footer</div></footer>
+    </div>
   </body>
 </html>

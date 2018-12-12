@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Props</title>
+    <title>Fonts</title>
 
     <!-- Styles -->
     <link
@@ -94,36 +94,40 @@
   </div>
 
   <div class="kx-content">
-    <h1>Props</h1>
+    <h1>Fonts</h1>
 
-    <h1 id="react-props-enhancement">React props enhancement</h1>
+    <h2 id="font-family">Font family</h2>
 
-<h2 id="prop-types">Prop types</h2>
-
-<p>Import:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">PropTypes</span> <span class="k">from</span> <span class="s1">'prop-types'</span><span class="p">;</span>
-</code></pre></div></div>
-<p>and check:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Greeting</span><span class="p">.</span><span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span>
-<span class="p">};</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">font-family</span><span class="o">:</span> <span class="s2">'NotoSans'</span><span class="o">,</span> <span class="nt">sans-serif</span><span class="o">;</span>
 </code></pre></div></div>
 
-<p>Define default props values:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Greeting</span><span class="p">.</span><span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Stranger'</span>
-<span class="p">};</span>
+<p>Sources:</p>
+<ul>
+  <li>https://www.w3schools.com/Css/css_font.asp</li>
+</ul>
+
+<h2 id="font-face">Font-face</h2>
+
+<p>To import custom fonts:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@font-face</span> <span class="p">{</span>
+    <span class="nl">font-family</span><span class="p">:</span> <span class="s2">'NotoSans'</span><span class="p">;</span>
+    <span class="nl">src</span><span class="p">:</span> <span class="sx">url('../fonts/NotoSans-Regular.ttf')</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></div>
+<p>Path is relative to CSS file path. Font is used as described before</p>
+
+<p>Sources:</p>
+<ul>
+  <li>https://css-tricks.com/snippets/css/using-font-face/</li>
+</ul>
 
 
     <hr />
 
      
-    <span class="article-tag">react</span> 
+    <span class="article-tag">css</span> 
      
-    <span class="article-tag">props</span> 
-     
-    <span class="article-tag">component</span> 
+    <span class="article-tag">fonts</span> 
      
 
     <div />

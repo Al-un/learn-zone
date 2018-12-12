@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Serialization</title>
+    <title>Props check and default values</title>
 
     <!-- Styles -->
     <link
@@ -37,13 +37,16 @@
       <main class="container">
         <!-- Each sub-layout must have a "content" class -->
         <div class="content">
-  <h1>Serialization</h1>
+  <h1>Props check and default values</h1>
 
-  <p>For the learnzone-rails and learnzone-react communication, I needed to add additional
-information such as the number of publications per catalog or per article.</p>
-
-<p>Even if JSON-API exists for Rails, I prefer to use a simpler data format and 
-leave the JSON-API either for a tutorial or another project.</p>
+  <p><code class="highlighter-rouge">props</code> sane definition is essential to ensure that proper data input. Considering
+the addition of Redux, a lot of props come from <em>dispatch</em> or <em>Redux state</em>. But
+other are standard props. To enforce data integrity and comply with my OCD, I
+put some:</p>
+<ul>
+  <li>PropTypes type check</li>
+  <li>Props default values</li>
+</ul>
 
 
   <hr />
@@ -63,11 +66,11 @@ leave the JSON-API either for a tutorial or another project.</p>
          
       
          
-        
-        <li><a href="/kx/rails/active-model-serializers">Serialization</a></li>
          
       
          
+        
+        <li><a href="/kx/react/props">Props</a></li>
          
       
          

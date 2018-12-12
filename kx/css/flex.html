@@ -1,0 +1,177 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Flexbox</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          <a href="/learnzone/">Home</a>
+          <a href="/learnzone/kx">KX</a>
+          <a href="/learnzone/blog">blog</a>
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div
+  class="kx-menu-toggler mobile-only"
+  onclick="document.getElementById('kx-container').classList.toggle('show-menu');"
+>
+  Navigation
+</div>
+
+<div id="kx-container" class="content">
+  <div class="kx-menu">
+    
+    <h4>CircleCI</h4>
+    <nav>
+      
+      <a href="/kx/circleci/deploy">Workflow and deployment</a>
+      
+    </nav>
+    
+    <h4>CSS / SASS</h4>
+    <nav>
+      
+      <a href="/kx/css/flex">Flexbox</a>
+      
+      <a href="/kx/css/fonts">Fonts</a>
+      
+      <a href="/kx/css/table">Tables</a>
+      
+      <a href="/kx/css/variable">Variable in SASS</a>
+      
+    </nav>
+    
+    <h4>Rails</h4>
+    <nav>
+      
+      <a href="/kx/rails/active-model-serializers">Serialization</a>
+      
+    </nav>
+    
+    <h4>ReactJS</h4>
+    <nav>
+      
+      <a href="/kx/react/props">Props</a>
+      
+      <a href="/kx/react/redux">Redux</a>
+      
+      <a href="/kx/react/saga">Saga</a>
+      
+    </nav>
+    
+    <h4>Visual Studio Code</h4>
+    <nav>
+      
+      <a href="/kx/vscode/extensions">Extensions</a>
+      
+    </nav>
+    
+  </div>
+
+  <div class="kx-content">
+    <h1>Flexbox</h1>
+
+    <h3 id="sticky-panel">Sticky panel</h3>
+
+<p>To have sticky panel such as in <a href="https://redux.js.org/introduction/getting-started#examples">Redux documentation</a>
+pages, leverage the <a href="https://www.sitepoint.com/css-position-sticky-introduction-polyfills/"><code class="highlighter-rouge">position: sticky;</code></a></p>
+
+<p>Considering the following HTML:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"sticky"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"main"</span><span class="nt">&gt;&lt;/main&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>Let’s have a simple sticky left panel with a standard main content:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+  <span class="nl">flex-direction</span><span class="p">:</span> <span class="n">row</span><span class="p">;</span> <span class="c">/* dezdez */</span>
+  <span class="nl">min-height</span><span class="p">:</span> <span class="m">100vh</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.sticky-panel</span> <span class="p">{</span>
+  <span class="c">/* to maintain at specific position */</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">250px</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">0px</span><span class="p">;</span>
+  <span class="c">/* override stretch */</span>
+  <span class="nl">align-self</span><span class="p">:</span> <span class="n">flex-start</span><span class="p">;</span>
+  <span class="c">/* a sticky panel should not go out of viewport */</span>
+  <span class="nl">max-height</span><span class="p">:</span> <span class="m">100vh</span><span class="p">;</span>
+  <span class="nl">overflow-y</span><span class="p">:</span> <span class="nb">scroll</span><span class="p">;</span>
+  <span class="c">/* overpowered property */</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="n">sticky</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.main</span> <span class="p">{</span>
+  <span class="nl">flex</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span> <span class="c">/* to take the remaining width */</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Sources:</p>
+<ul>
+  <li><a href="https://www.sitepoint.com/css-position-sticky-introduction-polyfills/">Sitepoint introduction to <code class="highlighter-rouge">position: sticky;</code></a></li>
+  <li><a href="https://stackoverflow.com/questions/44446671/my-position-sticky-element-isnt-sticky-when-using-flexbox">StackOverflow</a></li>
+</ul>
+
+
+    <hr />
+
+     
+    <span class="article-tag">css</span> 
+     
+    <span class="article-tag">flex</span> 
+     
+    <span class="article-tag">sticky</span> 
+     
+
+    <div />
+
+    
+      <p>Mentionned:</p>
+      <ul>
+         
+           
+          
+          <li>
+            <a href="/2018/12/12/flex-and-sticky.html" >12 Dec 2018 Stick panel in a flex container</a >
+          </li>
+           
+        
+      </ul>
+    
+  </div>
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content">Some footer</div></footer>
+    </div>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Circleci Persist Artifacts</title>
+    <title>Persist artifacts in CircleCI</title>
 
     <!-- Styles -->
     <link
@@ -12,22 +12,86 @@
       rel="stylesheet"
       href="/learnzone/assets/styles/syntax-monokai.css"
     />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
   </head>
 
   <body>
-    <header>
-      <div class="nav-menu">
-        <a href="/learnzone/">Home</a>
-        <a href="/learnzone/kx">KX</a>
-        <a href="/learnzone/blog">blog</a>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          <a href="/learnzone/">Home</a>
+          <a href="/learnzone/kx">KX</a>
+          <a href="/learnzone/blog">blog</a>
+        </div>
       </div>
     </header>
 
-    <div id="container">
-      <div id="content">
-</div>
-    </div>
+    <div id="main-container">
 
-    <footer>Some footer</footer>
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div class="content">
+  <h1>Persist artifacts in CircleCI</h1>
+
+  <p>This website could have used <code class="highlighter-rouge">master branch/docs</code> folder as a website:</p>
+<ul>
+  <li>I build locally my Jekyll website</li>
+  <li>If the output folder is not already set to <code class="highlighter-rouge">/docs/</code>, copy content from <code class="highlighter-rouge">/_site</code>
+to <code class="highlighter-rouge">/docs/</code></li>
+  <li>commit and push master branch</li>
+</ul>
+
+<p>But for the sake of learning, let’s do split the Circle CI workflow in two jobs:</p>
+<ul>
+  <li>build</li>
+  <li>deploy</li>
+</ul>
+
+<p>I need to keep the artifacts produced by the <em>build</em> job to have it deployed by 
+the <em>deploy</em> job. To do so, CircleCI offers <code class="highlighter-rouge">persist_to_workspace</code> and <code class="highlighter-rouge">attach_workspace</code>.</p>
+
+
+  <hr />
+
+  
+  <p>Articles:</p>
+  <ul>    
+     
+      
+         
+        
+        <li><a href="/kx/circleci/deploy">Workflow and deployment</a></li>
+         
+      
+         
+         
+      
+         
+         
+      
+         
+         
+      
+         
+         
+      
+         
+         
+      
+    
+  </ul>
+  
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content">Some footer</div></footer>
+    </div>
   </body>
 </html>

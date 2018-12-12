@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Props</title>
+    <title>Variable in SASS</title>
 
     <!-- Styles -->
     <link
@@ -94,40 +94,41 @@
   </div>
 
   <div class="kx-content">
-    <h1>Props</h1>
+    <h1>Variable in SASS</h1>
 
-    <h1 id="react-props-enhancement">React props enhancement</h1>
+    <h2 id="use-variable-in-formula">Use variable in formula:</h2>
 
-<h2 id="prop-types">Prop types</h2>
-
-<p>Import:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">PropTypes</span> <span class="k">from</span> <span class="s1">'prop-types'</span><span class="p">;</span>
-</code></pre></div></div>
-<p>and check:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Greeting</span><span class="p">.</span><span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span>
-<span class="p">};</span>
+<p>Interpolation FTW:</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="nt">topHeight</span><span class="o">:</span> <span class="nt">50px</span><span class="o">;</span>
+<span class="nc">.plop</span><span class="p">{</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="n">calc</span><span class="p">(</span><span class="m">100vh</span> <span class="n">-</span> <span class="err">#{$</span><span class="n">topHeight</span><span class="p">}</span><span class="o">);</span>
+<span class="err">}</span>
 </code></pre></div></div>
 
-<p>Define default props values:</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Greeting</span><span class="p">.</span><span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Stranger'</span>
-<span class="p">};</span>
-</code></pre></div></div>
+<p>Source:</p>
+<ul>
+  <li><a href="https://codepen.io/thebabydino/pen/hgFno">CodePen example</a></li>
+</ul>
 
 
     <hr />
 
      
-    <span class="article-tag">react</span> 
-     
-    <span class="article-tag">props</span> 
-     
-    <span class="article-tag">component</span> 
-     
 
     <div />
 
+    
+      <p>Mentionned:</p>
+      <ul>
+         
+           
+          
+          <li>
+            <a href="/2018/12/12/flex-and-sticky.html" >12 Dec 2018 Stick panel in a flex container</a >
+          </li>
+           
+        
+      </ul>
     
   </div>
 </div>
