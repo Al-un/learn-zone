@@ -1,0 +1,64 @@
+@import "shared/theme";
+@import "shared/mixins";
+// -------------------- Container
+#kx-container {
+    display: flex;
+    flex-direction: column;
+    /* Desktop only */
+    @include desktop {
+        flex-direction: row;
+    }
+    /* Mobile only: menu is toggled */
+    &.show-menu {
+        .kx-menu {
+            display: block;
+        }
+        .kx-content {
+            display: none;
+        }
+    }
+}
+
+// -------------------- Navigation
+.kx-menu-toggler {
+    background-color: $colorSecondary;
+    height: 40px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.kx-menu {
+    display: none;
+    @include desktop {
+        display: block;
+        width: 250px;
+        position: sticky;
+        box-sizing: border-box;
+        align-self: flex-start;
+        max-height: calc(100vh - $headerHeight);
+        top: $headerHeight;
+    }
+    nav {
+        padding: 0px 10px;
+        a {
+            color: $colorFontLight;
+            &:hover {
+                color: $colorPrimary;
+            }
+            display: block;
+        }
+    }
+}
+
+.kx-content {
+    flex: 1;
+}
+
+// -------------------- Article
+.article-tag {
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border: 1px solid $colorPrimary;
+    border-radius: 12px;
+}

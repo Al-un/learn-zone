@@ -1,14 +1,9 @@
 ---
-layout: default
+layout: kx_article
 title: Learnzone KX
 permalink: /kx
 ---
 
 # KX
 
-{% for kx in site.data.kx %}
-### {{ kx.name }}
-  {% for article in site[kx.collection] %}
-  - [{{ article.title }}]({{ article.url }})
-  {% endfor %}
-{% endfor %}
+Select an article on the left

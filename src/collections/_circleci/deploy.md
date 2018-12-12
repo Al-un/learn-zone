@@ -6,9 +6,12 @@ sources:
     link: https://circleci.com/docs/2.0/configuration-reference/#persist_to_workspace
   - name: CircleCI workflow documentation 
     link: https://circleci.com/docs/2.0/workflows/
+mentioned:
+  - /2018/12/11/circleci-persist-artifacts
 ---
 
-# Deploying
+To deploy an application or a website, an additional step can be appended to do
+the job. However, it is better to separate _build_ job from _deploy_ job.
 
 ## Workflow
 

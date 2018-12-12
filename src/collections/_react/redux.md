@@ -6,7 +6,7 @@ sources:
     link: https://redux.js.org/basics/usage-with-react
 ---
 
-# Redux
+To have a single point of truth for our data: the Redux state.
 
 ```
 yarn add redux

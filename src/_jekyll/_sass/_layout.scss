@@ -1,0 +1,66 @@
+@import "shared/theme";
+/**
+ * Global stuff
+ */
+
+@font-face {
+    font-family: "NotoSans";
+    src: url("../fonts/NotoSans-Regular.ttf");
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-family: "NotoSans", sans-serif;
+}
+
+/**
+ * Related to website layout. Layout has
+ * - fixed header
+ *  - High level navigation
+ * - main content
+ *  - lower level navigation will be done by toggling menu on mobile
+ * - footer pushed down the page if content is not long enough
+ */
+
+header.container {
+    position: fixed;
+    color: white;
+    height: $headerHeight;
+    width: 100%;
+    background-color: $colorPrimary;
+    .nav-menu {
+        a {
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+        }
+    }
+    display: flex;
+    align-items: center;
+}
+
+div#main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - #{$headerHeight});
+    margin-top: $headerHeight;
+    main.container {
+        flex: 1;
+    }
+    footer.container {
+        background-color: $colorPrimary;
+    }
+}
+
+// wrapped by header.container, footer.container, main.container
+.content {
+    width: 98%;
+    max-width: $contentWidth;
+    margin: auto;
+}

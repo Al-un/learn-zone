@@ -1,12 +1,12 @@
 ---
-title: Redux
+title: Saga
 tags: [react, redux, saga]
 sources:
   - name: Saga documentation
     link: https://redux-saga.js.org/
 ---
 
-# Saga
+To handle asynchronous request for Redux
 
 ## Folder structure
 

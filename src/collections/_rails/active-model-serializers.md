@@ -4,11 +4,16 @@ tags: [rails, json, serialization]
 sources:
   - name: Active Model Serializers 0.10.x guides
     link: https://github.com/rails-api/active_model_serializers/tree/v0.10.6/docs
-mentions:
-  - 
+mentioned:
+  - /2018/12/06/active-model-serializers
 ---
 
-# Active model serializer
+To customize JSON output, especially when Rails is used as an API endpoint. To 
+add gem:
+
+```
+gem 'active_model_serializers', '~> 0.10.0'
+```
 
 ## CLI
 CLI command is available:

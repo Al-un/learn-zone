@@ -1,6 +1,13 @@
+# Define here all collections for KX and its name as name formatting
+# may differ from collection name.
+# Do not forget to declare the collection in _config.yml
 - name: CircleCI
   collection: circleci
+- name: CSS / SASS
+  collection: css
 - name: Rails
   collection: rails
 - name: ReactJS
   collection: react
+- name: Visual Studio Code
+  collection: vscode

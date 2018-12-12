@@ -13,10 +13,16 @@ collections:
   circleci:
     output: true
     permalink: /kx/:collection/:name
+  css:
+    output: true
+    permalink: /kx/:collection/:name
   rails:
     output: true
     permalink: /kx/:collection/:name
   react:
+    output: true
+    permalink: /kx/:collection/:name
+  vscode:
     output: true
     permalink: /kx/:collection/:name
 
@@ -26,9 +32,14 @@ paginate_path: "/blog/page:num"
 
 # Default front matters
 defaults:
+  # All files
+  - scope:
+      path: ""  # an empty string here means all files in the project
+    values:
+      layout: "page"
   # Posts
   - scope:
-      path: "" # an empty string here means all files in the project
+      path: ""
       type: "posts" # previously `post` in Jekyll 2.2.
     values:
       layout: "post"
@@ -36,6 +47,11 @@ defaults:
   - scope:
       path: ""
       type: "circleci"
+    values:
+      layout: "kx_article"
+  - scope:
+      path: ""
+      type: "css"
     values:
       layout: "kx_article"
   - scope:
@@ -48,8 +64,20 @@ defaults:
       type: "react"
     values:
       layout: "kx_article"
+  - scope:
+      path: ""
+      type: "vscode"
+    values:
+      layout: "kx_article"
 
 # SASS
 sass:
+  # custom folder path. Default is {source}/_sass
   sass_dir: _jekyll/_sass
+  # CSS output style. Valid values are
+  # - nested
+  # - compact
+  # - expanded
+  # - compressed
+  # https://web-design-weekly.com/2014/06/15/different-sass-output-styles/
   style: compressed
