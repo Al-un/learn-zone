@@ -1,0 +1,184 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Learnzone</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          
+          <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
+          <a href="/learnzone/kx">KX</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div
+  id="page-menu-toggler"
+  class="mobile-only"
+  onclick="document.getElementById('page-container').classList.toggle('show-menu');"
+>
+  Navigation
+</div>
+
+<div id="page-container" class="content">
+  <div id="page-menu">
+    <nav class="page-nav-group">
+      <a href="/learnzone/learnzone/" class="page-nav-link">
+        LearnZone
+      </a>
+      <a href="/learnzone/learnzone/specs" class="page-nav-link">
+        Specifications
+      </a>
+      <a href="/learnzone/learnzone/stacks" class="page-nav-link">
+        Stacks (Markdown)
+      </a>
+      <a href="/learnzone/learnzone/stacks2" class="page-nav-link">
+        Stacks (HTML)
+      </a>
+    </nav>
+  </div>
+
+  <div id="page-content"><h1 id="landscape">Landscape</h1>
+
+<h3 id="deployments">Deployments</h3>
+
+<p>whenever possible, apps are deployed on Heroku:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Stack</th>
+      <th>Deployment</th>
+      <th>Repository</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Database</td>
+      <td>PostgreSQL</td>
+      <td>https://learnzone-postgresql.herokuapp.com/</td>
+      <td>(none)</td>
+    </tr>
+    <tr>
+      <td>Fullstack</td>
+      <td>Java / JSF</td>
+      <td>not deployed</td>
+      <td><a href="https://github.com/Al-un/learn-zone-javaee">learn-zone-javaee</a></td>
+    </tr>
+    <tr>
+      <td>API</td>
+      <td>Rails</td>
+      <td>https://learnzone-rails-api.herokuapp.com/</td>
+      <td><a href="https://github.com/Al-un/learnzone-rails-api">learnzone-rails-api</a></td>
+    </tr>
+    <tr>
+      <td>Fullstack</td>
+      <td>Rails</td>
+      <td>https://learnzone-rails.herokuapp.com/</td>
+      <td><a href="https://github.com/Al-un/learnzone-rails">learnzone-rails</a></td>
+    </tr>
+    <tr>
+      <td>Fullstack</td>
+      <td>NodeJs</td>
+      <td>https://learnzone-node.herokuapp.com</td>
+      <td><a href="https://github.com/Al-un/learnzone-nodejs">learnzone-node</a></td>
+    </tr>
+    <tr>
+      <td>Front-end</td>
+      <td>React</td>
+      <td>TBD</td>
+      <td><a href="https://github.com/Al-un/learnzone-react">learnzone-react</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="notes">Notes</h1>
+
+<h3 id="heroku-git-deploy">Heroku Git deploy</h3>
+
+<p>To deploy a sub folder on Heroku:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git subtree push --prefix rails/api heroku-rails-api master
+</code></pre></div></div>
+
+<p>with <code class="highlighter-rouge">heroku-rails-api</code>, the remote connected to the heroku app git repository. In case of fast-forward merge issues, force push with:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push heroku-rails-api `git subtree split --prefix rails/api/ master`:master --force
+</code></pre></div></div>
+
+<p>The error is</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push using:  heroku-rails-api master
+To https://git.heroku.com/learn-rails-api.git
+ ! [rejected]        42ec0434bb179af1e134ab73ba852922e92294b9 -&gt; master (non-fast-forward)
+error: failed to push some refs to '{git address}
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</code></pre></div></div>
+
+<p>Source:</p>
+
+<ul>
+  <li>https://coderwall.com/p/ssxp5q/heroku-deployment-without-the-app-being-at-the-repo-root-in-a-subfolder</li>
+  <li>https://stackoverflow.com/questions/13756055/git-subtree-subtree-up-to-date-but-cant-push</li>
+</ul>
+
+<h3 id="heroku-misc">Heroku Misc</h3>
+
+<p>To attach the database to another app</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>heroku addons:attach postgresql-learnzone <span class="nt">-a</span> <span class="o">{</span>app name<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Source:</p>
+
+<ul>
+  <li>https://devcenter.heroku.com/articles/managing-add-ons</li>
+</ul>
+</div>
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content"></div></footer>
+    </div>
+  </body>
+</html>

@@ -25,75 +25,112 @@
     <header class="container">
       <div class="content">
         <div class="nav-menu">
+          
           <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
           <a href="/learnzone/kx">KX</a>
-          <a href="/learnzone/blog">blog</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
         </div>
       </div>
     </header>
 
     <div id="main-container">
-
       <main class="container">
         <!-- Each sub-layout must have a "content" class -->
-        <div
-  class="kx-menu-toggler mobile-only"
-  onclick="document.getElementById('kx-container').classList.toggle('show-menu');"
->
+        <div id="page-menu-toggler" class="mobile-only"
+  onclick="document.getElementById('page-container').classList.toggle('show-menu');">
   Navigation
 </div>
 
-<div id="kx-container" class="content">
-  <div class="kx-menu">
+<div id="page-container" class="content">
+  <div id="page-menu">
     
-    <h4>CircleCI</h4>
-    <nav>
-      
-      <a href="/learnzone/kx/circleci/deploy">Workflow and deployment</a>
-      
+    <nav class="page-nav-group">
+      <h4>CircleCI</h4>
+      <div class="page-nav-links">
+        
+        <a href="/learnzone/kx/circleci/deploy" class="page-nav-link ">
+          Workflow and deployment
+        </a>
+        
+      </div>
     </nav>
     
-    <h4>CSS / SASS</h4>
-    <nav>
-      
-      <a href="/learnzone/kx/css/flex">Flexbox</a>
-      
-      <a href="/learnzone/kx/css/fonts">Fonts</a>
-      
-      <a href="/learnzone/kx/css/table">Tables</a>
-      
-      <a href="/learnzone/kx/css/variable">Variable in SASS</a>
-      
+    <nav class="page-nav-group">
+      <h4>CSS / SASS</h4>
+      <div class="page-nav-links">
+        
+        <a href="/learnzone/kx/css/flex" class="page-nav-link ">
+          Flexbox
+        </a>
+        
+        <a href="/learnzone/kx/css/fonts" class="page-nav-link ">
+          Fonts
+        </a>
+        
+        <a href="/learnzone/kx/css/table" class="page-nav-link active">
+          Tables
+        </a>
+        
+        <a href="/learnzone/kx/css/variable" class="page-nav-link ">
+          Variable in SASS
+        </a>
+        
+      </div>
     </nav>
     
-    <h4>Rails</h4>
-    <nav>
-      
-      <a href="/learnzone/kx/rails/active-model-serializers">Serialization</a>
-      
+    <nav class="page-nav-group">
+      <h4>Rails</h4>
+      <div class="page-nav-links">
+        
+        <a href="/learnzone/kx/rails/active-model-serializers" class="page-nav-link ">
+          Serialization
+        </a>
+        
+      </div>
     </nav>
     
-    <h4>ReactJS</h4>
-    <nav>
-      
-      <a href="/learnzone/kx/react/props">Props</a>
-      
-      <a href="/learnzone/kx/react/redux">Redux</a>
-      
-      <a href="/learnzone/kx/react/saga">Saga</a>
-      
+    <nav class="page-nav-group">
+      <h4>ReactJS</h4>
+      <div class="page-nav-links">
+        
+        <a href="/learnzone/kx/react/documentation" class="page-nav-link ">
+          Documentation
+        </a>
+        
+        <a href="/learnzone/kx/react/props" class="page-nav-link ">
+          Props
+        </a>
+        
+        <a href="/learnzone/kx/react/redux" class="page-nav-link ">
+          Redux
+        </a>
+        
+        <a href="/learnzone/kx/react/saga" class="page-nav-link ">
+          Saga
+        </a>
+        
+      </div>
     </nav>
     
-    <h4>Visual Studio Code</h4>
-    <nav>
-      
-      <a href="/learnzone/kx/vscode/extensions">Extensions</a>
-      
+    <nav class="page-nav-group">
+      <h4>Visual Studio Code</h4>
+      <div class="page-nav-links">
+        
+        <a href="/learnzone/kx/vscode/extensions" class="page-nav-link ">
+          Extensions
+        </a>
+        
+      </div>
     </nav>
     
   </div>
 
-  <div class="kx-content">
+  <div id="page-content">
     <h1>Tables</h1>
 
     <p>Manage tables style:</p>
@@ -144,7 +181,7 @@
 
       </main>
 
-      <footer class="container"><div class="content">Some footer</div></footer>
+      <footer class="container"><div class="content"></div></footer>
     </div>
   </body>
 </html>
