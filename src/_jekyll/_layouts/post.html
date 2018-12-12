@@ -16,7 +16,7 @@ layout: default
       {% for collection in site.collections %}
         {% assign article = collection.docs | where: "path", art_path | first %} 
         {% if article %}
-        <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+        <li><a href="{{ article.url | relative_url }}">{{ article.title }}</a></li>
         {% endif %} 
       {% endfor %}
     {% endfor %}
