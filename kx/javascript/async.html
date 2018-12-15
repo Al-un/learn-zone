@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Documentation</title>
+    <title>Async / await</title>
 
     <!-- Styles -->
     <link
@@ -125,7 +125,7 @@
             
           
             <a href="/learnzone/kx/javascript/async.html" 
-            class="page-nav-link ">
+            class="page-nav-link active">
               Async / await
             </a>
           
@@ -203,7 +203,7 @@
             
           
             <a href="/learnzone/kx/react/documentation.html" 
-            class="page-nav-link active">
+            class="page-nav-link ">
               Documentation
             </a>
           
@@ -262,40 +262,35 @@
   </div>
 
   <div id="page-content">
-    <h1>Documentation</h1>
+    <h1>Async / await</h1>
 
-    
+    <p>Async cannot be combined with <code class="highlighter-rouge">forEach</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">printFiles</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">files</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getFilePaths</span><span class="p">();</span>
+
+  <span class="kr">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span>
+    <span class="nx">files</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="k">async</span> <span class="nx">file</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">contents</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="s2">"utf8"</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">contents</span><span class="p">);</span>
+    <span class="p">})</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>From <a href="https://stackoverflow.com/a/37576787/4906586">StackOverflow</a></p>
 
 
     <hr />
 
     
-      <p>Sources:</p>
-      <ul>
-         
-          <li><a href="https://github.com/reactjs/react-docgen">React Docgen Github</a></li>
-         
-      </ul>
-    
 
     <div />
 
      
-    <span class="article-tag">react</span> 
-     
-    <span class="article-tag">documentation</span> 
-     
 
     <div />
 
-    
-      <p>Mentionned:</p>
-      <ul>
-         
-           
-           
-        
-      </ul>
     
   </div>
 </div>

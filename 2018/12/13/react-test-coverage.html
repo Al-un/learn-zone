@@ -1,0 +1,134 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>React test coverage for Code Climate</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          
+          <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
+          <a href="/learnzone/kx">KX</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div class="content">
+  <h1>React test coverage for Code Climate</h1>
+
+  <p>Split the workflow in <em>build+test</em> jobs:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># .circleci/config.yml</span>
+<span class="na">workflows</span><span class="pi">:</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="na">full-flow</span><span class="pi">:</span>
+    <span class="na">jobs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">build</span>
+      <span class="pi">-</span> <span class="na">test</span><span class="pi">:</span>
+          <span class="na">requires</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">build</span>
+<span class="c1"># Jobs</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+  <span class="c1">#  previous build definition</span>
+  <span class="na">test</span><span class="pi">:</span>
+    <span class="na">docker</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/node:11-browsers-legacy</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">checkout</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Testing</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="s">npm test</span>
+</code></pre></div></div>
+
+<p>If we leave it like this, <code class="highlighter-rouge">jest</code> is not found as dependencies as not fetch. Error is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash -eo pipefail</span>
+npm <span class="nb">test</span>
+
+
+<span class="o">&gt;</span> learnzone-react@0.1.0 <span class="nb">test</span> /home/circleci/project
+<span class="o">&gt;</span> jest
+
+sh: 1: jest: not found
+npm ERR! Test failed.  See above <span class="k">for </span>more details.
+Exited with code 1
+</code></pre></div></div>
+
+<p>Fix it by restoring the cached dependencies with <code class="highlighter-rouge">restore_cache</code>. This step
+should not encountered problems as build just ran before.</p>
+
+<h2 id="setting-coverage">Setting coverage</h2>
+
+<p><a href="https://jasonraimondi.com/posts/showing-code-coverage-for-a-react-app-using-code-climate-with-travis-ci">Jest handles that for us, <em>YEAH!</em></a>.
+Just update your package.json, jest part:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="s2">"collectCoverage"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"coverageReporters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"lcov"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"collectCoverageFrom"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"src/**/*.{js,jsx,ts,tsx}"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+    </span><span class="err">```</span><span class="w">
+</span></code></pre></div></div>
+
+<p>And add Code Climate reporting to <a href="https://docs.codeclimate.com/docs/circle-ci-test-coverage-example">CircleCI</a></p>
+
+
+  <hr />
+
+  
+  <p>Articles:</p>
+  <ul>    
+     
+      
+         
+        
+        <li><a href="/learnzone/kx/react/ci.html">React + CI</a></li>
+         
+      
+         
+         
+      
+    
+  </ul>
+  
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content"></div></footer>
+    </div>
+  </body>
+</html>

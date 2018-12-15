@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Service Workers</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          
+          <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
+          <a href="/learnzone/kx">KX</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div class="content">
+  <h1>Service Workers</h1>
+
+  <p>Testing service workers with resources:</p>
+
+<ul>
+  <li><a href="https://www.sitepoint.com/getting-started-with-service-workers/">Sitepoint</a></li>
+  <li><a href="https://developers.google.com/web/fundamentals/primers/service-workers/">Developers.Google</a></li>
+</ul>
+
+<h2 id="registering">Registering</h2>
+
+<p>Attempt to register service workers but if the service worker file is missing,
+following error appears:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Failed to register/update a ServiceWorker for scope ‘https://al-un.github.io/service-worker/’: Load failed with status 404 for script ‘https://al-un.github.io/service-worker/service-worker.js’.
+</code></pre></div></div>
+
+<p>Message is clear: sw file must be present !</p>
+
+<p>Next step is to trigger the basic lifecyle: <code class="highlighter-rouge">install</code>, <code class="highlighter-rouge">activate</code> and <code class="highlighter-rouge">fetch</code>.</p>
+
+<h2 id="caching">Caching</h2>
+
+<p>Following Sitepoint guide, let’s try caching some content. In my <a href="https://github.com/Al-un/service-worker">service-worker</a>
+repo, I tried to cache the website to make it available offline except one picture.</p>
+
+<p>By updating the <code class="highlighter-rouge">activate</code> and <code class="highlighter-rouge">fetch</code> events:</p>
+
+<ul>
+  <li>It works on Chrome but not on Firefox</li>
+  <li>Miku picture is properly cached but Luka picture is cached as well when it should not be</li>
+</ul>
+
+<p>I browsed a bit <a href="https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage"><code class="highlighter-rouge">CacheStorage</code> documentation</a>
+and try to implement a manual cache clear.</p>
+
+<p>Well…fcuk. I have <code class="highlighter-rouge">disable cache</code> option enabled in Firefox debugging (Network tab).</p>
+
+
+  <hr />
+
+  
+  <p>Articles:</p>
+  <ul>    
+     
+      
+         
+        
+        <li><a href="/learnzone/kx/javascript/service-workers.html">Service Workers</a></li>
+         
+      
+         
+         
+      
+    
+  </ul>
+  
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content"></div></footer>
+    </div>
+  </body>
+</html>

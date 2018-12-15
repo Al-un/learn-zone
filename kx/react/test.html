@@ -1,0 +1,418 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Testing with Jest and Enzyme</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          
+          <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
+          <a href="/learnzone/kx">KX</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div id="page-menu-toggler" class="mobile-only"
+  onclick="document.getElementById('page-container').classList.toggle('show-menu');">
+  Navigation
+</div>
+
+<div id="page-container" class="content">
+  <div id="page-menu">
+
+
+      
+
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>CircleCI</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/circleci/deploy.html" 
+            class="page-nav-link ">
+              Workflow and deployment
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>CSS / SASS</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/css/flex.html" 
+            class="page-nav-link ">
+              Flexbox
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/fonts.html" 
+            class="page-nav-link ">
+              Fonts
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/table.html" 
+            class="page-nav-link ">
+              Tables
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/variable.html" 
+            class="page-nav-link ">
+              Variable in SASS
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>JavaScript</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/javascript/async.html" 
+            class="page-nav-link ">
+              Async / await
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/javascript/service-workers.html" 
+            class="page-nav-link ">
+              Service Workers
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Jekyll</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/jekyll/filter.html" 
+            class="page-nav-link ">
+              Filter
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/jekyll/markdown.html" 
+            class="page-nav-link ">
+              Markdown
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Rails</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/rails/active-model-serializers.html" 
+            class="page-nav-link ">
+              Serialization
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>ReactJS</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/react/ci.html" 
+            class="page-nav-link ">
+              React + CI
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/documentation.html" 
+            class="page-nav-link ">
+              Documentation
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/props.html" 
+            class="page-nav-link ">
+              Props
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/redux.html" 
+            class="page-nav-link ">
+              Redux
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/saga.html" 
+            class="page-nav-link ">
+              Saga
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/test.html" 
+            class="page-nav-link active">
+              Testing with Jest and Enzyme
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Visual Studio Code</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/vscode/extensions.html" 
+            class="page-nav-link ">
+              Extensions
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+
+  </div>
+
+  <div id="page-content">
+    <h1>Testing with Jest and Enzyme</h1>
+
+    <h2 id="installation">Installation</h2>
+
+<p>Jest is shipped with <code class="highlighter-rouge">create-react-app</code> but babel extras are required:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add --dev babel-core babel-jest babel-loader babel-polyfill babel-preset-env babel-preset-react
+# If you need es6 functions in your component
+yarn add --dev babel-plugin-transform-class-properties
+</code></pre></div></div>
+
+<p>And add Enzyme:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add --dev enzyme enzyme-adapter-react-16
+</code></pre></div></div>
+
+<p>Configure some files:</p>
+
+<p><strong>package.json</strong>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"jest"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"setupTestFrameworkScriptFile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;rootDir&gt;/src/setupTests.js"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"moduleNameMapper"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"</span><span class="se">\\</span><span class="s2">.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;rootDir&gt;/__mocks__/fileMock.js"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"</span><span class="se">\\</span><span class="s2">.(css|scss)$"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;rootDir&gt;/__mocks__/styleMock.js"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>.babelrc</strong>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"presets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"env"</span><span class="p">,</span><span class="w"> </span><span class="s2">"react"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"plugins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"transform-class-properties"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Create mocks files defined in <code class="highlighter-rouge">package.json</code>:</p>
+
+<p><strong>__mocks__/fileMock.js</strong>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="s2">"test-file-stub"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>__mocks__/styleMock.js</strong>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{};</span>
+</code></pre></div></div>
+
+<h2 id="fixing-redux--saga">Fixing Redux &amp; Saga</h2>
+
+<p>When testing, one has to consider API communication: we have to provide a mock API
+instead of fetching from an actual API: it is up to API testing to ensure
+that requests are properly answers.</p>
+
+<h3 id="store">Store</h3>
+
+<p>Ensure that store is initialised when tests run.</p>
+
+<blockquote>
+  <p>For testing purpose, do not set the <code class="highlighter-rouge">&lt;Provider /&gt;</code> in the <em>index.js</em> but in the
+<code class="highlighter-rouge">&lt;App /&gt;</code>(or <code class="highlighter-rouge">&lt;Root /&gt;</code>, whatever you call it).</p>
+</blockquote>
+
+<p>If you leave the <code class="highlighter-rouge">&lt;Provider /&gt;</code> in <em>index.js</em>, you will have the following error:
+<code class="highlighter-rouge">Uncaught [Invariant Violation: Could not find "store" in the context of "Connect(_class)". Either wrap the root component in a &lt;Provider&gt;, or pass a custom React context provider to &lt;Provider&gt; and the corresponding React context consumer to Connect(_class) in connect options.]</code>.</p>
+
+<p>Source:</p>
+
+<ul>
+  <li><a href="https://stackoverflow.com/a/52299416/4906586">StackOverflow</a></li>
+  <li><a href="https://stackoverflow.com/a/44813705/4906586">StackOverflow</a></li>
+</ul>
+
+<h2 id="snapshot-testing">Snapshot testing</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * requires `yarn add --dev react-test-renderer`
+ */</span>
+<span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s2">"react"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">renderer</span> <span class="k">from</span> <span class="s2">"react-test-renderer"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">MyComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"my-component-path;
+
+describe("</span><span class="nx">My</span> <span class="nx">Component</span><span class="s2">", () =&gt; {
+    it ('match snapshot', () =&gt; {
+      const tree = renderer
+        .create(&lt;MyComponent someparam="</span><span class="nx">somevalue</span><span class="s2">" /&gt;)
+        .toJSON();
+      expect(tree).toMatchSnapshot();
+    })
+});
+</span></code></pre></div></div>
+
+<h3 id="api-communication">API communication</h3>
+
+
+    <hr />
+
+    
+      <p>Sources:</p>
+      <ul>
+         
+          <li><a href="https://jestjs.io/docs/en/getting-started">Jest documentation</a></li>
+         
+          <li><a href="https://airbnb.io/enzyme/">Enzyme documentation</a></li>
+         
+          <li><a href="https://redux.js.org/recipes/writing-tests*">Redux test writing recipe</a></li>
+         
+          <li><a href="https://devhints.io/jest">Jest cheatsheet</a></li>
+         
+      </ul>
+    
+
+    <div />
+
+     
+    <span class="article-tag">react</span> 
+     
+    <span class="article-tag">testing</span> 
+     
+
+    <div />
+
+    
+      <p>Mentionned:</p>
+      <ul>
+         
+           
+          
+          <li>
+            <a href="/learnzone/2018/12/12/jest-start.html" >12 Dec 2018 React testing: Jest and Enzyme</a >
+          </li>
+           
+         
+           
+          
+          <li>
+            <a href="/learnzone/2018/12/13/jest-stage-2.html" >13 Dec 2018 Jest stage 2</a >
+          </li>
+           
+        
+      </ul>
+    
+  </div>
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content"></div></footer>
+    </div>
+  </body>
+</html>

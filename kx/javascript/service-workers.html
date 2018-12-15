@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Documentation</title>
+    <title>Service Workers</title>
 
     <!-- Styles -->
     <link
@@ -132,7 +132,7 @@
             
           
             <a href="/learnzone/kx/javascript/service-workers.html" 
-            class="page-nav-link ">
+            class="page-nav-link active">
               Service Workers
             </a>
           
@@ -203,7 +203,7 @@
             
           
             <a href="/learnzone/kx/react/documentation.html" 
-            class="page-nav-link active">
+            class="page-nav-link ">
               Documentation
             </a>
           
@@ -262,9 +262,81 @@
   </div>
 
   <div id="page-content">
-    <h1>Documentation</h1>
+    <h1>Service Workers</h1>
 
-    
+    <h2 id="registration">Registration</h2>
+
+<p>From <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/register">MDN documentation</a></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">serviceWorker</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">log</span><span class="p">(</span><span class="s2">"Service Worker is trying to register"</span><span class="p">);</span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">serviceWorker</span>
+    <span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s2">"./service-worker.js"</span><span class="p">,</span> <span class="p">{</span> <span class="na">scope</span><span class="p">:</span> <span class="s2">"./"</span> <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">registration</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">registration</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.(</span><span class="nx">err</span><span class="p">));</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nx">log</span><span class="p">(</span><span class="s2">"Service Worker is not supported in this browser"</span><span class="p">,</span> <span class="s2">"Error"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>registration scope is relative to current file location</li>
+  <li>service worker file location is relative to current file location</li>
+  <li><code class="highlighter-rouge">err</code> cannot be JSON.stringify</li>
+  <li>registration is an object</li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>service worker files must be properly referenced</li>
+    <li>beware of service worker scope</li>
+  </ul>
+</blockquote>
+
+<h2 id="installation">Installation</h2>
+
+<p>SW are fully event based. Installation and activation are event among many others.
+To catch such event, append event listeners:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"install"</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Available events are</p>
+
+<p><img src="https://mdn.mozillademos.org/files/12632/sw-events.png" alt="Service workers event" /></p>
+
+<ul>
+  <li><code class="highlighter-rouge">install</code></li>
+  <li><code class="highlighter-rouge">activate</code></li>
+  <li><code class="highlighter-rouge">message</code></li>
+  <li><code class="highlighter-rouge">fetch</code></li>
+  <li><code class="highlighter-rouge">sync</code></li>
+  <li><code class="highlighter-rouge">push</code></li>
+</ul>
+
+<p><sub>The <code class="highlighter-rouge">self</code> quoted references <a href="https://www.w3schools.com/jsref/prop_win_self.asp"><code class="highlighter-rouge">window.self</code></a>.</sub></p>
+
+<blockquote>
+  <ul>
+    <li>service workers do not have access to DOM!</li>
+  </ul>
+</blockquote>
+
+<h2 id="caching">Caching</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"install"</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">waitUntil</span><span class="p">(</span>
+    <span class="nx">caches</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">CACHE_VERSION</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">cache</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">log</span><span class="p">(</span><span class="s2">`Opening cache version </span><span class="p">${</span><span class="nx">CACHE_VERSION</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">addAll</span><span class="p">(</span><span class="nx">CACHE_FILES</span><span class="p">);</span>
+    <span class="p">})</span>
+  <span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">CACHE_VERSION</code> is a simple string while <code class="highlighter-rouge">CACHE_FILES</code> is an array of files path to be cached.</p>
 
 
     <hr />
@@ -273,17 +345,11 @@
       <p>Sources:</p>
       <ul>
          
-          <li><a href="https://github.com/reactjs/react-docgen">React Docgen Github</a></li>
-         
       </ul>
     
 
     <div />
 
-     
-    <span class="article-tag">react</span> 
-     
-    <span class="article-tag">documentation</span> 
      
 
     <div />
@@ -293,6 +359,10 @@
       <ul>
          
            
+          
+          <li>
+            <a href="/learnzone/2018/12/14/service-workers.html" >14 Dec 2018 Service Workers</a >
+          </li>
            
         
       </ul>

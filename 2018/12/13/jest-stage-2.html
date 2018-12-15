@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Jest stage 2</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          
+          <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
+          <a href="/learnzone/kx">KX</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div class="content">
+  <h1>Jest stage 2</h1>
+
+  <h3 id="testing-click-behaviour">Testing click behaviour</h3>
+
+<p>When testing rendered button, we want to make sure that clicking the component
+triggers the appropriate props. Rather than checking the <code class="highlighter-rouge">onClick</code> props of the
+rendered button, it is easier to simulate a click:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">describe</span><span class="p">(</span><span class="s2">"Delete button"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">onDeleteFn</span> <span class="o">=</span> <span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
+    <span class="nx">deleteButton</span> <span class="o">=</span> <span class="nx">shallow</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">DeleteButton</span> <span class="nx">deleteFunc</span><span class="o">=</span><span class="p">{</span><span class="nx">onDeleteFn</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">;
+</span>  <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">"click triggers delete function"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">deleteButton</span><span class="p">.</span><span class="nx">simulate</span><span class="p">(</span><span class="s2">"click"</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">onDeleteFn</span><span class="p">).</span><span class="nx">toBeCalled</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Source:</p>
+
+<ul>
+  <li><a href="https://medium.com/backticks-tildes/testing-your-react-component-with-jest-and-enzyme-276eef45bea0">Testing with Jest and Enzyme</a></li>
+</ul>
+
+<h3 id="snapshot-testing">Snapshot testing</h3>
+
+<p>Very cool feature for non regression testing. If not done yet, add <code class="highlighter-rouge">yard add --dev react-test-renderer</code>.
+And it is now as simple as:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s2">"react"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">renderer</span> <span class="k">from</span> <span class="s2">"react-test-renderer"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">MyComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"my-component-path;
+
+describe("</span><span class="nx">My</span> <span class="nx">Component</span><span class="s2">", () =&gt; {
+    it ('match snapshot', () =&gt; {
+      const tree = renderer
+        .create(&lt;MyComponent someparam="</span><span class="nx">somevalue</span><span class="s2">" /&gt;)
+        .toJSON();
+      expect(tree).toMatchSnapshot();
+    })
+});
+</span></code></pre></div></div>
+
+
+  <hr />
+
+  
+  <p>Articles:</p>
+  <ul>    
+     
+      
+         
+        
+        <li><a href="/learnzone/kx/react/test.html">Testing with Jest and Enzyme</a></li>
+         
+      
+         
+         
+      
+    
+  </ul>
+  
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content"></div></footer>
+    </div>
+  </body>
+</html>

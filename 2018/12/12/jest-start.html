@@ -1,0 +1,207 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>React testing: Jest and Enzyme</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          
+          <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
+          <a href="/learnzone/kx">KX</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div class="content">
+  <h1>React testing: Jest and Enzyme</h1>
+
+  <p>Testing React is most of the time synonym of Jest along with its loyal friend: Enzyme.</p>
+
+<h2 id="fixing-all-transpiling-issues">Fixing all transpiling issues:</h2>
+
+<p>Startin from React 16, Jest is embedded with react scripts. However, running a simple
+<code class="highlighter-rouge">.\node-modules\.bin\jest</code> leads to:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FAIL src/App.test.js
+  ● Test suite failed to run
+
+    Jest encountered an unexpected token
+
+    This usually means that you are trying to import a file which Jest cannot parse, e.g. it's not plain JavaScript.
+
+    By default, if Jest sees a Babel config, it will use that to transform your files, ignoring "node_modules".
+
+    Here's what you can do:
+     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+     • If you need a custom transformation specify a "transform" option in your config.
+     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+    You'll find more details and examples of these config options in the docs:
+    https://jestjs.io/docs/en/configuration.html
+
+    Details:
+
+    SyntaxError: D:\github\_learn_zone\react\src\App.test.js: Unexpected token (7:18)
+
+       5 | it('renders without crashing', () =&gt; {
+       6 |   const div = document.createElement('div');
+    &gt;  7 |   ReactDOM.render(&lt;App /&gt;, div);
+         |                   ^
+       8 |   ReactDOM.unmountComponentAtNode(div);
+       9 | });
+</code></pre></div></div>
+
+<p>Adding a <code class="highlighter-rouge">.babelrc</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"presets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"env"</span><span class="p">,</span><span class="w"> </span><span class="s2">"react"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>I’ll let you check why <code class="highlighter-rouge">env</code> instead of <code class="highlighter-rouge">es20xx</code>. But such configuration requires some
+babel plugins:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add --dev babel-preset-env babel-preset-react
+</code></pre></div></div>
+
+<p>Only with both plugins, the error is</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Plugin/Preset files are not allowed to export objects, only functions. In D:\github\_learn_zone\react\node_modules\babel-preset-react\lib\index.js
+
+      at createDescriptor (node_modules/babel-jest/node_modules/@babel/core/lib/config/config-descriptors.js:178:11)
+          at Array.map (&lt;anonymous&gt;)
+</code></pre></div></div>
+
+<p>Let’s add the missing plugins:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add --dev babel-core babel-jest babel-loader babel-polyfill
+</code></pre></div></div>
+
+<blockquote>
+  <p>TODO: check those libraries relevancy</p>
+</blockquote>
+
+<p>And <a href="https://jestjs.io/docs/en/webpack">provide some mocks for <code class="highlighter-rouge">.scss</code> files</a>,
+<a href="https://github.com/facebook/jest/issues/3094">otherwise jest will fail on SCSS files loading</a>.</p>
+
+<p>If there is no SCSS mocks, error is</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Test suite failed to run
+
+    ({"Object.&lt;anonymous&gt;":function(module,exports,require,__dirname,__filename,global,jest){@import 'base/commons';
+                                                                                             ^
+
+    SyntaxError: Invalid or unexpected token
+
+      1 | import React, { Component } from "react";
+    &gt; 2 | import "./stylesheets/application.scss";
+        | ^
+      3 | import Layout from "./layout/Layout";
+      4 | import { Router } from "react-router-dom";
+      5 | import auth from "./services/auth";
+
+      at ScriptTransformer._transformAndBuildScript (node_modules/jest-runtime/build/script_transformer.js:403:17)
+      at Object.&lt;anonymous&gt; (src/App.js:2:1)
+</code></pre></div></div>
+
+<p>If component is using es6 function, another error is raised:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Jest encountered an unexpected token
+      This usually means that you are trying to import a file which Jest cannot parse, e.g. it's not plain JavaScript.
+      By default, if Jest sees a Babel config, it will use that to transform your files, ignoring "node_modules".
+      Here's what you can do:
+       • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+       • If you need a custom transformation specify a "transform" option in your config.
+       • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+      You'll find more details and examples of these config options in the docs:
+      https://jestjs.io/docs/en/configuration.html
+      Details:
+        14 |    * via the `deleteMsg` props
+        15 |    */
+      &gt; 16 |   deleteFunc = () =&gt; {
+           |              ^
+        17 |     let confirmMsg = this.props.deleteMsg || "Confirm deletion?";
+        18 |     let confirmDel = window.confirm(confirmMsg);
+        19 |     if (confirmDel) {
+</code></pre></div></div>
+
+<p><a href="https://stackoverflow.com/a/44360189/4906586">Fix it by adding the appropriate plugin</a>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add --dev babel-plugin-transform-class-properties
+</code></pre></div></div>
+
+<p>And update <code class="highlighter-rouge">.babelrc</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"plugins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"transform-class-properties"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="i-forgot-i-had-redux">I forgot I had Redux</h2>
+
+<p>Let’s fix Redux stuff… more detail on related article:</p>
+<ul>
+  <li>Ensure that <code class="highlighter-rouge">index.js</code> only calls <code class="highlighter-rouge">&lt;App /&gt;</code> so that <code class="highlighter-rouge">&lt;App /&gt;</code> resolves a non-null store.</li>
+  <li>Mock up API</li>
+</ul>
+
+<p>But that’s all for today.</p>
+
+
+  <hr />
+
+  
+  <p>Articles:</p>
+  <ul>    
+     
+      
+         
+        
+        <li><a href="/learnzone/kx/react/test.html">Testing with Jest and Enzyme</a></li>
+         
+      
+         
+         
+      
+    
+  </ul>
+  
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content"></div></footer>
+    </div>
+  </body>
+</html>

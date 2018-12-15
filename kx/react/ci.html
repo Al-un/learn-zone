@@ -1,0 +1,415 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>React + CI</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          
+          <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
+          <a href="/learnzone/kx">KX</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div id="page-menu-toggler" class="mobile-only"
+  onclick="document.getElementById('page-container').classList.toggle('show-menu');">
+  Navigation
+</div>
+
+<div id="page-container" class="content">
+  <div id="page-menu">
+
+
+      
+
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>CircleCI</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/circleci/deploy.html" 
+            class="page-nav-link ">
+              Workflow and deployment
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>CSS / SASS</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/css/flex.html" 
+            class="page-nav-link ">
+              Flexbox
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/fonts.html" 
+            class="page-nav-link ">
+              Fonts
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/table.html" 
+            class="page-nav-link ">
+              Tables
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/variable.html" 
+            class="page-nav-link ">
+              Variable in SASS
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>JavaScript</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/javascript/async.html" 
+            class="page-nav-link ">
+              Async / await
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/javascript/service-workers.html" 
+            class="page-nav-link ">
+              Service Workers
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Jekyll</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/jekyll/filter.html" 
+            class="page-nav-link ">
+              Filter
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/jekyll/markdown.html" 
+            class="page-nav-link ">
+              Markdown
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Rails</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/rails/active-model-serializers.html" 
+            class="page-nav-link ">
+              Serialization
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>ReactJS</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/react/ci.html" 
+            class="page-nav-link active">
+              React + CI
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/documentation.html" 
+            class="page-nav-link ">
+              Documentation
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/props.html" 
+            class="page-nav-link ">
+              Props
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/redux.html" 
+            class="page-nav-link ">
+              Redux
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/saga.html" 
+            class="page-nav-link ">
+              Saga
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/test.html" 
+            class="page-nav-link ">
+              Testing with Jest and Enzyme
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Visual Studio Code</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/vscode/extensions.html" 
+            class="page-nav-link ">
+              Extensions
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+
+  </div>
+
+  <div id="page-content">
+    <h1>React + CI</h1>
+
+    <h2 id="setting-up-test--test-coverage">Setting up test &amp; test coverage</h2>
+
+<p>How good my code is tested?</p>
+
+<h3 id="adding-test-to-the-workflow">Adding test to the workflow:</h3>
+
+<p>Update <code class="highlighter-rouge">.circleci/config.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># Using CircleCI 2</span>
+<span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
+
+<span class="c1"># Workflow</span>
+<span class="na">workflows</span><span class="pi">:</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="na">full-flow</span><span class="pi">:</span>
+    <span class="na">jobs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">build</span>
+      <span class="pi">-</span> <span class="na">test</span><span class="pi">:</span>
+          <span class="na">requires</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">build</span>
+
+<span class="c1"># Jobs</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="c1"># ---------- Building job</span>
+  <span class="na">build</span><span class="pi">:</span>
+  <span class="c1"># ... unchanged ...</span>
+  <span class="c1"># ---------- Testing job</span>
+  <span class="na">test</span><span class="pi">:</span>
+    <span class="na">docker</span><span class="pi">:</span>
+      <span class="c1"># https://hub.docker.com/r/circleci/node/</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/node:11-browsers-legacy</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">checkout</span>
+      <span class="c1"># Cache should not have changed as "build" ran before. Just get it back</span>
+      <span class="pi">-</span> <span class="na">restore_cache</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Restore Yarn Package Cache</span>
+          <span class="na">keys</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">learnzone-react-dependencies-{{ checksum "yarn.lock" }}</span>
+      <span class="c1"># Testing configuration must be configured in package.json</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Testing</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="s">npm test</span>
+
+</code></pre></div></div>
+
+<h3 id="adding-test-coverage">Adding test coverage</h3>
+
+<h4 id="building-up-coverage">Building up coverage</h4>
+
+<p>With Jest, nothing to do, <a href="https://jasonraimondi.com/posts/showing-code-coverage-for-a-react-app-using-code-climate-with-travis-ci">Jest handles that for us, <em>YEAH!</em></a>.
+In package.json, update <code class="highlighter-rouge">jest</code> section:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"jest"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"collectCoverage"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"coverageReporters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"lcov"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"collectCoverageFrom"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"src/**/*.{js,jsx,ts,tsx}"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="connect-to-code-climate">Connect to Code Climate</h4>
+
+<p>Get the <code class="highlighter-rouge">CC_TEST_COVERAGE_ID</code> from code climate settings and add it to CircleCI
+environment variables.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">Code Climate test-reporter setup</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="no"># download test reporter as a static binary</span>
+      <span class="no">curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 &gt; ./cc-test-reporter</span>
+      <span class="no">chmod +x ./cc-test-reporter</span>
+      <span class="no">./cc-test-reporter before-build</span>
+<span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">your testing command here</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="s">yarn test</span>
+<span class="c1"># Code Climate sending report</span>
+<span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">Code Climate report</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="s">./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?</span>
+</code></pre></div></div>
+
+<p>If you want to send test reporting only for master branch, change the report sending:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">Code Climate report</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="no">if [ "${CIRCLE_BRANCH}" == "master" ]; then</span>
+        <span class="no">./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?</span>
+      <span class="no">fi</span>
+</code></pre></div></div>
+
+<p>or duplicate jobs and leverage the CircleCI filter feature.</p>
+
+<p>Sources:</p>
+
+<ul>
+  <li><a href="https://docs.codeclimate.com/docs/configuring-test-coverage#section-supported-languages-and-formats">Supported coverage input type</a></li>
+</ul>
+
+
+    <hr />
+
+    
+      <p>Sources:</p>
+      <ul>
+         
+          <li><a href="https://docs.codeclimate.com/docs/circle-ci-test-coverage-example">CircleCI with Code Climate</a></li>
+         
+      </ul>
+    
+
+    <div />
+
+     
+    <span class="article-tag">react</span> 
+     
+    <span class="article-tag">test</span> 
+     
+    <span class="article-tag">ci</span> 
+     
+
+    <div />
+
+    
+      <p>Mentionned:</p>
+      <ul>
+         
+           
+          
+          <li>
+            <a href="/learnzone/2018/12/13/react-test-coverage.html" >13 Dec 2018 React test coverage for Code Climate</a >
+          </li>
+           
+        
+      </ul>
+    
+  </div>
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content"></div></footer>
+    </div>
+  </body>
+</html>
