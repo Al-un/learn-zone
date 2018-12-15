@@ -1,6 +1,7 @@
 
 # CI
 ci.circleci: "[![CircleCI](https://circleci.com/gh/Al-un/learnzone-react.svg?style=svg)](https://circleci.com/gh/Al-un/learnzone-react)"
+ci.travis: "[![Build Status](https://travis-ci.com/Al-un/learnzone-react.svg?branch=master)](https://travis-ci.com/Al-un/learnzone-react)"
 
 # Code quality
 cq.codeclimate: >-

@@ -1,6 +1,6 @@
 ---
 title: Serialization
-articles: _rails/active-model-serializers.md
+articles: _kx/rails/active-model-serializers.md
 ---
 
 For the learnzone-rails and learnzone-react communication, I needed to add additional

@@ -18,9 +18,12 @@ class PostGenerator
   MSG_HELP = <<-END_HELP
       Arguments list is either missing or invalid. Valid arguments are:
         --post {post title}   generate a post with the given title. Spaces are replaced
-                              by dashes.
+                              by dashes. Only one post at a time
         --article {articles}  link the created post to the articles. Multiple articles
-                              may be provided.
+                              may be provided and will be generated. Article name
+                              format must by "{tech/title}" where:
+                              - "tech" is one word lowercase name of the technology
+                              - "title" is multiple words, whatever case, space separated
         --date {date}         use a custom date. Format must be YYYY-MM-DD. Otherwise
                               today date is used
         --dryrun true         Perform a dryrun and does not create file. The 
@@ -100,45 +103,89 @@ class PostGenerator
     args[KEY_DATE] = Time.new.strftime('%Y-%m-%d') unless args.key?(KEY_DATE)
   end
 
+  # create a file if dryrin is false
+  # @param [String] path file path
+  # @param [String] content file content
+  # @param [Boolean] dryrun if true, only print file info
+  def create_file(path, content, dryrun = false)
+    if dryrun
+      puts "DryRun: create file #{path} with content:\n$#{content}"
+    else
+      file = File.new(path, 'w')
+      file.puts(content)
+      file.close
+      puts "Created: #{path}"
+    end
+  end
+
+  # Generate all the posts provided by the input
+  # @param [Hash] args input
   def generate_posts(args)
     posts, date, articles = args.values_at(KEY_POST, KEY_DATE, KEY_ARTICLE)
     dryrun = args[KEY_DRYRUN]
-    posts.each do |post|
-      file_path = "./src/collections/_posts/#{date}-#{post.tr(' ', '-')}.md"
-      file_content = "---\ntitle:\narticles:\n"
-      articles.each { |art| file_content << "    - #{art.tr(' ', '-')}.md\n" } if articles
-      file_content << "---\n"
-      if dryrun
-        puts "DryRun: create file #{file_path} with content:\n$#{file_content}"
-      else
-        file = File.new(file_path, 'w')
-        file.puts(file_content)
-        file.close
-        puts "Created: #{file_path}"
+    if posts
+      posts.each do |post|
+        path, content = generate_post_info(date, post, articles)
+        create_file(path, content, dryrun)
       end
-    end if posts
+    end
   end
 
+  # Generate a single post
+  # @param [String] date post data
+  # @param [String] post_name post name without dash
+  def generate_post_info(date, post_name, articles)
+    # file path
+    path = "./src/collections/_posts/#{date}-#{post_name.tr(' ', '-')}.md"
+    # file content
+    content = "---\ntitle: #{post_name}\n"
+    content << "articles:\n"
+    # related articles
+    if articles
+      articles.each do |article|
+        content << "    - _kx/#{article.tr(' ', '-')}.md\n"
+      end
+    end
+    content << "---\n"
+
+    [path, content]
+  end
+
+  # Generate all the articles provided by the input
+  # @param [Hash] args input
   def generate_articles(args)
     posts, date, articles = args.values_at(KEY_POST, KEY_DATE, KEY_ARTICLE)
     dryrun = args[KEY_DRYRUN]
-    articles.each do |article|
-      file_path = "./src/collections/#{article.tr(' ', '-')}.md"
-      file_content = "---\ntitle:#{article.split.map(&:capitalize) * ' '}\n"
-      file_content << "mentioned:\n"
+    if articles
+      articles.each do |article|
+        path, content = generate_article_info(date, article, posts)
+        create_file(path, content, dryrun)
+      end
+    end
+  end
+
+  # Generate a single post
+  # @param [String] article_name article file name without dash in title
+  # @param [String] posts related posts
+  def generate_article_info(date, article_name, posts)
+    path = "./src/collections/kx/#{article_name.tr(' ', '-')}.md"
+
+    article_name_split = article_name.split('/')
+    article_tech = article_name_split[0]
+    article_title = article_name_split[1].split.map(&:capitalize) * ' '
+
+    content = "---\n"
+    content << "tech: #{article_tech}\n"
+    content << "title: #{article_title}\n"
+    content << "mentioned:\n"
+    if posts
       posts.each do |post|
         post_id = "/#{date.tr('-', '/')}/#{post.tr(' ', '-')}"
-        file_content << "    - #{post_id}\n"
-      end if posts
-      file_content << "---\n"
-      if dryrun
-        puts "DryRun: create file #{file_path} with content:\n$#{file_content}"
-      else
-        file = File.new(file_path, 'w')
-        file.puts(file_content)
-        file.close
-        puts "Created: #{file_path}"
+        content << "    - #{post_id}\n"
       end
-    end if articles
+    end
+    content << "---\n"
+
+    [path, content]
   end
 end

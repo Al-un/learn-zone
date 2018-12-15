@@ -1,8 +1,8 @@
 ---
 title: Stick panel in a flex container
 articles:
-    - _css/flex.md
-    - _css/variable.md
+    - _kx/css/flex.md
+    - _kx/css/variable.md
 ---
 
 Time to style a bit this website. I got inspiration from [Redux](https://redux.js.org/introduction/getting-started)

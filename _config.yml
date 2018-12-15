@@ -1,40 +1,64 @@
-markdown: kramdown
+# Matching jekyll documentation layout
+# https://jekyllrb.com/docs/configuration/
+# https://jekyllrb.com/docs/configuration/default/
 
-# Folder structure:
+#  ---------- Folder structure:
 # https://halfelf.org/2015/jekyll-collections/
 source: src
 layouts_dir: _jekyll/_layouts
 includes_dir: _jekyll/_includes
 data_dir: _jekyll/_data
-
 # Collections
 collections_dir: collections
 collections:
-  circleci:
+  kx:
     output: true
-    permalink: /kx/:collection/:name
-  css:
-    output: true
-    permalink: /kx/:collection/:name
-  rails:
-    output: true
-    permalink: /kx/:collection/:name
-  react:
-    output: true
-    permalink: /kx/:collection/:name
-  vscode:
-    output: true
-    permalink: /kx/:collection/:name
+  # circleci:
+  #   output: true
+  #   permalink: /kx/:collection/:name
+  # css:
+  #   output: true
+  #   permalink: /kx/:collection/:name
+  # jekyll:
+  #   output: true
+  #   permalink: /kx/:collection/:name
+  # rails:
+  #   output: true
+  #   permalink: /kx/:collection/:name
+  # react:
+  #   output: true
+  #   permalink: /kx/:collection/:name
+  # vscode:
+  #   output: true
+  #   permalink: /kx/:collection/:name
 
-# blog pagination
+# ---------- Handling reading
+encoding: "utf-8"
+markdown_ext: "md"
+
+# ---------- Filtering Content
+
+# ---------- Plugins
+
+# ---------- Conversion
+markdown: kramdown
+highlighter: rouge
+
+# ---------- Serving
+port: 3000
+host: localhost
+
+# ---------- Outputting
+
+# ---------- Pagination=
 paginate: 5
 paginate_path: "/blog/page:num"
 
-# Default front matters
+# ---------- Default front matters
 defaults:
   # All files
   - scope:
-      path: ""  # an empty string here means all files in the project
+      path: "" # an empty string here means all files in the project
     values:
       layout: "page"
   # Learnzone files
@@ -51,31 +75,41 @@ defaults:
   # KX articles
   - scope:
       path: ""
-      type: "circleci"
+      type: "kx"
     values:
       layout: "kx_article"
-  - scope:
-      path: ""
-      type: "css"
-    values:
-      layout: "kx_article"
-  - scope:
-      path: ""
-      type: "rails"
-    values:
-      layout: "kx_article"
-  - scope:
-      path: ""
-      type: "react"
-    values:
-      layout: "kx_article"
-  - scope:
-      path: ""
-      type: "vscode"
-    values:
-      layout: "kx_article"
+  # - scope:
+  #     path: ""
+  #     type: "circleci"
+  #   values:
+  #     layout: "kx_article"
+  # - scope:
+  #     path: ""
+  #     type: "css"
+  #   values:
+  #     layout: "kx_article"
+  # - scope:
+  #     path: ""
+  #     type: "jekyll"
+  #   values:
+  #     layout: "kx_article"
+  # - scope:
+  #     path: ""
+  #     type: "rails"
+  #   values:
+  #     layout: "kx_article"
+  # - scope:
+  #     path: ""
+  #     type: "react"
+  #   values:
+  #     layout: "kx_article"
+  # - scope:
+  #     path: ""
+  #     type: "vscode"
+  #   values:
+  #     layout: "kx_article"
 
-# SASS
+# ---------- SASS
 sass:
   # custom folder path. Default is {source}/_sass
   sass_dir: _jekyll/_sass

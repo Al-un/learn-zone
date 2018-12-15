@@ -9,18 +9,31 @@ layout: default
 
 <div id="page-container" class="content">
   <div id="page-menu">
-    {% for kx in site.data.kx %}
-    <nav class="page-nav-group">
-      <h4>{{ kx.name }}</h4>
-      <div class="page-nav-links">
-        {% for art in site[kx.collection] %}
-        <a href="{{ art.url | relative_url }}" class="page-nav-link {% if page.url == art.url %}active{% endif %}">
-          {{ art.title }}
-        </a>
-        {% endfor %}
-      </div>
-    </nav>
-    {% endfor %}
+
+
+      {% assign kx_techs = site.kx | group_by : "tech" | sort: "name" %}
+
+      {% for kx_tech in kx_techs %}
+        
+        <nav class="page-nav-group">
+          
+          {% comment %} User friendly name stored in data {% endcomment %}
+          
+          <h4>{{ site.data.kx[kx_tech.name] }}</h4>
+
+          <div class="page-nav-links">
+            {% for kx_item in kx_tech.items %}
+          
+            <a href="{{ kx_item.url | relative_url }}" 
+            class="page-nav-link {% if page.url == kx_item.url %}active{% endif %}">
+              {{ kx_item.title }}
+            </a>
+          
+            {% endfor %}
+          </div>
+        </nav>
+      {% endfor %}
+
   </div>
 
   <div id="page-content">
@@ -29,6 +42,17 @@ layout: default
     {{ content }}
 
     <hr />
+
+    {% if page.mentioned.size %}
+      <p>Sources:</p>
+      <ul>
+        {% for source in page.sources %} 
+          <li><a href="{{ source.link }}">{{ source.name }}</a></li>
+        {% endfor %} 
+      </ul>
+    {% endif %}
+
+    <div />
 
     {% for tag in page.tags %} 
     <span class="article-tag">{{ tag }}</span> 

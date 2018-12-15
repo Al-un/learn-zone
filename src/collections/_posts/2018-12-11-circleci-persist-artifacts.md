@@ -1,6 +1,6 @@
 ---
 title: Persist artifacts in CircleCI
-articles: _circleci/deploy.md
+articles: _kx/circleci/deploy.md
 ---
 
 This website could have used `master branch/docs` folder as a website:
