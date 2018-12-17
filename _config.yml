@@ -13,24 +13,6 @@ collections_dir: collections
 collections:
   kx:
     output: true
-  # circleci:
-  #   output: true
-  #   permalink: /kx/:collection/:name
-  # css:
-  #   output: true
-  #   permalink: /kx/:collection/:name
-  # jekyll:
-  #   output: true
-  #   permalink: /kx/:collection/:name
-  # rails:
-  #   output: true
-  #   permalink: /kx/:collection/:name
-  # react:
-  #   output: true
-  #   permalink: /kx/:collection/:name
-  # vscode:
-  #   output: true
-  #   permalink: /kx/:collection/:name
 
 # ---------- Handling reading
 encoding: "utf-8"
@@ -78,36 +60,6 @@ defaults:
       type: "kx"
     values:
       layout: "kx_article"
-  # - scope:
-  #     path: ""
-  #     type: "circleci"
-  #   values:
-  #     layout: "kx_article"
-  # - scope:
-  #     path: ""
-  #     type: "css"
-  #   values:
-  #     layout: "kx_article"
-  # - scope:
-  #     path: ""
-  #     type: "jekyll"
-  #   values:
-  #     layout: "kx_article"
-  # - scope:
-  #     path: ""
-  #     type: "rails"
-  #   values:
-  #     layout: "kx_article"
-  # - scope:
-  #     path: ""
-  #     type: "react"
-  #   values:
-  #     layout: "kx_article"
-  # - scope:
-  #     path: ""
-  #     type: "vscode"
-  #   values:
-  #     layout: "kx_article"
 
 # ---------- SASS
 sass:
