@@ -168,7 +168,7 @@ class PostGenerator
   # @param [String] article_name article file name without dash in title
   # @param [String] posts related posts
   def generate_article_info(date, article_name, posts)
-    path = "./src/collections/kx/#{article_name.tr(' ', '-')}.md"
+    path = "./src/collections/_kx/#{article_name.tr(' ', '-')}.md"
 
     article_name_split = article_name.split('/')
     article_tech = article_name_split[0]
