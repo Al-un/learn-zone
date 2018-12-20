@@ -1,0 +1,539 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Vuex</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          
+          <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
+          <a href="/learnzone/kx">KX</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div id="page-menu-toggler" class="mobile-only"
+  onclick="document.getElementById('page-container').classList.toggle('show-menu');">
+  Navigation
+</div>
+
+<div id="page-container" class="content">
+  <div id="page-menu">
+
+
+      
+
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>CircleCI</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/circleci/deploy.html" 
+            class="page-nav-link ">
+              Workflow and deployment
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>CSS / SASS</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/css/bootstrap.html" 
+            class="page-nav-link ">
+              Bootstrap
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/flex.html" 
+            class="page-nav-link ">
+              Flexbox
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/fonts.html" 
+            class="page-nav-link ">
+              Fonts
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/table.html" 
+            class="page-nav-link ">
+              Tables
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/variable.html" 
+            class="page-nav-link ">
+              Variable in SASS
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>JavaScript</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/javascript/async.html" 
+            class="page-nav-link ">
+              Async / await
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/javascript/service-workers.html" 
+            class="page-nav-link ">
+              Service Workers
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Jekyll</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/jekyll/filter.html" 
+            class="page-nav-link ">
+              Filter
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/jekyll/markdown.html" 
+            class="page-nav-link ">
+              Markdown
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>PowerShell</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/powershell/profile.html" 
+            class="page-nav-link ">
+              Profiles
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Rails</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/git/branch.html" 
+            class="page-nav-link ">
+              Git branches
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/rails/active-model-serializers.html" 
+            class="page-nav-link ">
+              Serialization
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/rails/active-storage.html" 
+            class="page-nav-link ">
+              Active Storage
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/rails/routing.html" 
+            class="page-nav-link ">
+              Routing
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>ReactJS</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/react/ci.html" 
+            class="page-nav-link ">
+              React + CI
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/documentation.html" 
+            class="page-nav-link ">
+              Documentation
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/props.html" 
+            class="page-nav-link ">
+              Props
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/redux.html" 
+            class="page-nav-link ">
+              Redux
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/saga.html" 
+            class="page-nav-link ">
+              Saga
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/test.html" 
+            class="page-nav-link ">
+              Testing with Jest and Enzyme
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Visual Studio Code</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/vscode/extensions.html" 
+            class="page-nav-link ">
+              Extensions
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Vue.js</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/vue/routing.html" 
+            class="page-nav-link ">
+              Routing
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/vue/vuex.html" 
+            class="page-nav-link active">
+              Vuex
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+
+  </div>
+
+  <div id="page-content">
+    <h1>Vuex</h1>
+
+    <p>Similar to Redux, Vuex advocates the single point of truth approach. State is
+immutabled and, similarly to Redux, should be changed by pure functions</p>
+
+<blockquote>
+  <p>TODO: check if really pure functions or impure is OK</p>
+</blockquote>
+
+<h2 id="global-access">Global access</h2>
+
+<p>To avoid importing store in all components, add at the root components:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// in some App.vue &gt; script</span>
+<span class="k">import</span> <span class="nx">store</span> <span class="k">from</span> <span class="s2">"./store"</span><span class="p">;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"app"</span><span class="p">,</span>
+  <span class="c1">// provide the store using the "store" option.</span>
+  <span class="c1">// this will inject the store instance to all child components.</span>
+  <span class="nx">store</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Store is then access via <code class="highlighter-rouge">$store</code>. To avoid complex mapping, use <code class="highlighter-rouge">mapState</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// in some components &gt; script</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"some-component"</span><span class="p">,</span>
+  <span class="na">computed</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// option 1: directly fetching from store</span>
+    <span class="nx">productsFromStore</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$store</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">products</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="c1">// option 2: use `mapState`</span>
+    <span class="p">...</span><span class="nx">mapState</span><span class="p">({</span>
+      <span class="na">products</span><span class="p">:</span> <span class="nx">state</span> <span class="o">=&gt;</span> <span class="nx">state</span><span class="p">.</span><span class="nx">products</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Notice that <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Spread_syntax">spread syntax</a> is used.</p>
+
+<h2 id="actions-and-mutations">Actions and mutations</h2>
+
+<blockquote>
+  <p><strong>Synchronous</strong>: use <code class="highlighter-rouge">mutations</code> directly
+<strong>Asynchronous</strong>: use <code class="highlighter-rouge">actions</code> to commit <code class="highlighter-rouge">mutations</code></p>
+</blockquote>
+
+<p>State changes are triggered by committed mutations:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In some component method</span>
+<span class="c1">// this will trigger a synchronous changes</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">$state</span><span class="p">.</span><span class="nx">commit</span><span class="p">(</span><span class="s2">"addProduct"</span><span class="p">,</span> <span class="nx">product</span><span class="p">);</span>
+<span class="c1">// Somewhere lese</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">$state</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="s2">"asyncAddOrder"</span><span class="p">,</span> <span class="nx">order</span><span class="p">);</span>
+
+<span class="c1">// In some store.js</span>
+<span class="kd">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+  <span class="na">state</span><span class="p">:{</span>
+      <span class="na">orders</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="na">products</span><span class="p">:</span> <span class="p">[]</span>
+  <span class="p">}</span>
+  <span class="nl">actions</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">asyncAddOrder</span><span class="p">({</span><span class="nx">commit</span><span class="p">},</span> <span class="nx">order</span><span class="p">){</span>
+          <span class="nx">placingOrdering</span><span class="p">(</span><span class="nx">orderin</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">placedOrder</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+              <span class="nx">commit</span><span class="p">(</span><span class="s1">'addOrder'</span><span class="p">,</span> <span class="nx">placedOrder</span><span class="p">);</span>
+          <span class="p">})</span>
+
+      <span class="p">},</span>
+      <span class="c1">// OR await FTW:</span>
+      <span class="na">asyncAddOrder</span><span class="p">:</span> <span class="k">async</span> <span class="p">({</span><span class="nx">commit</span><span class="p">},</span> <span class="nx">order</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="nx">placedOrder</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">placingOrdering</span><span class="p">(</span><span class="nx">order</span><span class="p">);</span>
+          <span class="nx">commit</span><span class="p">(</span><span class="s1">'addOrder'</span><span class="p">,</span> <span class="nx">placedOrder</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="na">mutations</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">addProduct</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">product</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// do some stuff</span>
+    <span class="p">}</span>
+    <span class="nx">addOrder</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">order</span><span class="p">){</span>
+      <span class="c1">// do some stuff</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>In this example:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">addProduct</code> is done synchronously</li>
+  <li><code class="highlighter-rouge">addOrder</code> is done asynchronously. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment"><code class="highlighter-rouge">destructing</code></a>
+syntax is used for <code class="highlighter-rouge">{commit}</code> instead of <code class="highlighter-rouge">store</code> to avoid spamming <code class="highlighter-rouge">store.commit</code></li>
+</ul>
+
+<h2 id="getters">Getters</h2>
+
+<p>Store can also provide getters for computed values (filtering, miscellaneous
+computing…). Refer to documentation</p>
+
+<h2 id="modules">Modules</h2>
+
+<p>Like Redux/Saga, Vuex can be modular with the <code class="highlighter-rouge">modules</code> attribute:</p>
+
+<p>Consider a catalog module:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/store/modules/catalog.js</span>
+<span class="k">import</span> <span class="nx">API</span> <span class="k">from</span> <span class="s2">"../api"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">list</span><span class="p">:</span> <span class="p">[],</span> <span class="c1">// catalogs list</span>
+  <span class="na">entity</span><span class="p">:</span> <span class="p">{}</span> <span class="c1">// single displayed or edited catalog</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">actions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">list_load</span><span class="p">:</span> <span class="k">async</span> <span class="p">({</span> <span class="nx">commit</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">catalogs</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">API</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">"/catalogs"</span><span class="p">);</span>
+    <span class="nx">commit</span><span class="p">(</span><span class="s2">"list_loaded"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">mutations</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">list_loaded</span><span class="p">:</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">list</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">state</span><span class="p">.</span><span class="nx">list</span> <span class="o">=</span> <span class="nx">list</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">namespaced</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">state</span><span class="p">,</span>
+  <span class="nx">actions</span><span class="p">,</span>
+  <span class="nx">mutations</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Such module can be imported in the root store:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/store/index.js</span>
+<span class="k">import</span> <span class="nx">Vue</span> <span class="k">from</span> <span class="s2">"vue"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Vuex</span> <span class="k">from</span> <span class="s2">"vuex"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">catalogs</span> <span class="k">from</span> <span class="s2">"./modules/catalog"</span><span class="p">;</span>
+
+<span class="nx">Vue</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">Vuex</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+  <span class="na">modules</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">catalogs</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">store</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>As <code class="highlighter-rouge">namespaced: true</code> is specified in <em>catalog</em> module, <code class="highlighter-rouge">list_load</code> action is not
+recognised and has to be prepended with the namespace: <code class="highlighter-rouge">catalog/list_load</code>.
+Namespace is defined by the name used to import the module.</p>
+
+
+    <hr />
+
+    
+      <p>Sources:</p>
+      <ul>
+         
+          <li><a href="https://vuex.vuejs.org/">Vuex documentaiton</a></li>
+         
+      </ul>
+    
+
+    <div />
+
+     
+    <span class="article-tag">vue</span> 
+     
+    <span class="article-tag">state management</span> 
+     
+
+    <div />
+
+    
+      <p>Mentionned:</p>
+      <ul>
+         
+           
+          
+          <li>
+            <a href="/learnzone/2018/12/16/starting-vuejs.html" >16 Dec 2018 Starting with Vue</a >
+          </li>
+           
+        
+      </ul>
+    
+  </div>
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content"></div></footer>
+    </div>
+  </body>
+</html>

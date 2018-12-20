@@ -1,0 +1,181 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Starting with Vue</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          
+          <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
+          <a href="/learnzone/kx">KX</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div class="content">
+  <h1>Starting with Vue</h1>
+
+  <h3 id="using-console">Using console</h3>
+
+<p>Console raises an eslint error. To remove it, fix in <code class="highlighter-rouge">package.json</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"eslintConfig"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"rules"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"no-console"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="router">Router</h3>
+
+<p>Starting to route with <code class="highlighter-rouge">vue-router</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/router.js</span>
+<span class="k">import</span> <span class="nx">Vue</span> <span class="k">from</span> <span class="s2">"vue"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Router</span> <span class="k">from</span> <span class="s2">"vue-router"</span><span class="p">;</span>
+
+<span class="nx">Vue</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">Router</span><span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="k">new</span> <span class="nx">Router</span><span class="p">({</span>
+  <span class="na">routes</span><span class="p">:</span> <span class="p">[{</span> <span class="na">path</span><span class="p">:</span> <span class="s2">"/"</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s2">"home"</span><span class="p">,</span> <span class="na">component</span><span class="p">:</span> <span class="nx">MyComponent</span> <span class="p">}]</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Rendering of routing is done with <code class="highlighter-rouge">&lt;router-view /&gt;</code> while navigation links are
+<code class="highlighter-rouge">&lt;router-link&gt;&lt;/router-link&gt;</code>. To add <a href="https://router.vuejs.org/api/#active-class">active style</a>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/components/layout/SideMenu.vue</span>
+<span class="o">&lt;</span><span class="nx">router</span><span class="o">-</span><span class="nx">link</span> <span class="kd">class</span><span class="o">=</span><span class="s2">"list-group-item"</span> <span class="nx">active</span><span class="o">-</span><span class="kd">class</span><span class="o">=</span><span class="s2">"active"</span> <span class="nx">to</span><span class="o">=</span><span class="s2">"/catalogs"</span><span class="o">&gt;</span>
+  <span class="nx">Catalogs</span>
+<span class="o">&lt;</span><span class="sr">/router-link</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>By default, Vue router is a Hash router. To keep history/switch to browser router,
+use the <a href="https://router.vuejs.org/guide/essentials/history-mode.html"><code class="highlighter-rouge">history</code> mode</a></p>
+
+<h3 id="styling">Styling</h3>
+
+<h4 id="bootstrap">Bootstrap</h4>
+
+<p>Just adding <a href="https://bootstrap-vue.js.org/docs"><code class="highlighter-rouge">yarn add bootstrap-vue</code></a></p>
+
+<h4 id="scss">SCSS</h4>
+
+<p>Because SCSS is copied from other learnzones, it is all stored in the <code class="highlighter-rouge">src/assets</code>
+folder. SCSS main file is then imported in <code class="highlighter-rouge">main.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main.js</span>
+<span class="k">import</span> <span class="s2">"./assets/stylesheets/application.scss"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Source is <a href="https://www.reddit.com/r/vuejs/comments/611fd2/how_can_i_import_scss_globally/">Reddit</a></p>
+
+<h4>???</h4>
+
+<p>For some reasons, later, <code class="highlighter-rouge">sass-loader</code> and <code class="highlighter-rouge">node-sass</code> were required:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add sass-loader
+yarn add node-sass
+</code></pre></div></div>
+
+<h3 id="state-management">State management</h3>
+
+<p>So far, we have an empty canvas, kind of navigations rules. Time to fetch data
+from a backend. Redux is not bad for React, so how Vue handles state? It appears
+that it is aimed at getting along with <a href="https://vuex.vuejs.org/">Vuex</a></p>
+
+<p>Following stuff are from Vuex:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">this.$dispatch('my-action');</code></li>
+</ul>
+
+<p>Following features were tested:</p>
+
+<ul>
+  <li>synchronous and asynchronous state changes</li>
+  <li>modules</li>
+  <li>custom values computed from state values</li>
+</ul>
+
+<h3 id="webpack-configuration">Webpack configuration</h3>
+
+<p>webpack configuration is moved to <code class="highlighter-rouge">vue.config.js</code>:</p>
+
+<ul>
+  <li><a href="https://stackoverflow.com/questions/41955331/specify-a-root-path-for-imports">StackOverflow</a></li>
+  <li><a href="https://router.vuejs.org/guide/essentials/redirect-and-alias.html">Webpack documentation for alias</a></li>
+</ul>
+
+<h3 id="loading">Loading</h3>
+
+<p>Simply use a flag and the <code class="highlighter-rouge">v-show</code> conditional rendering</p>
+
+
+  <hr />
+
+  
+  <p>Articles:</p>
+  <ul>    
+     
+      
+         
+        
+        <li><a href="/learnzone/kx/vue/routing.html">Routing</a></li>
+         
+      
+         
+         
+      
+     
+      
+         
+        
+        <li><a href="/learnzone/kx/vue/vuex.html">Vuex</a></li>
+         
+      
+         
+         
+      
+    
+  </ul>
+  
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content"></div></footer>
+    </div>
+  </body>
+</html>

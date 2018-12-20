@@ -1,0 +1,536 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Active Storage</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          
+          <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
+          <a href="/learnzone/kx">KX</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div id="page-menu-toggler" class="mobile-only"
+  onclick="document.getElementById('page-container').classList.toggle('show-menu');">
+  Navigation
+</div>
+
+<div id="page-container" class="content">
+  <div id="page-menu">
+
+
+      
+
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>CircleCI</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/circleci/deploy.html" 
+            class="page-nav-link ">
+              Workflow and deployment
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>CSS / SASS</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/css/bootstrap.html" 
+            class="page-nav-link ">
+              Bootstrap
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/flex.html" 
+            class="page-nav-link ">
+              Flexbox
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/fonts.html" 
+            class="page-nav-link ">
+              Fonts
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/table.html" 
+            class="page-nav-link ">
+              Tables
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/css/variable.html" 
+            class="page-nav-link ">
+              Variable in SASS
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>JavaScript</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/javascript/async.html" 
+            class="page-nav-link ">
+              Async / await
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/javascript/service-workers.html" 
+            class="page-nav-link ">
+              Service Workers
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Jekyll</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/jekyll/filter.html" 
+            class="page-nav-link ">
+              Filter
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/jekyll/markdown.html" 
+            class="page-nav-link ">
+              Markdown
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>PowerShell</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/powershell/profile.html" 
+            class="page-nav-link ">
+              Profiles
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Rails</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/git/branch.html" 
+            class="page-nav-link ">
+              Git branches
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/rails/active-model-serializers.html" 
+            class="page-nav-link ">
+              Serialization
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/rails/active-storage.html" 
+            class="page-nav-link active">
+              Active Storage
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/rails/routing.html" 
+            class="page-nav-link ">
+              Routing
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>ReactJS</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/react/ci.html" 
+            class="page-nav-link ">
+              React + CI
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/documentation.html" 
+            class="page-nav-link ">
+              Documentation
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/props.html" 
+            class="page-nav-link ">
+              Props
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/redux.html" 
+            class="page-nav-link ">
+              Redux
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/saga.html" 
+            class="page-nav-link ">
+              Saga
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/react/test.html" 
+            class="page-nav-link ">
+              Testing with Jest and Enzyme
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Visual Studio Code</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/vscode/extensions.html" 
+            class="page-nav-link ">
+              Extensions
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>Vue.js</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/vue/routing.html" 
+            class="page-nav-link ">
+              Routing
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/vue/vuex.html" 
+            class="page-nav-link ">
+              Vuex
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+
+  </div>
+
+  <div id="page-content">
+    <h1>Active Storage</h1>
+
+    <p>sources:</p>
+
+<ul>
+  <li>https://www.engineyard.com/blog/active-storage</li>
+  <li>https://edgeguides.rubyonrails.org/active_storage_overview.html</li>
+</ul>
+
+<h2 id="installation--configuration">Installation &amp; configuration</h2>
+
+<p>Create storage tables:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails active_storage:install
+rails db:migrate
+</code></pre></div></div>
+
+<p>Configuration:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/storage.yml</span>
+<span class="na">local</span><span class="pi">:</span>
+  <span class="na">service</span><span class="pi">:</span> <span class="s">Disk</span>
+  <span class="na">root</span><span class="pi">:</span> <span class="s">&lt;%= Rails.root.join("storage") %&gt;</span>
+
+<span class="na">test</span><span class="pi">:</span>
+  <span class="na">service</span><span class="pi">:</span> <span class="s">Disk</span>
+  <span class="na">root</span><span class="pi">:</span> <span class="s">&lt;%= Rails.root.join("tmp/storage") %&gt;</span>
+
+<span class="na">amazon</span><span class="pi">:</span>
+  <span class="na">service</span><span class="pi">:</span> <span class="s">S3</span>
+  <span class="na">access_key_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+  <span class="na">secret_access_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+  <span class="na">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+  <span class="na">bucket</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+</code></pre></div></div>
+
+<p>Declare configuration per environments:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config/environments/development.rb</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">active_storage</span><span class="p">.</span><span class="nf">service</span> <span class="o">=</span> <span class="ss">:local</span>
+
+<span class="c1"># config/environments/test.rb</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">active_storage</span><span class="p">.</span><span class="nf">service</span> <span class="o">=</span> <span class="ss">:test</span>
+
+<span class="c1"># config/environments/production.rb</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">active_storage</span><span class="p">.</span><span class="nf">service</span> <span class="o">=</span> <span class="ss">:amazon</span>
+</code></pre></div></div>
+
+<h2 id="handling-attachments">Handling attachments</h2>
+
+<h3 id="in-activerecords">In ActiveRecords</h3>
+
+<p>Update models:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Catalog</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">has_one_attached</span> <span class="ss">:picture</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">has_many_attached</span> <span class="ss">:pictures</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="rails-forms">Rails forms</h3>
+
+<p>In forms files:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># in catalog forms</span>
+<span class="o">&lt;</span><span class="sx">%= f.file_field :picture %&gt;
+
+# in article forms
+&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">file_field</span> <span class="ss">:picture</span><span class="p">,</span> <span class="ss">multiple: </span><span class="kp">true</span> <span class="sx">%&gt;
+</span></code></pre></div></div>
+
+<p>In controllers:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Catalog controller</span>
+<span class="k">class</span> <span class="nc">CatalogsController</span>
+  <span class="c1"># Filter catalogs parameters</span>
+  <span class="k">def</span> <span class="nf">catalog_params</span>
+    <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:catalog</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:other_fields</span><span class="p">,</span> <span class="ss">:picture</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+
+<span class="c1"># Article controller</span>
+<span class="k">class</span> <span class="nc">ArticlesController</span>
+  <span class="k">def</span> <span class="nf">update_entity</span>
+    <span class="n">article</span> <span class="o">=</span> <span class="no">Article</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="n">article</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">article_params</span><span class="p">)</span>
+    <span class="n">article</span><span class="p">.</span><span class="nf">pictures</span><span class="p">.</span><span class="nf">attach</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:pictures</span><span class="p">])</span>
+
+    <span class="n">article</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Filter articles parameters</span>
+  <span class="k">def</span> <span class="nf">article_params</span>
+    <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:article</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:other_fields</span><span class="p">,</span> <span class="ss">pictures: </span><span class="p">[])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</code></pre></div></div>
+
+<h3 id="rails-views">Rails views</h3>
+
+<p><strong>Conditional rendering</strong></p>
+
+<p>To check if picture has an attachment, use <code class="highlighter-rouge">picture.attached?</code> or check
+<code class="highlighter-rouge">picture.attachment.nil?</code>. <code class="highlighter-rouge">image_tag</code> is an useful helper for rendering an
+<code class="highlighter-rouge">&lt;img /&gt;</code> tag.</p>
+
+<p><strong>Single picture</strong></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># in some helper file</span>
+<span class="k">def</span> <span class="nf">display_picture</span><span class="p">(</span><span class="n">picture</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">'no picture'</span> <span class="k">if</span> <span class="n">picture</span><span class="p">.</span><span class="nf">attachment</span><span class="p">.</span><span class="nf">nil?</span>
+
+    <span class="n">image_tag</span> <span class="n">picture</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>More about <a href="https://apidock.com/rails/ActionView/Helpers/AssetTagHelper/image_tag"><code class="highlighter-rouge">image_tag</code></a></p>
+
+<p><strong>Multiple pictures</strong></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="sx">% article.pictures.each </span><span class="k">do</span> <span class="o">|</span><span class="n">picture</span><span class="o">|</span> <span class="sx">%&gt;
+  &lt;%= image_tag picture, height: '200', alt: article.name + ' picture', title: article.name %&gt;</span>
+<span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
+</code></pre></div></div>
+
+<h2 id="serialization">Serialization</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CatalogSerializer</span> <span class="o">&lt;</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Serializer</span>
+  <span class="c1"># optional attributes</span>
+  <span class="n">attribute</span> <span class="ss">:picture_url</span><span class="p">,</span> <span class="ss">if: </span><span class="o">-&gt;</span> <span class="p">{</span> <span class="n">object</span><span class="p">.</span><span class="nf">picture</span><span class="p">.</span><span class="nf">attached?</span> <span class="p">}</span>
+
+  <span class="k">def</span> <span class="nf">picture_url</span>
+    <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">url_helpers</span><span class="p">.</span><span class="nf">rails_blob_path</span><span class="p">(</span><span class="n">object</span><span class="p">.</span><span class="nf">picture</span><span class="p">,</span> <span class="ss">only_path: </span><span class="kp">true</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="multiple-picture">Multiple picture:</h2>
+
+<ul>
+  <li>use <code class="highlighter-rouge">has_many_attached</code></li>
+  <li>input form allows multiple upload: <code class="highlighter-rouge">&lt;%= f.file_field :pictures, multiple: true %&gt;</code></li>
+  <li>strong parameters is an array: <code class="highlighter-rouge">permit(pictures: [])</code></li>
+  <li>update must attach new pictures: <code class="highlighter-rouge">article.pictures.attach(params[:pictures])</code></li>
+</ul>
+
+<h2 id="aws">AWS</h2>
+
+<p>https://medium.com/alturasoluciones/setting-up-rails-5-active-storage-with-amazon-s3-3d158cf021ff</p>
+
+<p>region name: https://docs.aws.amazon.com/general/latest/gr/rande.html</p>
+
+<p>do not forget <code class="highlighter-rouge">aws-sdk-s3</code> gem</p>
+
+
+    <hr />
+
+    
+      <p>Sources:</p>
+      <ul>
+         
+          <li><a href="https://api.rubyonrails.org/">Rails API docs</a></li>
+         
+      </ul>
+    
+
+    <div />
+
+     
+
+    <div />
+
+    
+      <p>Mentionned:</p>
+      <ul>
+         
+           
+          
+          <li>
+            <a href="/learnzone/2018/12/19/active-storage.html" >19 Dec 2018 active storage</a >
+          </li>
+           
+        
+      </ul>
+    
+  </div>
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content"></div></footer>
+    </div>
+  </body>
+</html>
