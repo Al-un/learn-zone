@@ -8,15 +8,15 @@ title: Learnzone
 
 whenever possible, apps are deployed on Heroku:
 
-| Role      | Stack       | Deployment                                  | Repository                                                            |
-| --------- | ----------  | ------------------------------------------- | --------------------------------------------------------------------- |
-| Database  | PostgreSQL  | https://learnzone-postgresql.herokuapp.com/ | (none)                                                                |
-| Fullstack | Java / JSF  | not deployed                                | [learn-zone-javaee](https://github.com/Al-un/learn-zone-javaee)       |
-| API       | Rails       | https://learnzone-rails-api.herokuapp.com/  | [learnzone-rails-api](https://github.com/Al-un/learnzone-rails-api)   |
-| Fullstack | Rails       | https://learnzone-rails.herokuapp.com/      | [learnzone-rails](https://github.com/Al-un/learnzone-rails)           |
-| Fullstack | NodeJs      | https://learnzone-node.herokuapp.com        | [learnzone-node](https://github.com/Al-un/learnzone-nodejs)           |
-| Front-end | React       | TBD                                         | [learnzone-react](https://github.com/Al-un/learnzone-react)           |
-|           |             |                                             |                                                                       |
+| Role      | Stack      | Deployment                                  | Repository                                                          |
+| --------- | ---------- | ------------------------------------------- | ------------------------------------------------------------------- |
+| Database  | PostgreSQL | https://learnzone-postgresql.herokuapp.com/ | (none)                                                              |
+| Fullstack | Java / JSF | not deployed                                | [learn-zone-javaee](https://github.com/Al-un/learn-zone-javaee)     |
+| API       | Rails      | https://learnzone-rails-api.herokuapp.com/  | [learnzone-rails-api](https://github.com/Al-un/learnzone-rails-api) |
+| Fullstack | Rails      | https://learnzone-rails.herokuapp.com/      | [learnzone-rails](https://github.com/Al-un/learnzone-rails)         |
+| Fullstack | NodeJs     | https://learnzone-node.herokuapp.com        | [learnzone-node](https://github.com/Al-un/learnzone-nodejs)         |
+| Front-end | React      | TBD                                         | [learnzone-react](https://github.com/Al-un/learnzone-react)         |
+|           |            |                                             |                                                                     |
 
 # Notes
 
@@ -58,6 +58,24 @@ To attach the database to another app
 
 ```shell
 heroku addons:attach postgresql-learnzone -a {app name}
+```
+
+To run `db:migrate`
+
+```shell
+heroku run rails db:migrate -a learnzone-rails-staging
+```
+
+Display logs:
+
+```shell
+heroku logs -tail -a learnzone-rails-staging
+```
+
+Restart a dyno:
+
+```shell
+heroku ps:restart --app learnzone-rails-staging
 ```
 
 Source:

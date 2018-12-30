@@ -9,5 +9,6 @@ markdown: Markdown
 powershell: PowerShell
 rails: Rails
 react: ReactJS
+travis: Travis CI
 vscode: Visual Studio Code
 vue: Vue.js
