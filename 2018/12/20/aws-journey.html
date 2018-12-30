@@ -1,0 +1,135 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>aws journey</title>
+
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/learnzone/assets/styles/syntax-monokai.css"
+    />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="content">
+        <div class="nav-menu">
+          
+          <a href="/learnzone/">Home</a>
+          
+          <a href="/learnzone/learnzone">LearnZone</a>
+          
+          <a href="/learnzone/kx">KX</a>
+          
+          <a href="/learnzone/blog">Blog</a>
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="main-container">
+      <main class="container">
+        <!-- Each sub-layout must have a "content" class -->
+        <div class="content">
+  <h1>aws journey</h1>
+
+  <p>Starting to sails toward AWS with Rails.</p>
+
+<h2 id="elb">ELB</h2>
+
+<p>Install EB CLI:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> pip <span class="nb">install </span>awsebcli <span class="nt">--upgrade</span> <span class="nt">--cli</span> 
+</code></pre></div></div>
+
+<p>Add the user relative script folder to environment variable</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>From https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html?icmpid=docs_elasticbeanstalk_console#eb-cli3-install.cli-only</p>
+
+<p>To terminate environment</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb delete learnzone-aws-staging-env
+</code></pre></div></div>
+
+<h2 id="rds">RDS</h2>
+
+<p>Setting up an RDS from an ELB:
+https://docs.aws.amazon.com/quickstarts/latest/webapp/expanding-environments.html?icmpid=docs_eb_console_new#expanding-environments-rds</p>
+
+<p>Setting up an RDS independently:
+https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html</p>
+
+<p>Add temporary environment variable in PowerShell
+https://serverfault.com/questions/349585/how-do-i-set-an-environmental-variable-from-a-powershell-command</p>
+
+<p>Then run <code class="highlighter-rouge">db:migrate</code> from local powershell to update production database</p>
+
+<blockquote>
+  <p>Do not forget to grant access to your RDS from EB / EC2!</p>
+</blockquote>
+
+<h2 id="to-sort">To sort</h2>
+
+<ul>
+  <li>beware version of Ruby in Gemfile</li>
+  <li>database</li>
+</ul>
+
+<h2 id="ec2">EC2</h2>
+
+<p>Main tuto
+https://www.awsrails.com/rails-ec2/</p>
+
+<p>Convert OpenSSH private key to Putty private key
+https://unix.stackexchange.com/questions/116303/convert-amazon-pem-key-to-putty-ppk-key-linux</p>
+
+<h2 id="circleci">CircleCI</h2>
+
+<ol>
+  <li>Create a CircleCI user in AWS IAM</li>
+  <li>Copy keys (access key and secret access key) into repository settings in CircleCI</li>
+</ol>
+
+<p>Ensure that apt-get are automatic with <code class="highlighter-rouge">-y</code></p>
+
+<p>Using <code class="highlighter-rouge">eb deploy {app name}</code></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR: This directory has not been set up with the EB CLI
+You must first run "eb init".
+Exited with code 126
+</code></pre></div></div>
+
+<p>sources:</p>
+<ul>
+  <li>https://discuss.circleci.com/t/best-way-to-auto-deploy-to-elastic-beanstalk/382/2</li>
+  <li>CircleCI 1.0: https://gist.github.com/RobertoSchneiders/9e0e73e836a80d53a21e</li>
+  <li>CircleCI 2.0: https://gist.github.com/ryansimms/808214137d219be649e010a07af44bad</li>
+  <li>AWS credentials https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html</li>
+</ul>
+
+
+  <hr />
+
+  
+</div>
+
+      </main>
+
+      <footer class="container"><div class="content"></div></footer>
+    </div>
+  </body>
+</html>

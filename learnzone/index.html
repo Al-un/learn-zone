@@ -170,6 +170,21 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>heroku addons:attach postgresql-learnzone <span class="nt">-a</span> <span class="o">{</span>app name<span class="o">}</span>
 </code></pre></div></div>
 
+<p>To run <code class="highlighter-rouge">db:migrate</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>heroku run rails db:migrate <span class="nt">-a</span> learnzone-rails-staging
+</code></pre></div></div>
+
+<p>Display logs:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>heroku logs <span class="nt">-tail</span> <span class="nt">-a</span> learnzone-rails-staging
+</code></pre></div></div>
+
+<p>Restart a dyno:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>heroku ps:restart <span class="nt">--app</span> learnzone-rails-staging
+</code></pre></div></div>
+
 <p>Source:</p>
 
 <ul>

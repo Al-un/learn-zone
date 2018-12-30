@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Markdown</title>
+    <title>Encrypting variables</title>
 
     <!-- Styles -->
     <link
@@ -178,7 +178,7 @@
             
           
             <a href="/learnzone/kx/jekyll/markdown.html" 
-            class="page-nav-link active">
+            class="page-nav-link ">
               Markdown
             </a>
           
@@ -310,7 +310,7 @@
             
           
             <a href="/learnzone/kx/travis/encrypt.html" 
-            class="page-nav-link ">
+            class="page-nav-link active">
               Encrypting variables
             </a>
           
@@ -374,38 +374,28 @@
   </div>
 
   <div id="page-content">
-    <h1>Markdown</h1>
+    <h1>Encrypting variables</h1>
 
-    <h2 id="code-blocks">Code blocks</h2>
+    <p>Encryption is done via Travis CLI which is a Ruby gem:</p>
 
-<p>Code block use <a href="https://github.com/jneen/rouge"><code class="highlighter-rouge">rouge</code></a> for syntax highlighting. Such
-blocks are defined by a couple of triple backticks or the <code class="highlighter-rouge">highlight</code> tag:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install travis
+</code></pre></div></div>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sb">
+<p>Then login. Go to Github &gt; Settings &gt; Developper Settings &gt; Personal access tokens.
+Generate a new token and <strong>make sure you save the token</strong> as you will not see it again.
+Full control over private repositories is required. Such authorisation cascades to
+repositories status, deployment, public ones and invitations.</p>
 
-    ```javacript
-    // some javascript code
-    const sum = (a, b) =&gt; a + b;
-    ```
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>travis login --com --debug --debug-http --github-token XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+</code></pre></div></div>
 
-    {% highlight javascript linenos %}
-    // some javascript code
-    const sum = (a, b) =&gt; a + b;
-    {% endhighlight %}
+<p>I have not seen any difference between <code class="highlighter-rouge">--com</code> and <code class="highlighter-rouge">--pro</code>. Debugs are for my curiosity only.</p>
 
-
-</span></code></pre></div></div>
-
-<blockquote>
-  <p>Do not forget to add CSS file corresponding to code colours you prefer. To
-generate the CSS files:
-  rougify style monokai.sublime &gt; syntax.css
-rougify style monokai.sublime &gt; syntax.css
-Check <a href="https://github.com/jneen/rouge#css-theme-options">documentation</a> for
-more details</p>
-</blockquote>
-
-<p>To escape special characters, use the <code class="highlighter-rouge">...</code> tags.</p>
+<ul>
+  <li><a href="https://blog.wyrihaximus.net/2015/09/github-auth-token-on-travis/">Github auth token on Travis</a></li>
+  <li><a href="https://github.com/travis-ci/travis-ci/issues/10137">By default, Travis CLI connects to .org</a></li>
+  <li><a href="https://github.com/travis-ci/travis.rb/issues/367">Travis CLI requires scopes for GitHub token</a></li>
+</ul>
 
 
     <hr />
@@ -415,9 +405,7 @@ more details</p>
     <div />
 
      
-    <span class="article-tag">jekyll</span> 
-     
-    <span class="article-tag">markdown</span> 
+    <span class="article-tag">travis</span> 
      
 
     <div />
