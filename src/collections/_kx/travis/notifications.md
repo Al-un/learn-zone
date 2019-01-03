@@ -3,7 +3,18 @@ tech: travis
 title: Notifications
 tags: [travis, notifications]
 sources:
+  - name: Travis notification documentation
+    link: https://docs.travis-ci.com/user/notifications/
 ---
+
+### Email
+
+To turn off email notifications:
+
+```yaml
+notifications:
+  email: false
+```
 
 ### Slack
 

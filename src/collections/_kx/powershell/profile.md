@@ -9,7 +9,6 @@ sources:
     link: https://docs.microsoft.com/en-us/powershell/scripting/components/ise/how-to-use-profiles-in-windows-powershell-ise?view=powershell-6
 ---
 
-
 ## Create a profile
 
 Locate your profile and create it if necessary:
@@ -27,8 +26,9 @@ opens:
 ```powershell
 # Determine starting location
 Set-Location C:\
-# 
+#
 ```
 
 **Misc**:
+
 - [Add a welcome message](https://www.computerperformance.co.uk/powershell/profile-ps1/)

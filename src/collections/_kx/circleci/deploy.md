@@ -3,9 +3,9 @@ tech: circleci
 title: Workflow and deployment
 tags: [circleci, workflow, deploy]
 sources:
-  - name: CircleCI configuration documentation 
+  - name: CircleCI configuration documentation
     link: https://circleci.com/docs/2.0/configuration-reference/#persist_to_workspace
-  - name: CircleCI workflow documentation 
+  - name: CircleCI workflow documentation
     link: https://circleci.com/docs/2.0/workflows/
 mentioned:
   - /2018/12/11/circleci-persist-artifacts
@@ -30,14 +30,15 @@ workflows:
 ### Filtering
 
 Jobs can be filtered and conditionally be executed or ignored:
+
 - Branch name (regex supported)
 - Tags
-Filtering can be inclusive (`only:`) or exclusive (`ignore:`). Refer to CircleCI
-workflow documentation
+  Filtering can be inclusive (`only:`) or exclusive (`ignore:`). Refer to CircleCI
+  workflow documentation
 
 ## Persisting artifacts
 
-Folder may be persisted from a job to another one to avoid recompiling. Use 
+Folder may be persisted from a job to another one to avoid recompiling. Use
 `persist_to_workspace` to save and `attach_to_workspace` to load:
 
 ```yaml
@@ -47,7 +48,7 @@ jobs:
     steps:
       - persist_to_workspace:
           # Must be an absolute path, or relative path from working_directory.
-          # This is a directory on the container which is  taken to be the root 
+          # This is a directory on the container which is  taken to be the root
           # directory of the workspace.
           root: ./
           # paths are relative to root and MUST be defined
@@ -67,6 +68,7 @@ jobs:
 
 To make the workspace available through jobs, it has to be shared via a workflow
 where the jobs dependencies defines who can access what:
+
 ```yaml
 workflows:
   version: 2
@@ -76,7 +78,7 @@ workflows:
         - requires:
             # as "build" must run before "deploy", the workspace after "build"
             # is available for attaching
-            - build 
+            - build
 ```
 
 > Warning: `.circleci` folder cannot be copied!

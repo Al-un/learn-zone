@@ -46,6 +46,7 @@ layout: default
       <p>Sources:</p>
       <ul>
         {% for source in page.sources %} 
+        <!-- <li>{{ source | markdownify }}</li> -->
           <li><a href="{{ source.link }}">{{ source.name }}</a></li>
         {% endfor %} 
       </ul>

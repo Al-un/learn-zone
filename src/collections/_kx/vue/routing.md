@@ -7,6 +7,7 @@ sources:
     link: https://router.vuejs.org/
 mentioned:
   - /2018/12/16/starting-vuejs
+  - /2019/01/03/pwa-with-vue
 ---
 
 ### Navigation
@@ -14,9 +15,7 @@ mentioned:
 To render routed view:
 
 ```html
-<main id="myApp">
-  <router-view/>
-</main>
+<main id="myApp"><router-view /></main>
 ```
 
 To generate navigation links:
@@ -46,3 +45,27 @@ export default new Router({
   ]
 });
 ```
+
+### Base url
+
+In case of browsing routing, most of deployment handles the simple case: when
+`baseUrl` equals to the root URL `/`.
+
+However, if it is not the case, the `base` options is required. Usually, it
+uses the import from `vue.config`:
+
+```javascript
+// src/routes/index.js
+import { baseUrl } from "../../vue.config";
+
+export default new Router({
+  mode: "history",
+  base: baseUrl,
+  // routes defintions
+  routes: []
+});
+```
+
+Sources:
+
+- [base option documentation](https://router.vuejs.org/api/#base)

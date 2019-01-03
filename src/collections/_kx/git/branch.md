@@ -5,7 +5,7 @@ title: Git branches
 
 ## Branches management
 
-#### Rename branches
+### Rename branches
 
 If you want to rename a branch while pointed to any branch, do:
 

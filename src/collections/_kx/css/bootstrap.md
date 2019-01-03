@@ -5,7 +5,7 @@ tags: [css, bootstrap, flex, layout]
 mentioned:
 ---
 
-## Grid
+## Grid layout
 
 Use `class='container'` or `class='container-fluid'` to define a grid layout. Each
 layout has multiple row where are defined columns:
@@ -23,7 +23,7 @@ layout has multiple row where are defined columns:
 </div>
 ```
 
-## Forms
+## Forms components
 
 ### File inputs
 
