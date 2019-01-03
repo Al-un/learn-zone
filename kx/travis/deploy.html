@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Margin and Padding</title>
+    <title>Deployment</title>
 
     <!-- Styles -->
     <link
@@ -112,7 +112,7 @@
             
           
             <a href="/learnzone/kx/css/margin-paddding.html" 
-            class="page-nav-link active">
+            class="page-nav-link ">
               Margin and Padding
             </a>
           
@@ -317,7 +317,7 @@
             
           
             <a href="/learnzone/kx/travis/deploy.html" 
-            class="page-nav-link ">
+            class="page-nav-link active">
               Deployment
             </a>
           
@@ -395,59 +395,98 @@
   </div>
 
   <div id="page-content">
-    <h1>Margin and Padding</h1>
+    <h1>Deployment</h1>
 
-    <h2 id="shorthand-writing">Shorthand writing</h2>
+    <h2 id="deployment-configuration">Deployment configuration</h2>
 
-<p><strong>Vertical and horizontal values</strong></p>
+<h3 id="conditional-deployment">Conditional deployment</h3>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span> <span class="p">{</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">20px</span> <span class="m">50px</span><span class="p">;</span>
-  <span class="c">/* is same as */</span>
-  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
-  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
-  <span class="nl">margin-left</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
-  <span class="nl">margin-right</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
-<span class="p">}</span>
+<blockquote>
+  <p>By default, deployment only occurs to <code class="highlighter-rouge">master</code> or application specific branch
+To have deployments on multiple branches per deployment provider/script,
+ensure that conditional deployment is properly configured</p>
+</blockquote>
+
+<p>Basic condition is</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">provider</span><span class="pi">:</span> <span class="s">some_provider</span>
+    <span class="c1"># deployment providers and stuff here</span>
+    <span class="na">on</span><span class="pi">:</span>
+      <span class="na">branch</span><span class="pi">:</span> <span class="s">master</span> <span class="c1"># master deployment</span>
+  <span class="pi">-</span> <span class="na">provider</span><span class="pi">:</span> <span class="s">another_provider</span>
+    <span class="c1"># other stuffs</span>
+    <span class="na">on</span><span class="pi">:</span>
+      <span class="na">branch</span><span class="pi">:</span> <span class="s">develop</span> <span class="c1"># develop deployment</span>
 </code></pre></div></div>
 
-<p><strong>Vertical and horizontal values</strong></p>
+<p>To have all multiples branches, use the <code class="highlighter-rouge">all_branches</code> conditions restricted by
+other conditions.</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span> <span class="p">{</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">25px</span> <span class="m">50px</span> <span class="m">75px</span><span class="p">;</span>
-  <span class="c">/* is same as */</span>
-  <span class="nl">padding-top</span><span class="p">:</span> <span class="m">25px</span><span class="p">;</span>
-  <span class="nl">padding-bottom</span><span class="p">:</span> <span class="m">75px</span><span class="p">;</span>
-  <span class="nl">padding-left</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
-  <span class="nl">padding-right</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="c1"># ...</span>
+  <span class="na">on</span><span class="pi">:</span>
+    <span class="na">all_branches</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">condition</span><span class="pi">:</span> <span class="s">some_condition_here</span>
 </code></pre></div></div>
 
-<p><strong>All values</strong></p>
+<h2 id="deployment-providers">Deployment providers</h2>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span> <span class="p">{</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">25px</span> <span class="m">50px</span> <span class="m">75px</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="c">/* is same as */</span>
-  <span class="nl">padding-top</span><span class="p">:</span> <span class="m">25px</span><span class="p">;</span>
-  <span class="nl">padding-right</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
-  <span class="nl">padding-bottom</span><span class="p">:</span> <span class="m">75px</span><span class="p">;</span>
-  <span class="nl">padding-left</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-<span class="p">}</span>
+<h3 id="github-pages">Github pages</h3>
+
+<p>Travis provides support for <a href="https://docs.travis-ci.com/user/deployment/pages/">Github pages deployment</a>.
+Configuration is dead simple:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="c1"># Github pages provider</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">pages</span>
+  <span class="c1"># Keep built artifacts</span>
+  <span class="na">skip-cleanup</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="c1"># Encrypted or secured environment variable</span>
+  <span class="na">github-token</span><span class="pi">:</span> <span class="s">$GITHUB_TOKEN</span>
+  <span class="c1"># Not using git push --force</span>
+  <span class="na">keep-history</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="c1"># restricted branch</span>
+  <span class="na">on</span><span class="pi">:</span>
+    <span class="na">branch</span><span class="pi">:</span> <span class="s">master</span>
 </code></pre></div></div>
 
 
     <hr />
 
     
+      <p>Sources:</p>
+      <ul>
+         
+        <!-- <li><p>{“name”=&gt;”Travis deployment documentation”, “link”=&gt;”https://docs.travis-ci.com/user/deployment/”}</p>
+</li> -->
+          <li><a href="https://docs.travis-ci.com/user/deployment/">Travis deployment documentation</a></li>
+         
+      </ul>
+    
 
     <div />
 
      
-    <span class="article-tag">css</span> 
+    <span class="article-tag">travis</span> 
+     
+    <span class="article-tag">deploy</span> 
      
 
     <div />
 
+    
+      <p>Mentionned:</p>
+      <ul>
+         
+           
+          
+          <li>
+            <a href="/learnzone/2019/01/03/pwa-with-vue.html" >03 Jan 2019 pwa with vue</a >
+          </li>
+           
+        
+      </ul>
     
   </div>
 </div>
