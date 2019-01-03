@@ -394,6 +394,7 @@ workflow is:</p>
 <h3 id="filtering">Filtering</h3>
 
 <p>Jobs can be filtered and conditionally be executed or ignored:</p>
+
 <ul>
   <li>Branch name (regex supported)</li>
   <li>Tags
@@ -403,7 +404,7 @@ workflow documentation</li>
 
 <h2 id="persisting-artifacts">Persisting artifacts</h2>
 
-<p>Folder may be persisted from a job to another one to avoid recompiling. Use 
+<p>Folder may be persisted from a job to another one to avoid recompiling. Use
 <code class="highlighter-rouge">persist_to_workspace</code> to save and <code class="highlighter-rouge">attach_to_workspace</code> to load:</p>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jobs</span><span class="pi">:</span>
@@ -412,7 +413,7 @@ workflow documentation</li>
     <span class="na">steps</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="na">persist_to_workspace</span><span class="pi">:</span>
           <span class="c1"># Must be an absolute path, or relative path from working_directory.</span>
-          <span class="c1"># This is a directory on the container which is  taken to be the root </span>
+          <span class="c1"># This is a directory on the container which is  taken to be the root</span>
           <span class="c1"># directory of the workspace.</span>
           <span class="na">root</span><span class="pi">:</span> <span class="s">./</span>
           <span class="c1"># paths are relative to root and MUST be defined</span>
@@ -432,6 +433,7 @@ workflow documentation</li>
 
 <p>To make the workspace available through jobs, it has to be shared via a workflow
 where the jobs dependencies defines who can access what:</p>
+
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">workflows</span><span class="pi">:</span>
   <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
   <span class="na">jobs</span><span class="pi">:</span>
@@ -440,7 +442,7 @@ where the jobs dependencies defines who can access what:</p>
         <span class="pi">-</span> <span class="na">requires</span><span class="pi">:</span>
             <span class="c1"># as "build" must run before "deploy", the workspace after "build"</span>
             <span class="c1"># is available for attaching</span>
-            <span class="pi">-</span> <span class="s">build</span> 
+            <span class="pi">-</span> <span class="s">build</span>
 </code></pre></div></div>
 
 <blockquote>
@@ -454,8 +456,12 @@ where the jobs dependencies defines who can access what:</p>
       <p>Sources:</p>
       <ul>
          
+        <!-- <li><p>{“name”=&gt;”CircleCI configuration documentation”, “link”=&gt;”https://circleci.com/docs/2.0/configuration-reference/#persist_to_workspace”}</p>
+</li> -->
           <li><a href="https://circleci.com/docs/2.0/configuration-reference/#persist_to_workspace">CircleCI configuration documentation</a></li>
          
+        <!-- <li><p>{“name”=&gt;”CircleCI workflow documentation”, “link”=&gt;”https://circleci.com/docs/2.0/workflows/”}</p>
+</li> -->
           <li><a href="https://circleci.com/docs/2.0/workflows/">CircleCI workflow documentation</a></li>
          
       </ul>

@@ -376,7 +376,15 @@
   <div id="page-content">
     <h1>Encrypting variables</h1>
 
-    <p>Encryption is done via Travis CLI which is a Ruby gem:</p>
+    <h1 id="encryption">Encryption</h1>
+
+<p>Encryption ensures data integrity, security blabla etc. It has to be done per
+repository i.e. the same data, such as a GitHub token, must be encrypted multiple
+times</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Encryption is done via Travis CLI which is a Ruby gem:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install travis
 </code></pre></div></div>
@@ -396,6 +404,45 @@ repositories status, deployment, public ones and invitations.</p>
   <li><a href="https://github.com/travis-ci/travis-ci/issues/10137">By default, Travis CLI connects to .org</a></li>
   <li><a href="https://github.com/travis-ci/travis.rb/issues/367">Travis CLI requires scopes for GitHub token</a></li>
 </ul>
+
+<h2 id="how-to-use">How to use</h2>
+
+<p>Encryption syntax is simple:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>travis encrypt "Encrypted value here" --com -r {your repo}
+</code></pre></div></div>
+
+<p>Few words about it:</p>
+
+<ul>
+  <li>“Encrypted value here” must contain exactly what you want o write in clear text.
+If you want to encrypt a variable, you will write <code class="highlighter-rouge">travis encrypt "GITHUB_TOKEN=MyTokenHere</code>.</li>
+  <li><code class="highlighter-rouge">--com</code> because I am using <code class="highlighter-rouge">travis.com</code> instead of <code class="highlighter-rouge">travis.org</code></li>
+  <li><code class="highlighter-rouge">-r {repo}</code> to attach the encrypted value to a given repository such as <code class="highlighter-rouge">Al-un/learnzone</code></li>
+  <li><code class="highlighter-rouge">--add path_to_destination</code> to append the encrypted value in your <code class="highlighter-rouge">.travis.yml</code>.
+I do not use this option because it breaks my configuration file formatting and
+manually add it to my <code class="highlighter-rouge">.travis.yml</code>
+To add a Slack notification, you can use <code class="highlighter-rouge">--add notifications.slack.room</code></li>
+</ul>
+
+<p>The encryption output looks like:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">secure</span><span class="pi">:</span> <span class="s">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA...AA</span>
+</code></pre></div></div>
+
+<p>Copy everything to the proper destination. For example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">env</span><span class="pi">:</span>
+  <span class="na">global</span><span class="pi">:</span>
+    <span class="c1"># $GITHUB_TOKEN defined here</span>
+    <span class="na">secure</span><span class="pi">:</span> <span class="s2">"</span><span class="s">AAAAAAAAAA..AAA"</span>
+
+<span class="na">notifications</span><span class="pi">:</span>
+  <span class="na">slack</span><span class="pi">:</span>
+    <span class="na">rooms</span><span class="pi">:</span>
+      <span class="c1"># Slack room "workspace:token" is defined here</span>
+      <span class="pi">-</span> <span class="na">secure</span><span class="pi">:</span> <span class="s2">"</span><span class="s">AAAAAAAAAA..AAA"</span>
+</code></pre></div></div>
 
 
     <hr />

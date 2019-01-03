@@ -380,9 +380,7 @@
 
 <p>To render routed view:</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;main</span> <span class="na">id=</span><span class="s">"myApp"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;router-view/&gt;</span>
-<span class="nt">&lt;/main&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;main</span> <span class="na">id=</span><span class="s">"myApp"</span><span class="nt">&gt;&lt;router-view</span> <span class="nt">/&gt;&lt;/main&gt;</span>
 </code></pre></div></div>
 
 <p>To generate navigation links:</p>
@@ -411,6 +409,31 @@ use the <em>history</em> mode:</p>
 <span class="p">});</span>
 </code></pre></div></div>
 
+<h3 id="base-url">Base url</h3>
+
+<p>In case of browsing routing, most of deployment handles the simple case: when
+<code class="highlighter-rouge">baseUrl</code> equals to the root URL <code class="highlighter-rouge">/</code>.</p>
+
+<p>However, if it is not the case, the <code class="highlighter-rouge">base</code> options is required. Usually, it
+uses the import from <code class="highlighter-rouge">vue.config</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/routes/index.js</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">baseUrl</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"../../vue.config"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="k">new</span> <span class="nx">Router</span><span class="p">({</span>
+  <span class="na">mode</span><span class="p">:</span> <span class="s2">"history"</span><span class="p">,</span>
+  <span class="na">base</span><span class="p">:</span> <span class="nx">baseUrl</span><span class="p">,</span>
+  <span class="c1">// routes defintions</span>
+  <span class="na">routes</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Sources:</p>
+
+<ul>
+  <li><a href="https://router.vuejs.org/api/#base">base option documentation</a></li>
+</ul>
+
 
     <hr />
 
@@ -418,6 +441,8 @@ use the <em>history</em> mode:</p>
       <p>Sources:</p>
       <ul>
          
+        <!-- <li><p>{“name”=&gt;”Vue Router documentaiton”, “link”=&gt;”https://router.vuejs.org/”}</p>
+</li> -->
           <li><a href="https://router.vuejs.org/">Vue Router documentaiton</a></li>
          
       </ul>
@@ -442,6 +467,9 @@ use the <em>history</em> mode:</p>
           <li>
             <a href="/learnzone/2018/12/16/starting-vuejs.html" >16 Dec 2018 Starting with Vue</a >
           </li>
+           
+         
+           
            
         
       </ul>
