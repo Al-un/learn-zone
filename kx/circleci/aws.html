@@ -59,6 +59,39 @@
           
           
           
+          <h4>AWS</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/aws/eb.html" 
+            class="page-nav-link ">
+              Elastic Beanstalk
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/aws/ec2.html" 
+            class="page-nav-link ">
+              EC2
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/aws/rds.html" 
+            class="page-nav-link ">
+              RDS
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
           <h4>CircleCI</h4>
 
           <div class="page-nav-links">
@@ -139,6 +172,32 @@
           
           
           
+          <h4></h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/git/branch.html" 
+            class="page-nav-link ">
+              Git branches
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/git/content.html" 
+            class="page-nav-link ">
+              Content versioning
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
           <h4>JavaScript</h4>
 
           <div class="page-nav-links">
@@ -161,6 +220,13 @@
             <a href="/learnzone/kx/javascript/webpack.html" 
             class="page-nav-link ">
               Webpack
+            </a>
+          
+            
+          
+            <a href="/learnzone/kx/javascript/workbox.html" 
+            class="page-nav-link ">
+              Workbox
             </a>
           
             
@@ -198,6 +264,25 @@
           
           
           
+          <h4>Markdown</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/markdown/image.html" 
+            class="page-nav-link ">
+              Images
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
           <h4>PowerShell</h4>
 
           <div class="page-nav-links">
@@ -220,13 +305,6 @@
           <h4>Rails</h4>
 
           <div class="page-nav-links">
-            
-          
-            <a href="/learnzone/kx/git/branch.html" 
-            class="page-nav-link ">
-              Git branches
-            </a>
-          
             
           
             <a href="/learnzone/kx/rails/active-model-serializers.html" 
@@ -382,6 +460,13 @@
           
             
           
+            <a href="/learnzone/kx/vue/vuepress.html" 
+            class="page-nav-link ">
+              Vuepress
+            </a>
+          
+            
+          
             <a href="/learnzone/kx/vue/vuex.html" 
             class="page-nav-link ">
               Vuex
@@ -397,7 +482,71 @@
   <div id="page-content">
     <h1>AWS</h1>
 
-    
+    <blockquote>
+  <p>For some reason, credentials should be declared quite manually</p>
+</blockquote>
+
+<h2 id="elastic-beanstalk">Elastic Beanstalk</h2>
+
+<h3 id="script">Script</h3>
+
+<p>CircleCI will leverage EB CLI. Add a deploy job in your workflow:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">workflows</span><span class="pi">:</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="c1"># Staging deployment</span>
+  <span class="na">build-deploy</span><span class="pi">:</span>
+    <span class="na">jobs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">build</span>
+      <span class="pi">-</span> <span class="na">deploy</span><span class="pi">:</span>
+          <span class="na">requires</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">build</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span> <span class="c1"># build definition</span>
+  <span class="na">deploy</span><span class="pi">:</span>
+    <span class="na">docker</span><span class="pi">:</span>
+      <span class="c1"># not requiring a specific stack</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">buildpack-deps:trusty</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="c1"># Need to checkout not only the code but also the EB configuration</span>
+      <span class="pi">-</span> <span class="s">checkout</span>
+      <span class="c1"># EB CLI</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Install EB CLI</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="no">sudo apt-get -y update</span>
+            <span class="no">sudo apt-get -y install python-pip python-dev build-essential</span>
+            <span class="no">sudo pip install awsebcli --upgrade</span>
+      <span class="c1"># Problem here</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Create AWS credentials manually</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="no">mkdir ~/.aws</span>
+            <span class="no">touch ~/.aws/config</span>
+            <span class="no">chmod 600 ~/.aws/config</span>
+            <span class="no">echo "[profile eb-cli]" &gt; ~/.aws/config</span>
+            <span class="no">echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" &gt;&gt; ~/.aws/config</span>
+            <span class="no">echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" &gt;&gt; ~/.aws/config</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Deploy to AWS EB</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="s">eb deploy {target environment} --profile eb-cli</span>
+</code></pre></div></div>
+
+<ul>
+  <li>I did not find a better solution than create a <a href="https://github.com/kgoedecke/circleci-beanstalk-example/blob/master/.circleci/config.yml">AWS config file</a></li>
+</ul>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<p>In case of</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR: This directory has not been set up with the EB CLI
+You must first run "eb init".
+Exited with code 126
+</code></pre></div></div>
+
+<p>Ensure that you have elastic beanstalk profiles in the <code class="highlighter-rouge">.elasticbeanstalk/config.yml</code></p>
 
 
     <hr />
@@ -427,6 +576,13 @@
           
           <li>
             <a href="/learnzone/2018/12/20/aws-journey.html" >20 Dec 2018 aws journey</a >
+          </li>
+           
+         
+           
+          
+          <li>
+            <a href="/learnzone/2019/01/07/elastic-beanstalk-vs-ec2.html" >07 Jan 2019 elastic beanstalk vs ec2</a >
           </li>
            
         

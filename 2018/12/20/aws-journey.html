@@ -48,23 +48,13 @@
 
   <p>Starting to sails toward AWS with Rails.</p>
 
-<h2 id="elb">ELB</h2>
+<h2 id="eb">EB</h2>
 
-<p>Install EB CLI:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> pip <span class="nb">install </span>awsebcli <span class="nt">--upgrade</span> <span class="nt">--cli</span> 
-</code></pre></div></div>
-
-<p>Add the user relative script folder to environment variable</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb <span class="nt">--version</span>
-</code></pre></div></div>
-
-<p>From https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html?icmpid=docs_elasticbeanstalk_console#eb-cli3-install.cli-only</p>
-
-<p>To terminate environment</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb delete learnzone-aws-staging-env
-</code></pre></div></div>
+<ul>
+  <li>Install EB CLI</li>
+  <li>Configure application with <code class="highlighter-rouge">eb init</code></li>
+  <li>Deploy with <code class="highlighter-rouge">eb deploy</code></li>
+</ul>
 
 <h2 id="rds">RDS</h2>
 
@@ -83,37 +73,33 @@ https://serverfault.com/questions/349585/how-do-i-set-an-environmental-variable-
   <p>Do not forget to grant access to your RDS from EB / EC2!</p>
 </blockquote>
 
-<h2 id="to-sort">To sort</h2>
-
-<ul>
-  <li>beware version of Ruby in Gemfile</li>
-  <li>database</li>
-</ul>
-
 <h2 id="ec2">EC2</h2>
 
-<p>Main tuto
-https://www.awsrails.com/rails-ec2/</p>
-
-<p>Convert OpenSSH private key to Putty private key
-https://unix.stackexchange.com/questions/116303/convert-amazon-pem-key-to-putty-ppk-key-linux</p>
+<ul>
+  <li><a href="https://www.awsrails.com/rails-ec2/">Main tuto</a></li>
+  <li><a href="https://unix.stackexchange.com/questions/116303/convert-amazon-pem-key-to-putty-ppk-key-linux">Convert OpenSSH private key to Putty private key</a></li>
+</ul>
 
 <h2 id="circleci">CircleCI</h2>
 
 <ol>
   <li>Create a CircleCI user in AWS IAM</li>
   <li>Copy keys (access key and secret access key) into repository settings in CircleCI</li>
+  <li>Use <code class="highlighter-rouge">eb deploy {app name}</code></li>
 </ol>
 
-<p>Ensure that apt-get are automatic with <code class="highlighter-rouge">-y</code></p>
-
-<p>Using <code class="highlighter-rouge">eb deploy {app name}</code></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR: This directory has not been set up with the EB CLI
+<ul>
+  <li>Ensure that apt-get are automatic with <code class="highlighter-rouge">-y</code></li>
+  <li>Ensure that elasticbeanstalk profiles are in the repository:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR: This directory has not been set up with the EB CLI
 You must first run "eb init".
 Exited with code 126
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+</ul>
 
 <p>sources:</p>
+
 <ul>
   <li>https://discuss.circleci.com/t/best-way-to-auto-deploy-to-elastic-beanstalk/382/2</li>
   <li>CircleCI 1.0: https://gist.github.com/RobertoSchneiders/9e0e73e836a80d53a21e</li>
@@ -124,6 +110,41 @@ Exited with code 126
 
   <hr />
 
+  
+  <p>Articles:</p>
+  <ul>    
+     
+      
+         
+        
+        <li><a href="/learnzone/kx/aws/ec2.html">EC2</a></li>
+         
+      
+         
+         
+      
+     
+      
+         
+        
+        <li><a href="/learnzone/kx/aws/eb.html">Elastic Beanstalk</a></li>
+         
+      
+         
+         
+      
+     
+      
+         
+        
+        <li><a href="/learnzone/kx/aws/rds.html">RDS</a></li>
+         
+      
+         
+         
+      
+    
+  </ul>
   
 </div>
 

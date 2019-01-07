@@ -47,6 +47,7 @@
   <h1>Persist artifacts in CircleCI</h1>
 
   <p>This website could have used <code class="highlighter-rouge">master branch/docs</code> folder as a website:</p>
+
 <ul>
   <li>I build locally my Jekyll website</li>
   <li>If the output folder is not already set to <code class="highlighter-rouge">/docs/</code>, copy content from <code class="highlighter-rouge">/_site</code>
@@ -55,12 +56,13 @@ to <code class="highlighter-rouge">/docs/</code></li>
 </ul>
 
 <p>But for the sake of learning, let’s do split the Circle CI workflow in two jobs:</p>
+
 <ul>
   <li>build</li>
   <li>deploy</li>
 </ul>
 
-<p>I need to keep the artifacts produced by the <em>build</em> job to have it deployed by 
+<p>I need to keep the artifacts produced by the <em>build</em> job to have it deployed by
 the <em>deploy</em> job. To do so, CircleCI offers <code class="highlighter-rouge">persist_to_workspace</code> and <code class="highlighter-rouge">attach_workspace</code>.</p>
 
 

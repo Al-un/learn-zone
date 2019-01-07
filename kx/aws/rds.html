@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Async / await</title>
+    <title>RDS</title>
 
     <!-- Styles -->
     <link
@@ -79,7 +79,7 @@
             
           
             <a href="/learnzone/kx/aws/rds.html" 
-            class="page-nav-link ">
+            class="page-nav-link active">
               RDS
             </a>
           
@@ -204,7 +204,7 @@
             
           
             <a href="/learnzone/kx/javascript/async.html" 
-            class="page-nav-link active">
+            class="page-nav-link ">
               Async / await
             </a>
           
@@ -480,60 +480,119 @@
   </div>
 
   <div id="page-content">
-    <h1>Async / await</h1>
+    <h1>RDS</h1>
 
-    <p><code class="highlighter-rouge">await</code> basically turns asynchronous code into synchronous-like syntax. However,
-a method using the <code class="highlighter-rouge">await</code> feature must be declared as <code class="highlighter-rouge">async</code> so that the method
-can be put on hold while awaiting for the completion of asynchronous task.</p>
+    <p>AWS databases</p>
 
-<h2 id="basic-usage">Basic usage</h2>
+<h2 id="setting-up">Setting up</h2>
 
-<p>A traditional <em>then-able</em> code is written like:</p>
+<p>Go to RDS dashboard page:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">loadContent</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="nx">API_PATH</span> <span class="o">+</span> <span class="nx">SOME_PATH</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">doSomethingWithData</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="nx">handleError</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
-<span class="p">}</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Services &gt; Database &gt; RDS
 </code></pre></div></div>
 
-<p>The same code can be written as:</p>
+<p>Hit the big orange <code class="highlighter-rouge">Create database</code> button</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">loadContent</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">resp</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">API_PATH</span> <span class="o">+</span> <span class="nx">SOME_PATH</span><span class="p">);</span>
-    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
-    <span class="nx">doSomethingWithData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">handleError</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<ol>
+  <li>Select your database provider. I’ll go with PostgreSQL. Make sure you check
+<em>Only enable options eligible for RDS Free Tiers</em> if you are concerned by it
+Click <em>Next</em></li>
+  <li>
+    <p>Select:</p>
 
-<p>Notice that <em>catch-able</em> syntax is now replaced by a <code class="highlighter-rouge">try/catch</code> block</p>
+    <ul>
+      <li>the database version</li>
+      <li>the instance supporting the database</li>
+      <li>allocated storage space</li>
+      <li>database identifier (URL prefix). If empty, no database will be instantiated</li>
+      <li>
+        <p>master username and password. <strong>do not lose the info</strong></p>
 
-<h2 id="asynchronous-loop">Asynchronous loop</h2>
+        <p>Click <em>Next</em></p>
+      </li>
+    </ul>
+  </li>
+  <li>Configure your database:
+    <ul>
+      <li>Virtual Private Cloud: better use an existing one to regroup resources</li>
+      <li>Public accessibility: to be able to access the database from out of the VPC</li>
+      <li>Security group: up to you, you can create a new one or re-use an existing one</li>
+      <li>Database name and port</li>
+      <li>Other maintenance and stuff configuration</li>
+      <li>Uncheck “enable deletion protection” if you want to delete the database later</li>
+    </ul>
+  </li>
+  <li>RDS instantiation is pretty long, please go take your coffee</li>
+</ol>
 
-<p>Async cannot be combined with <code class="highlighter-rouge">forEach</code>:</p>
+<h2 id="post-instantiation">Post instantiation</h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">printFiles</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">files</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getFilePaths</span><span class="p">();</span>
+<h3 id="surrounding-resources">Surrounding resources</h3>
 
-  <span class="kr">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span>
-    <span class="nx">files</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="k">async</span> <span class="nx">file</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">contents</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="s2">"utf8"</span><span class="p">);</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">contents</span><span class="p">);</span>
-    <span class="p">})</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<p>Creating a database will automatically create, if you decide to create it:</p>
 
-<p>From <a href="https://stackoverflow.com/a/37576787/4906586">StackOverflow</a></p>
+<ul>
+  <li>a virtual private cloud (VPC) with a subnet group</li>
+  <li>a security group</li>
+</ul>
+
+<p>For a better readibility / maintenance / etc, feel free to give a proper name
+to theses resources to know what is what.</p>
+
+<h3 id="database-access">Database access</h3>
+
+<p>In the example of a PostgreSQL database, you can access the database via an url
+<code class="highlighter-rouge">postgres://{username}:{password}@{hostname}:{port}/{database_name}</code></p>
+
+<ul>
+  <li><code class="highlighter-rouge">username</code> refers to the master username you defined earlier</li>
+  <li><code class="highlighter-rouge">password</code> refers to the master password you defined earlier</li>
+  <li><code class="highlighter-rouge">hostname</code> is the <em>endpoint</em>: <code class="highlighter-rouge">{database identifier}.{shared unique id}.{aws region}.rds.amazoneaws.com</code></li>
+  <li><code class="highlighter-rouge">port</code> could have been defined. Default is 5432 for PostgreSQL</li>
+  <li><code class="highlighter-rouge">database_name</code> according to your definition</li>
+</ul>
+
+<h3 id="security">Security</h3>
+
+<p>In case you have a strict security group, ensure that the appropriate EC2 instances
+have access to your database. In the example of PostgreSQL:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Protocol</th>
+      <th>Port range</th>
+      <th>Source</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PostgreSQL</td>
+      <td>TCP</td>
+      <td>5432</td>
+      <td>Custom: {Some IP Address}/32</td>
+      <td>Authorization per IP address</td>
+    </tr>
+    <tr>
+      <td>PostgreSQL</td>
+      <td>TCP</td>
+      <td>5432</td>
+      <td>Custom: sg-1234567893</td>
+      <td>Authorization per security group name</td>
+    </tr>
+  </tbody>
+</table>
 
 
     <hr />
 
+    
+      <p>Sources:</p>
+      <ul>
+         
+      </ul>
     
 
     <div />
@@ -542,6 +601,25 @@ can be put on hold while awaiting for the completion of asynchronous task.</p>
 
     <div />
 
+    
+      <p>Mentionned:</p>
+      <ul>
+         
+           
+          
+          <li>
+            <a href="/learnzone/2018/12/20/aws-journey.html" >20 Dec 2018 aws journey</a >
+          </li>
+           
+         
+           
+          
+          <li>
+            <a href="/learnzone/2019/01/07/elastic-beanstalk-vs-ec2.html" >07 Jan 2019 elastic beanstalk vs ec2</a >
+          </li>
+           
+        
+      </ul>
     
   </div>
 </div>

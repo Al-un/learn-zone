@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Async / await</title>
+    <title>EC2</title>
 
     <!-- Styles -->
     <link
@@ -72,7 +72,7 @@
             
           
             <a href="/learnzone/kx/aws/ec2.html" 
-            class="page-nav-link ">
+            class="page-nav-link active">
               EC2
             </a>
           
@@ -204,7 +204,7 @@
             
           
             <a href="/learnzone/kx/javascript/async.html" 
-            class="page-nav-link active">
+            class="page-nav-link ">
               Async / await
             </a>
           
@@ -480,60 +480,64 @@
   </div>
 
   <div id="page-content">
-    <h1>Async / await</h1>
+    <h1>EC2</h1>
 
-    <p><code class="highlighter-rouge">await</code> basically turns asynchronous code into synchronous-like syntax. However,
-a method using the <code class="highlighter-rouge">await</code> feature must be declared as <code class="highlighter-rouge">async</code> so that the method
-can be put on hold while awaiting for the completion of asynchronous task.</p>
+    <h2 id="setting-up">Setting up</h2>
 
-<h2 id="basic-usage">Basic usage</h2>
+<p>The EC2 setting up is pretty straight forward as you set up a standard virtual
+machine. Just follow the wizard and you will have a brand new VM on your hands.</p>
 
-<p>A traditional <em>then-able</em> code is written like:</p>
+<p>Focus should be on</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">loadContent</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="nx">API_PATH</span> <span class="o">+</span> <span class="nx">SOME_PATH</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">doSomethingWithData</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="nx">handleError</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<ul>
+  <li>SSH key pair (to be able to connect to it)</li>
+  <li>Assigned security group should allow HTTP from anywhere and SSH from your IP address only</li>
+</ul>
 
-<p>The same code can be written as:</p>
+<h2 id="installation-rails-example">Installation (Rails example)</h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">loadContent</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">resp</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">API_PATH</span> <span class="o">+</span> <span class="nx">SOME_PATH</span><span class="p">);</span>
-    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
-    <span class="nx">doSomethingWithData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">handleError</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<ul>
+  <li>Start with the first of all:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update
+</code></pre></div>    </div>
+  </li>
+  <li>Install Ruby. I was going the RVM route
+    <ul>
+      <li>https://gorails.com/setup/ubuntu/18.04</li>
+      <li>https://www.howtoforge.com/tutorial/ubuntu-ruby-on-rails/</li>
+    </ul>
+  </li>
+  <li>Install Rails via a simple <code class="highlighter-rouge">gem install rails</code></li>
+  <li>PostgreSQL <code class="highlighter-rouge">pg</code> gem is a <a href="https://www.digitalocean.com/community/questions/gem-install-pg-not-working">bit tricky</a>:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>postgresql-client libpq5 libpq-dev
+<span class="nb">sudo </span>gem <span class="nb">install </span>pg
+</code></pre></div>    </div>
+  </li>
+  <li>As a non-root user, we cannot use the 80 port (any port below 1024 actually). Trick
+is to use port forward from 80 to 3000
+    <ol>
+      <li><code class="highlighter-rouge">sudo ufw enable</code> =&gt; enable firewall</li>
+      <li><code class="highlighter-rouge">sudo ufw allow http</code></li>
+      <li><code class="highlighter-rouge">sudo ufw allow https</code></li>
+      <li><code class="highlighter-rouge">sudo ufw allow ssh</code> <strong>do not forget this one</strong></li>
+      <li>Proceed to <a href="https://askubuntu.com/a/661003">port forwarding</a></li>
+    </ol>
+  </li>
+  <li>Run the Rails application with puma as usual to check if it works</li>
+</ul>
 
-<p>Notice that <em>catch-able</em> syntax is now replaced by a <code class="highlighter-rouge">try/catch</code> block</p>
+<h2 id="deployment-and-long-server-run">Deployment and long server run</h2>
 
-<h2 id="asynchronous-loop">Asynchronous loop</h2>
-
-<p>Async cannot be combined with <code class="highlighter-rouge">forEach</code>:</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">printFiles</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">files</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getFilePaths</span><span class="p">();</span>
-
-  <span class="kr">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span>
-    <span class="nx">files</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="k">async</span> <span class="nx">file</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">contents</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="s2">"utf8"</span><span class="p">);</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">contents</span><span class="p">);</span>
-    <span class="p">})</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>From <a href="https://stackoverflow.com/a/37576787/4906586">StackOverflow</a></p>
+<p>That’s the good two cents question as-of January 2019</p>
 
 
     <hr />
 
+    
+      <p>Sources:</p>
+      <ul>
+         
+      </ul>
     
 
     <div />
@@ -542,6 +546,14 @@ can be put on hold while awaiting for the completion of asynchronous task.</p>
 
     <div />
 
+    
+      <p>Mentionned:</p>
+      <ul>
+         
+           
+           
+        
+      </ul>
     
   </div>
 </div>

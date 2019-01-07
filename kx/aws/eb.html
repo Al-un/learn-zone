@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Async / await</title>
+    <title>Elastic Beanstalk</title>
 
     <!-- Styles -->
     <link
@@ -65,7 +65,7 @@
             
           
             <a href="/learnzone/kx/aws/eb.html" 
-            class="page-nav-link ">
+            class="page-nav-link active">
               Elastic Beanstalk
             </a>
           
@@ -204,7 +204,7 @@
             
           
             <a href="/learnzone/kx/javascript/async.html" 
-            class="page-nav-link active">
+            class="page-nav-link ">
               Async / await
             </a>
           
@@ -480,60 +480,155 @@
   </div>
 
   <div id="page-content">
-    <h1>Async / await</h1>
+    <h1>Elastic Beanstalk</h1>
 
-    <p><code class="highlighter-rouge">await</code> basically turns asynchronous code into synchronous-like syntax. However,
-a method using the <code class="highlighter-rouge">await</code> feature must be declared as <code class="highlighter-rouge">async</code> so that the method
-can be put on hold while awaiting for the completion of asynchronous task.</p>
+    <p>Elastic Beanstalk comes up with a CLI</p>
 
-<h2 id="basic-usage">Basic usage</h2>
+<h2 id="setting-up">Setting up</h2>
 
-<p>A traditional <em>then-able</em> code is written like:</p>
+<p>Go to EB dashboard page:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">loadContent</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="nx">API_PATH</span> <span class="o">+</span> <span class="nx">SOME_PATH</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">doSomethingWithData</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="nx">handleError</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
-<span class="p">}</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Services &gt; Compute &gt; Elastic Beanstalk
 </code></pre></div></div>
 
-<p>The same code can be written as:</p>
+<h3 id="application">Application</h3>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">loadContent</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">resp</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">API_PATH</span> <span class="o">+</span> <span class="nx">SOME_PATH</span><span class="p">);</span>
-    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
-    <span class="nx">doSomethingWithData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">handleError</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<p>Create an application. An application can contain multiple environment reflecting
+the environment stage of your application. This also allows awesome features such
+as URL swapping (pre-production swapping with production)</p>
+
+<p>Click <code class="highlighter-rouge">Create New Application</code> on the top right and give it an appropriate name</p>
+
+<p>Such application will have three tabs on the left:</p>
+
+<ul>
+  <li>Environments list (terminated environments disappear after a while)</li>
+  <li>Uploaded application versions. You can restore a past deployment from here.
+Versions are stored in the Elastic Beanstalk S3 instance under a folder named
+after your application</li>
+  <li>Environments configurations list</li>
+</ul>
+
+<h3 id="environment">Environment</h3>
+
+<p>Create an environment and select the <code class="highlighter-rouge">Web server environment</code>.</p>
+
+<h4 id="basic-configuration">Basic configuration</h4>
+
+<p>Select an appropriate environment name reflecting the environment stag and a subdomain
+if available.</p>
+
+<p>Select the platform depending on your application technology.</p>
+
+<p>For now, let’s start with a sample application. The web application will be uploaded
+later</p>
+
+<p>Leave the additional aside and hit “Create environment”. Please wait for a while.
+Meanwhile, you can jump into the RDS configuration (<em>please check the RDS page</em>)</p>
+
+<p>At this stage, you have a beautiful landing page</p>
+
+<h4 id="extra-configuration">Extra configuration</h4>
+
+<p>When your environment is ready, time to set up some extra configuration. So far
+it mainly involves environment variables, especially if your application relies
+on it for connecting to the database</p>
+
+<h2 id="eb-cli">EB CLI</h2>
+
+<p>Some CLI utilities to handle AWS Elastic Beanstalk. Cool thing is that it can be
+done on your local machine as well as some Continuous Development tool</p>
+
+<h3 id="installation">Installation</h3>
+
+<p>Install EB CLI (<a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html?icmpid=docs_elasticbeanstalk_console#eb-cli3-install.cli-only">documentation</a>):</p>
+
+<ul>
+  <li>Install via Python (here using Python 3+)
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> pip <span class="nb">install </span>awsebcli <span class="nt">--upgrade</span> <span class="nt">--cli</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Add the user relative script folder to environment variable:
+    <ul>
+      <li>Something like <code class="highlighter-rouge">%USERPROFILE%\AppData\Roaming\Python\Python36\Scripts</code> on Windows</li>
+    </ul>
+  </li>
+  <li>Check that CLI is available from terminal:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb <span class="nt">--version</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Create an user via <em>AWS IAM</em> to get a <em>aws access id</em> and a <em>aws secret key</em></li>
+  <li><a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html">Initialize</a>
+the application if it does not exist yet</li>
+  <li>To list all environments
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb list
+</code></pre></div>    </div>
+  </li>
+  <li>To deploy code to an environment
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb deploy <span class="o">{</span>environment name<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>To terminate environment
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb delete <span class="o">{</span>environment name<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="usage">Usage</h3>
+
+<p>Most of the action done via the management console can be done via EB CLI. To start:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>path_to_your_application_repository
+eb init
 </code></pre></div></div>
 
-<p>Notice that <em>catch-able</em> syntax is now replaced by a <code class="highlighter-rouge">try/catch</code> block</p>
+<ol>
+  <li>Select your region</li>
+  <li>If your application already exists, select it to “link” the repository to the application</li>
+  <li>Select the default existing environment. You can change it via
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb use <span class="o">{</span>new default environment name<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
 
-<h2 id="asynchronous-loop">Asynchronous loop</h2>
+<p>This will generate a <code class="highlighter-rouge">.elasticbeanstalk/config.yml</code>. Feel free to have a look and
+adapt the content if necessary</p>
 
-<p>Async cannot be combined with <code class="highlighter-rouge">forEach</code>:</p>
+<p>To deploy the current code:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">printFiles</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">files</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getFilePaths</span><span class="p">();</span>
-
-  <span class="kr">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span>
-    <span class="nx">files</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="k">async</span> <span class="nx">file</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">contents</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="s2">"utf8"</span><span class="p">);</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">contents</span><span class="p">);</span>
-    <span class="p">})</span>
-  <span class="p">);</span>
-<span class="p">}</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eb deploy <span class="o">{</span>environment name<span class="o">}</span>
 </code></pre></div></div>
 
-<p>From <a href="https://stackoverflow.com/a/37576787/4906586">StackOverflow</a></p>
+<p><em>Environment name</em> is optional. If omitted, deployment will be done to the selected
+default environment</p>
+
+<blockquote>
+  <p>Do not forget to assign appropriate environment variables (Rails secrey key,
+database url, third party configuration, etc)</p>
+</blockquote>
+
+<p>Read <a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-deploy.html">more on <code class="highlighter-rouge">eb deploy</code></a></p>
+
+<h4 id="ruby-on-rails">Ruby on Rails</h4>
+
+<p>for Ruby, do not forget:</p>
+
+<ul>
+  <li>SECRET_KEY_API</li>
+  <li>DATABASE_URL</li>
+</ul>
+
+<p>If you cannot multiple Ruby version, make sure that Ruby sub-version
+(e.g. <em>2.5.1</em> vs <em>2.5.3</em>) does not prevent from deploying</p>
 
 
     <hr />
 
+    
+      <p>Sources:</p>
+      <ul>
+         
+      </ul>
     
 
     <div />
@@ -542,6 +637,25 @@ can be put on hold while awaiting for the completion of asynchronous task.</p>
 
     <div />
 
+    
+      <p>Mentionned:</p>
+      <ul>
+         
+           
+          
+          <li>
+            <a href="/learnzone/2018/12/20/aws-journey.html" >20 Dec 2018 aws journey</a >
+          </li>
+           
+         
+           
+          
+          <li>
+            <a href="/learnzone/2019/01/07/elastic-beanstalk-vs-ec2.html" >07 Jan 2019 elastic beanstalk vs ec2</a >
+          </li>
+           
+        
+      </ul>
     
   </div>
 </div>
