@@ -135,6 +135,7 @@ And update `.babelrc`:
 ## I forgot I had Redux
 
 Let's fix Redux stuff... more detail on related article:
+
 - Ensure that `index.js` only calls `<App />` so that `<App />` resolves a non-null store.
 - Mock up API
 

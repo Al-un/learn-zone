@@ -1,7 +1,7 @@
 ---
 title: active storage
 articles:
-    - _kx/rails/active-storage.md
+  - _kx/rails/active-storage.md
 ---
 
 Starting to handle picture for catalogs and articles in learnzone-rails:

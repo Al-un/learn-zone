@@ -33,6 +33,6 @@ By updating the `activate` and `fetch` events:
 - Miku picture is properly cached but Luka picture is cached as well when it should not be
 
 I browsed a bit [`CacheStorage` documentation](https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage)
-and try to implement a manual cache clear. 
+and try to implement a manual cache clear.
 
 Well...fcuk. I have `disable cache` option enabled in Firefox debugging (Network tab).

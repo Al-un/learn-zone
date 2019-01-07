@@ -1,7 +1,7 @@
 ---
 title: controller the rails way
 articles:
-    - _kx/rails/routing.md
+  - _kx/rails/routing.md
 ---
 
 learnzone-rails looks like a good Java project...but it is not coded in Java! Trying

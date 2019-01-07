@@ -1,5 +1,5 @@
 ---
-tech: rails
+tech: git
 title: Git branches
 ---
 
