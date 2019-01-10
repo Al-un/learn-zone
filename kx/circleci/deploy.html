@@ -534,6 +534,34 @@ Filtering can be inclusive (<code class="highlighter-rouge">only:</code>) or exc
 workflow documentation</li>
 </ul>
 
+<p>Filtering are forwarded to “children” jobs. For example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">workflow</span><span class="pi">:</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="na">build-deploy</span><span class="pi">:</span>
+    <span class="na">jobs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">build</span>
+      <span class="pi">-</span> <span class="s">test</span>
+      <span class="pi">-</span> <span class="na">approval</span><span class="pi">:</span>
+          <span class="na">requires</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">test</span>
+          <span class="na">type</span><span class="pi">:</span> <span class="s">approval</span>
+      <span class="pi">-</span> <span class="na">deploy-dev</span><span class="pi">:</span>
+          <span class="na">requires</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">test</span>
+          <span class="na">filters</span><span class="pi">:</span>
+            <span class="na">only</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s">develop</span>
+      <span class="pi">-</span> <span class="na">deploy-prod</span><span class="pi">:</span>
+          <span class="na">requires</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">approval</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Commits on <code class="highlighter-rouge">develop</code> branch triggers: <code class="highlighter-rouge">build &gt; test &gt; deploy-dev</code></li>
+  <li>Commits on <code class="highlighter-rouge">master</code> branch triggers: <code class="highlighter-rouge">build &gt; test &gt; approval &gt; deploy-prod</code></li>
+</ul>
+
 <h3 id="scheduling">Scheduling</h3>
 
 <p>Example:</p>
