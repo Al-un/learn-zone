@@ -36,6 +36,33 @@ Jobs can be filtered and conditionally be executed or ignored:
   Filtering can be inclusive (`only:`) or exclusive (`ignore:`). Refer to CircleCI
   workflow documentation
 
+Filtering are forwarded to "children" jobs. For example:
+
+```yaml
+workflow:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - test
+      - approval:
+          requires:
+            - test
+          type: approval
+      - deploy-dev:
+          requires:
+            - test
+          filters:
+            only:
+              - develop
+      - deploy-prod:
+          requires:
+            - approval
+```
+
+- Commits on `develop` branch triggers: `build > test > deploy-dev`
+- Commits on `master` branch triggers: `build > test > approval > deploy-prod`
+
 ### Scheduling
 
 Example:
