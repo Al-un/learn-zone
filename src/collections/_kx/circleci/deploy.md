@@ -36,6 +36,53 @@ Jobs can be filtered and conditionally be executed or ignored:
   Filtering can be inclusive (`only:`) or exclusive (`ignore:`). Refer to CircleCI
   workflow documentation
 
+### Scheduling
+
+Example:
+
+```yaml
+workflow:
+  version: 2
+
+  nightly:
+    triggers:
+      - schedule:
+          # Time is UTC: deploy every day at 00:00 UTC
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - develop
+    jobs:
+      - build
+      - deploy
+```
+
+- [https://crontab.guru/](https://crontab.guru/)
+- [Workflows to schedule jobs documentation](https://circleci.com/docs/2.0/workflows/)
+
+### Manual approval
+
+```yaml
+workflows:
+  version: 2
+
+  build-deploy:
+    jobs:
+      - build
+      # Approval job name is arbitrary
+      - approval: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
+          requires:
+            - before_approval
+      - deploy-prod:
+          requires:
+            - approval
+```
+
+- [Holding a workflow documentation](https://circleci.com/docs/2.0/workflows/#holding-a-workflow-for-a-manual-approval)
+- [Job type documentation](https://circleci.com/docs/2.0/configuration-reference/#type)
+
 ## Persisting artifacts
 
 Folder may be persisted from a job to another one to avoid recompiling. Use

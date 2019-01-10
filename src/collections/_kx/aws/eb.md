@@ -125,6 +125,16 @@ default environment
 
 Read [more on `eb deploy`](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-deploy.html)
 
+#### Git branches
+
+> To be confirmed, tested blabla
+
+The EB CLI seems to deploy the currently active git branch. Example:
+
+- You are currently on the _develop_ branch
+- You have two environment: _prod_ and _dev_
+- If you `eb deploy prod`, you will deploy your _develop_ to your _prod_ environment
+
 #### Ruby on Rails
 
 for Ruby, do not forget:
