@@ -179,7 +179,7 @@
           
           
           
-          <h4></h4>
+          <h4>Git</h4>
 
           <div class="page-nav-links">
             
@@ -510,6 +510,27 @@
 
     <h2 id="branches-management">Branches management</h2>
 
+<h3 id="list-branches">List branches</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch
+</code></pre></div></div>
+
+<ul>
+  <li><code class="highlighter-rouge">-a</code> argument includes remote branches</li>
+</ul>
+
+<h3 id="switch-branches">Switch branches</h3>
+
+<p>To move to another branch</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout &lt;new_branch&gt;
+</code></pre></div></div>
+
+<p>To create a branch and move to created branch:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> &lt;new-branch&gt;
+</code></pre></div></div>
+
 <h3 id="rename-branches">Rename branches</h3>
 
 <p>If you want to rename a branch while pointed to any branch, do:</p>
@@ -523,6 +544,25 @@
 </code></pre></div></div>
 
 <p>From <a href="https://stackoverflow.com/a/6591218/4906586">StackOverflow</a></p>
+
+<h3 id="removing-branches">Removing branches</h3>
+
+<p>To remove a merged local branch:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="nt">-d</span> &lt;branch_name&gt;
+</code></pre></div></div>
+
+<p>In case branch was not merged locally, force deletion with <code class="highlighter-rouge">-D</code></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="nt">-D</span> &lt;branch_name&gt;
+</code></pre></div></div>
+
+<p>To delete a remote branch:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin <span class="nt">--delete</span> &lt;remote_branch_name&gt;
+</code></pre></div></div>
+
+<p>From <a href="https://makandracards.com/makandra/621-git-delete-a-branch-local-or-remote">this cheatsheet</a></p>
 
 
     <hr />

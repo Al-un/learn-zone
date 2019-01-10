@@ -179,7 +179,7 @@
           
           
           
-          <h4></h4>
+          <h4>Git</h4>
 
           <div class="page-nav-links">
             
@@ -508,7 +508,7 @@
   <div id="page-content">
     <h1>Content versioning</h1>
 
-    <h2 id="add">Add</h2>
+    <h2 id="commit">Commit</h2>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># list staged changes and un-staged changes</span>
 git status
@@ -516,6 +516,24 @@ git status
 git add <span class="nb">.</span>
 <span class="c"># or add specific file</span>
 git add /path/to/my/file.extension
+<span class="c"># commit</span>
+git commit <span class="nt">-m</span> <span class="s2">"commit message"</span>
+</code></pre></div></div>
+
+<h3 id="empty-commit">Empty commit</h3>
+
+<p>Sometimes, you just need <a href="https://coderwall.com/p/vkdekq/git-commit-allow-empty">a commit without changes</a></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">--allow-empty</span> <span class="nt">-m</span> <span class="s2">"commit message"</span>
+</code></pre></div></div>
+
+<h3 id="amend-commit">Amend commit</h3>
+
+<p>Something is missing in the last commit? Just <a href="https://www.atlassian.com/git/tutorials/rewriting-history#git-commit--amend"><em>amend</em> it</a>. <strong>Do not rewrite public branches</strong>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># "--no-edit" keeps the initial commit message. Otherwise a</span>
+<span class="c"># "-m 'commit message'# is required</span>
+git commit <span class="nt">--amend</span> <span class="nt">--no-edit</span>
 </code></pre></div></div>
 
 <h2 id="delete">Delete</h2>
