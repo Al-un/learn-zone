@@ -31,10 +31,19 @@ workflows:
 
 Jobs can be filtered and conditionally be executed or ignored:
 
-- Branch name (regex supported)
+- Branch name
 - Tags
-  Filtering can be inclusive (`only:`) or exclusive (`ignore:`). Refer to CircleCI
-  workflow documentation
+
+Filtering can be:
+
+- inclusive (`only:`)
+- exclusive (`ignore:`)
+- using Regex. E.g. to filter on `feature/*` branches only:
+  ```yaml
+  filters:
+    branches:
+      only: /^feature\/.*/
+  ```
 
 Filtering are forwarded to "children" jobs. For example:
 
