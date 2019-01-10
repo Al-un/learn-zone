@@ -528,10 +528,21 @@ workflow is:</p>
 <p>Jobs can be filtered and conditionally be executed or ignored:</p>
 
 <ul>
-  <li>Branch name (regex supported)</li>
-  <li>Tags
-Filtering can be inclusive (<code class="highlighter-rouge">only:</code>) or exclusive (<code class="highlighter-rouge">ignore:</code>). Refer to CircleCI
-workflow documentation</li>
+  <li>Branch name</li>
+  <li>Tags</li>
+</ul>
+
+<p>Filtering can be:</p>
+
+<ul>
+  <li>inclusive (<code class="highlighter-rouge">only:</code>)</li>
+  <li>exclusive (<code class="highlighter-rouge">ignore:</code>)</li>
+  <li>using Regex. E.g. to filter on <code class="highlighter-rouge">feature/*</code> branches only:
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">filters</span><span class="pi">:</span>
+  <span class="na">branches</span><span class="pi">:</span>
+    <span class="na">only</span><span class="pi">:</span> <span class="s">/^feature\/.*/</span>
+</code></pre></div>    </div>
+  </li>
 </ul>
 
 <p>Filtering are forwarded to “children” jobs. For example:</p>
