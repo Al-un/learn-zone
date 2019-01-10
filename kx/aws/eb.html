@@ -104,6 +104,13 @@
           
             
           
+            <a href="/learnzone/kx/circleci/config.html" 
+            class="page-nav-link ">
+              Configuration
+            </a>
+          
+            
+          
             <a href="/learnzone/kx/circleci/deploy.html" 
             class="page-nav-link ">
               Workflow and deployment
@@ -272,6 +279,25 @@
             <a href="/learnzone/kx/markdown/image.html" 
             class="page-nav-link ">
               Images
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>MySQL</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/mysql/index.html" 
+            class="page-nav-link ">
+              Getting started
             </a>
           
             
@@ -608,6 +634,20 @@ database url, third party configuration, etc)</p>
 </blockquote>
 
 <p>Read <a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-deploy.html">more on <code class="highlighter-rouge">eb deploy</code></a></p>
+
+<h4 id="git-branches">Git branches</h4>
+
+<blockquote>
+  <p>To be confirmed, tested blabla</p>
+</blockquote>
+
+<p>The EB CLI seems to deploy the currently active git branch. Example:</p>
+
+<ul>
+  <li>You are currently on the <em>develop</em> branch</li>
+  <li>You have two environment: <em>prod</em> and <em>dev</em></li>
+  <li>If you <code class="highlighter-rouge">eb deploy prod</code>, you will deploy your <em>develop</em> to your <em>prod</em> environment</li>
+</ul>
 
 <h4 id="ruby-on-rails">Ruby on Rails</h4>
 

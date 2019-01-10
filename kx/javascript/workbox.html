@@ -104,6 +104,13 @@
           
             
           
+            <a href="/learnzone/kx/circleci/config.html" 
+            class="page-nav-link ">
+              Configuration
+            </a>
+          
+            
+          
             <a href="/learnzone/kx/circleci/deploy.html" 
             class="page-nav-link ">
               Workflow and deployment
@@ -272,6 +279,25 @@
             <a href="/learnzone/kx/markdown/image.html" 
             class="page-nav-link ">
               Images
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>MySQL</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/mysql/index.html" 
+            class="page-nav-link ">
+              Getting started
             </a>
           
             
@@ -491,6 +517,30 @@ service worker file
 Defined as <a href="https://github.com/Al-un/workbox/issues/1">an issue here</a> and
 solving is from <a href="https://github.com/GoogleChromeLabs/sw-precache/issues/307#issuecomment-306507753">this issue</a></p>
 </blockquote>
+
+<h2 id="pwa">PWA</h2>
+
+<p>https://codelabs.developers.google.com/codelabs/workbox-lab</p>
+
+<p>First thing is to generate a manifest file. A way to do it is to use
+<a href="https://developers.google.com/web/tools/workbox/guides/generate-service-worker/cli"><code class="highlighter-rouge">workbox-cli</code></a></p>
+
+<p>Workbox-cli does not work so I use this <em>workbox-config.js</em>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">globDirectory</span><span class="p">:</span> <span class="s2">"build/"</span><span class="p">,</span>
+  <span class="na">globPatterns</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">"**/*.css"</span><span class="p">,</span>
+    <span class="s2">"index.html"</span><span class="p">,</span>
+    <span class="s2">"js/animation.js"</span><span class="p">,</span>
+    <span class="s2">"images/home/*.jpg"</span><span class="p">,</span>
+    <span class="s2">"images/icon/*.svg"</span>
+  <span class="p">],</span>
+  <span class="na">swSrc</span><span class="p">:</span> <span class="s2">"src/sw.js"</span><span class="p">,</span>
+  <span class="na">swDest</span><span class="p">:</span> <span class="s2">"build/sw.js"</span><span class="p">,</span>
+  <span class="na">globIgnores</span><span class="p">:</span> <span class="p">[</span><span class="s2">"../workbox-config.js"</span><span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div></div>
 
 
     <hr />

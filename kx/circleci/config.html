@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Variable in SASS</title>
+    <title>Configuration</title>
 
     <!-- Styles -->
     <link
@@ -105,7 +105,7 @@
             
           
             <a href="/learnzone/kx/circleci/config.html" 
-            class="page-nav-link ">
+            class="page-nav-link active">
               Configuration
             </a>
           
@@ -166,7 +166,7 @@
             
           
             <a href="/learnzone/kx/css/variable.html" 
-            class="page-nav-link active">
+            class="page-nav-link ">
               Variable in SASS
             </a>
           
@@ -506,50 +506,172 @@
   </div>
 
   <div id="page-content">
-    <h1>Variable in SASS</h1>
+    <h1>Configuration</h1>
 
-    <h2 id="use-variable-in-formula">Use variable in formula:</h2>
+    <h1 id="configuration">Configuration</h1>
 
-<p>Interpolation FTW:</p>
-<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$topHeight</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
-<span class="nc">.plop</span><span class="p">{</span>
-    <span class="nl">height</span><span class="p">:</span> <span class="nf">calc</span><span class="p">(</span><span class="m">100vh</span> <span class="o">-</span> <span class="si">#{</span><span class="nv">$topHeight</span><span class="si">}</span><span class="p">);</span>
-<span class="p">}</span>
+<p>Configuration involves:</p>
+
+<ul>
+  <li>platform used to execute task</li>
+  <li>third party</li>
+  <li>environment variables</li>
+</ul>
+
+<h2 id="execution-environment">Execution environment</h2>
+
+<p>CircleCI relies on CircleCI’s Docker images (<a href="https://circleci.com/docs/2.0/circleci-images/#section=configuration">documentation</a>)
+which is mainly used as follow:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build-job</span><span class="pi">:</span>
+    <span class="na">docker</span><span class="pi">:</span> <span class="c1"># executor type</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">buildpack-deps:trusty</span> <span class="c1"># primary container will run Ubuntu Trusty</span>
 </code></pre></div></div>
 
-<p>Source:</p>
+<h3 id="executors">Executors</h3>
+
+<blockquote>
+  <p>Executors require version 2.1</p>
+</blockquote>
+
+<p>When the same environment is required multiple times or for code organization purpose,
+you can configure the execution environment under <a href="https://circleci.com/docs/2.0/configuration-reference/#executors-requires-version-21"><code class="highlighter-rouge">executors</code></a>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s">2.1</span>
+
+<span class="na">executors</span><span class="pi">:</span>
+  <span class="c1"># Define environment like you did in jobs</span>
+  <span class="na">app-builder</span><span class="pi">:</span>
+    <span class="na">docker</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/ruby:2.5.1-node-browsers</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/postgres:9.6.5-alpine-ram</span>
+    <span class="na">working_directory</span><span class="pi">:</span> <span class="s">~/repo</span>
+  <span class="na">aws-deployer</span><span class="pi">:</span>
+    <span class="na">docker</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/python:3.7.2-stretch-node-browsers-legacy</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="na">executor</span><span class="pi">:</span> <span class="s">app-builder</span>
+    <span class="na">steps</span><span class="pi">:</span> <span class="c1"># steps</span>
+  <span class="na">deploy-dev</span><span class="pi">:</span>
+    <span class="na">executor</span><span class="pi">:</span> <span class="s">aws-deployer</span>
+    <span class="na">steps</span><span class="pi">:</span> <span class="c1"># steps</span>
+  <span class="na">deploy-prod</span><span class="pi">:</span>
+    <span class="na">executor</span><span class="pi">:</span> <span class="s">aws-deployer</span>
+    <span class="na">steps</span><span class="pi">:</span> <span class="c1"># steps</span>
+</code></pre></div></div>
+
 <ul>
-  <li><a href="https://codepen.io/thebabydino/pen/hgFno">CodePen example</a></li>
+  <li><a href="https://circleci.com/docs/2.0/reusing-config/#authoring-reusable-executors">Reusable executors documentation</a></li>
+</ul>
+
+<h3 id="orbs">Orbs</h3>
+
+<blockquote>
+  <p>Orbs require version 2.1</p>
+</blockquote>
+
+<p><a href="https://circleci.com/docs/2.0/using-orbs/#section=configuration">CircleCI Orbs</a> are
+presets used as <em>third party library</em>. It offers preconfigured commands. For
+example, the <a href="https://github.com/CircleCI-Public/slack-orb">Slack Orb</a> is used as
+follow:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s">2.1</span>
+
+<span class="na">orbs</span><span class="pi">:</span>
+  <span class="na">slack</span><span class="pi">:</span> <span class="s">circleci/slack@1.0.0</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="c1"># This job only push a message on Slack to request an approval</span>
+  <span class="na">before_approval</span><span class="pi">:</span>
+    <span class="na">docker</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">buildpack-deps:trusty</span> <span class="c1"># Ubuntu Trusty</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">slack/notify</span><span class="pi">:</span>
+          <span class="na">message</span><span class="pi">:</span> <span class="s2">"</span><span class="s">A</span><span class="nv"> </span><span class="s">deploy</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">hold</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">manual</span><span class="nv"> </span><span class="s">approval:</span><span class="nv"> </span><span class="s">https://circleci.com/workflow-run/$CIRCLE_WORKFLOW_ID"</span>
+          <span class="na">mentions</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{validator</span><span class="nv"> </span><span class="s">users}"</span>
+          <span class="na">color</span><span class="pi">:</span> <span class="s2">"</span><span class="s">#e5bd0b"</span>
+          <span class="c1"># Optional: Enter a specific webhook here or the default will use $SLACK_WEBHOOK</span>
+          <span class="c1"># webhook: 'webhook'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><a href="https://circleci.com/orbs/registry/">CircleCI Orbs registry</a></li>
+  <li><a href="https://circleci.com/docs/2.0/orbs-faq/#section=configuration">Orbs FAQ</a></li>
+</ul>
+
+<h2 id="commands">Commands</h2>
+
+<blockquote>
+  <p>Commands require version 2.1</p>
+</blockquote>
+
+<p>If a command pattern is repeated, it can be defined under <code class="highlighter-rouge">commands</code> with parameters</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s">2.1</span>
+
+<span class="na">commands</span><span class="pi">:</span>
+  <span class="na">deploy-aws-eb</span><span class="pi">:</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Deploy</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">AWS</span><span class="nv"> </span><span class="s">Elastic</span><span class="nv"> </span><span class="s">Beanstalk"</span>
+    <span class="na">parameters</span><span class="pi">:</span>
+      <span class="na">env</span><span class="pi">:</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">string</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="c1"># Environment is assumed to by Python</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Install EB CLI</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="s">sudo pip install awsebcli --upgrade</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Create AWS credentials manually</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="no">mkdir ~/.aws</span>
+            <span class="no">touch ~/.aws/config</span>
+            <span class="no">chmod 600 ~/.aws/config</span>
+            <span class="no">echo "[profile eb-cli]" &gt; ~/.aws/config</span>
+            <span class="no">echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" &gt;&gt; ~/.aws/config</span>
+            <span class="no">echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" &gt;&gt; ~/.aws/config</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Deploy to AWS EB (Prod)</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="s">eb deploy &lt;&lt; parameters.env &gt;&gt; --profile eb-cli --label &lt;&lt; parameters.env &gt;&gt;-$CIRCLE_BUILD_NUM</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="c1"># Deploy to dev</span>
+  <span class="na">deploy-dev</span><span class="pi">:</span>
+    <span class="na">executor</span><span class="pi">:</span> <span class="s">aws-deployer</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">checkout</span>
+      <span class="pi">-</span> <span class="na">deploy-aws-eb</span><span class="pi">:</span>
+          <span class="na">env</span><span class="pi">:</span> <span class="s">learnzone-aws-dev</span>
+
+  <span class="c1"># Deploy to prod</span>
+  <span class="na">deploy-prod</span><span class="pi">:</span>
+    <span class="na">executor</span><span class="pi">:</span> <span class="s">aws-deployer</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">checkout</span>
+      <span class="pi">-</span> <span class="na">deploy-aws-eb</span><span class="pi">:</span>
+          <span class="na">env</span><span class="pi">:</span> <span class="s">learnzone-aws</span>
+</code></pre></div></div>
+
+<ul>
+  <li><a href="https://circleci.com/docs/2.0/configuration-reference/#commands-requires-version-21"><code class="highlighter-rouge">commands</code> syntax</a></li>
+  <li><a href="https://circleci.com/docs/2.0/reusing-config/">Reusable commands documentation</a></li>
 </ul>
 
 
     <hr />
 
     
-      <p>Sources:</p>
-      <ul>
-         
-      </ul>
-    
 
     <div />
 
      
+    <span class="article-tag">circleci</span> 
+     
 
     <div />
 
-    
-      <p>Mentionned:</p>
-      <ul>
-         
-           
-          
-          <li>
-            <a href="/learnzone/2018/12/12/flex-and-sticky.html" >12 Dec 2018 Stick panel in a flex container</a >
-          </li>
-           
-        
-      </ul>
     
   </div>
 </div>

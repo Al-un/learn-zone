@@ -104,6 +104,13 @@
           
             
           
+            <a href="/learnzone/kx/circleci/config.html" 
+            class="page-nav-link ">
+              Configuration
+            </a>
+          
+            
+          
             <a href="/learnzone/kx/circleci/deploy.html" 
             class="page-nav-link active">
               Workflow and deployment
@@ -272,6 +279,25 @@
             <a href="/learnzone/kx/markdown/image.html" 
             class="page-nav-link ">
               Images
+            </a>
+          
+            
+          </div>
+        </nav>
+      
+        
+        <nav class="page-nav-group">
+          
+          
+          
+          <h4>MySQL</h4>
+
+          <div class="page-nav-links">
+            
+          
+            <a href="/learnzone/kx/mysql/index.html" 
+            class="page-nav-link ">
+              Getting started
             </a>
           
             
@@ -506,6 +532,55 @@ workflow is:</p>
   <li>Tags
 Filtering can be inclusive (<code class="highlighter-rouge">only:</code>) or exclusive (<code class="highlighter-rouge">ignore:</code>). Refer to CircleCI
 workflow documentation</li>
+</ul>
+
+<h3 id="scheduling">Scheduling</h3>
+
+<p>Example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">workflow</span><span class="pi">:</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
+
+  <span class="na">nightly</span><span class="pi">:</span>
+    <span class="na">triggers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">schedule</span><span class="pi">:</span>
+          <span class="c1"># Time is UTC: deploy every day at 00:00 UTC</span>
+          <span class="na">cron</span><span class="pi">:</span> <span class="s2">"</span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*"</span>
+          <span class="na">filters</span><span class="pi">:</span>
+            <span class="na">branches</span><span class="pi">:</span>
+              <span class="na">only</span><span class="pi">:</span>
+                <span class="pi">-</span> <span class="s">develop</span>
+    <span class="na">jobs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">build</span>
+      <span class="pi">-</span> <span class="s">deploy</span>
+</code></pre></div></div>
+
+<ul>
+  <li><a href="https://crontab.guru/">https://crontab.guru/</a></li>
+  <li><a href="https://circleci.com/docs/2.0/workflows/">Workflows to schedule jobs documentation</a></li>
+</ul>
+
+<h3 id="manual-approval">Manual approval</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">workflows</span><span class="pi">:</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s">2</span>
+
+  <span class="na">build-deploy</span><span class="pi">:</span>
+    <span class="na">jobs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">build</span>
+      <span class="c1"># Approval job name is arbitrary</span>
+      <span class="pi">-</span> <span class="na">approval</span><span class="pi">:</span> <span class="c1"># &lt;&lt;&lt; A job that will require manual approval in the CircleCI web application.</span>
+          <span class="na">type</span><span class="pi">:</span> <span class="s">approval</span> <span class="c1"># &lt;&lt;&lt; This key-value pair will set your workflow to a status of "On Hold"</span>
+          <span class="na">requires</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">before_approval</span>
+      <span class="pi">-</span> <span class="na">deploy-prod</span><span class="pi">:</span>
+          <span class="na">requires</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">approval</span>
+</code></pre></div></div>
+
+<ul>
+  <li><a href="https://circleci.com/docs/2.0/workflows/#holding-a-workflow-for-a-manual-approval">Holding a workflow documentation</a></li>
+  <li><a href="https://circleci.com/docs/2.0/configuration-reference/#type">Job type documentation</a></li>
 </ul>
 
 <h2 id="persisting-artifacts">Persisting artifacts</h2>
