@@ -4,6 +4,7 @@
 aws: AWS
 circleci: CircleCI
 css: CSS / SASS
+git: Git
 javascript: JavaScript
 jekyll: Jekyll
 markdown: Markdown
