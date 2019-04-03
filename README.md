@@ -9,6 +9,14 @@ It serves two purposes:
 - exploring technologies capabilities (learnzone-{technology name})
 - centralising knowledge in case of _I knew I solved it but how?_
 
+## DB user
+
+Locally, a single user is shared by all learning project: `padawan`
+
+```sql
+CREATE ROLE padawan CREATEDB LOGIN PASSWORD '{password}';
+```
+
 ## Folders
 
 - **src**: source code for the website, developped under [Jekyll](https://jekyllrb.com)
